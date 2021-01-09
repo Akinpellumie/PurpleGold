@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" xmlns:Controls="clr-namespace:PurpleGold.Controls" xmlns:nav="clr-namespace:PurpleGold.Behaviors"
+             x:Class="PurpleGold.Views.KYCPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{StaticResource PageBgColor}">
+    <ContentPage.Content>
+        <Grid Padding="40,50,40,10"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand">
+            <nav:BackButtonView />
+
+            <ScrollView Margin="0,30,0,40">
+                <StackLayout Spacing="0" Margin="0,10,0,15">
+                    <!--#region UserImage-->
+                    <pv:PancakeView CornerRadius="40"
+                                    HeightRequest="120" WidthRequest="120"
+                                    HorizontalOptions="Center"
+                                    BackgroundColor="Transparent">
+                        <Image x:Name="userImagePro" Margin="0,0,0,0"
+                                                        Source="picture" Aspect="AspectFit" 
+                                                        HorizontalOptions="Fill" HeightRequest="120" 
+                                                        WidthRequest="120" VerticalOptions="Fill"/>
+                    </pv:PancakeView>
+                    <!--#endregion-->
+
+                    <StackLayout>
+                        <pv:PancakeView
+                        Padding="15,10"
+                        HeightRequest="20"
+                        Margin="0,20,0,0"
+                        WidthRequest="125"
+                        CornerRadius="5"
+                        HorizontalOptions="Center"
+                            BackgroundColor="{StaticResource SecondPurpleColor}">
+                            <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="Center">
+
+                                <ff1:SvgCachedImage  
+                                Grid.Column="0"
+                                Source="camera.svg"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                Aspect="AspectFit"
+                                HeightRequest="20"/>
+
+                                <Label
+                                x:Name="cam"
+                                Text="Upload Photo"
+                                TextColor="White"
+                                FontSize="13"
+                                Grid.Column="1"
+                                Margin="5,0,0,0"
+                                FontFamily="{StaticResource FontBold}"
+                                VerticalOptions="Center"/>
+                            </StackLayout>
+                        </pv:PancakeView>
+                    </StackLayout>
+                    
+                    <!--#region percentagecompletion-->
+                    <StackLayout HorizontalOptions="Center">
+                        <Grid HorizontalOptions="Center"
+                              WidthRequest="160">
+                            <pv:PancakeView
+                                Padding="15,10"
+                                HeightRequest="20"
+                                Margin="0,20,0,0"
+                                WidthRequest="125"
+                                CornerRadius="5"
+                                HorizontalOptions="Center"
+                                BackgroundColor="#F0F0F0">
+                            </pv:PancakeView>
+
+                            <pv:PancakeView
+                                Padding="15,10"
+                                HeightRequest="20"
+                                Margin="0,20,0,0"
+                                WidthRequest="80"
+                                CornerRadius="5"
+                                HorizontalOptions="StartAndExpand"
+                                BackgroundColor="{StaticResource SecondPurpleColor}">
+
+                                <Label
+                                    x:Name="proUpd"
+                                    Text="Profile 70% Completed"
+                                    TextColor="White"
+                                    FontSize="8"
+                                    HorizontalOptions="CenterAndExpand"
+                                    FontFamily="{StaticResource FontBold}"
+                                    VerticalOptions="Center"/>
+                            </pv:PancakeView>
+                        </Grid>
+                    </StackLayout>
+                    <!--#endregion-->
+                    
+                    <!--#region name and phone number-->
+                    <StackLayout>
+                        <Grid ColumnSpacing="15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--#region firstColumn-->
+                            <pv:PancakeView
+                                Grid.Column="0"
+                                Padding="15,10"
+                                HeightRequest="20"
+                                Margin="0,20,0,0"
+                                CornerRadius="5"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#F5F0FC">
+
+                                <Label
+                                    x:Name="usrname"
+                                    Text="Akinyemi  Ogungbaro"
+                                    TextColor="{StaticResource SecondPurpleColor}"
+                                    FontSize="10"
+                                    LineBreakMode="TailTruncation"
+                                    HorizontalOptions="StartAndExpand"
+                                    FontFamily="{StaticResource FontRegular}"
+                                    VerticalOptions="Center"/>
+                            </pv:PancakeView>
+                            <!--#endregion-->
+
+                            <!--#region secondColumn-->
+                            <pv:PancakeView
+                                Grid.Column="1"
+                                Padding="15,10"
+                                HeightRequest="20"
+                                Margin="0,20,0,0"
+                                CornerRadius="5"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#F5F0FC">
+
+                                <Label
+                                    x:Name="usrNum"
+                                    Text="09037716931"
+                                    TextColor="{StaticResource SecondPurpleColor}"
+                                    FontSize="10"
+                                    LineBreakMode="TailTruncation"
+                                    HorizontalOptions="StartAndExpand"
+                                    FontFamily="{StaticResource FontRegular}"
+                                    VerticalOptions="Center"/>
+                            </pv:PancakeView>
+                            <!--#endregion-->
+                        </Grid>
+                    </StackLayout>
+                    <!--#endregion-->
+                    
+                    <!--#region email-->
+                    <StackLayout>
+                        <pv:PancakeView
+                                Padding="15,10"
+                                HeightRequest="20"
+                                Margin="0,20,0,0"
+                                CornerRadius="5"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#F5F0FC">
+
+                            <Label
+                                    x:Name="usremail"
+                                    Text="akinyemiogungbaro@gmail.com"
+                                    TextColor="{StaticResource SecondPurpleColor}"
+                                    FontSize="10"
+                                    LineBreakMode="TailTruncation"
+                                    HorizontalOptions="StartAndExpand"
+                                    FontFamily="{StaticResource FontRegular}"
+                                    VerticalOptions="Center"/>
+                        </pv:PancakeView>
+                    </StackLayout>
+                    <!--#endregion-->
+                    
+                    <!--#region state picker-->
+                    <StackLayout Margin="0,20,0,0">
+                        <pv:PancakeView BackgroundColor="Transparent"
+                                            Margin="0,0,0,10"
+                                        Padding="10,0,10,0"
+                                            x:Name="emailFrame"
+                                            CornerRadius="5"
+                                            HorizontalOptions="Fill"
+                                            HeightRequest="45">
+                            <pv:PancakeView.Border>
+                                <pv:Border Thickness="1" Color="{StaticResource FrameBorderColor}" />
+                            </pv:PancakeView.Border>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Controls:CustomEntry  x:Name="usrEmail"
+                                                   Grid.Column="0" 
+                                                    PlaceholderColor="{StaticResource PlaceholderColor}" 
+                                                    TextColor="{StaticResource TextColor}" 
+                                                    Placeholder="State of Residence" 
+                                                    Text="" 
+                                                    FontSize="12"
+                                                    Keyboard="Default"
+                                                    FontFamily="{StaticResource FontRegular}"/>
+
+                                <ff1:SvgCachedImage
+                                        Source="arrow.svg"
+                                        Grid.Column="1"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        Aspect="AspectFit"
+                                        WidthRequest="10"
+                                        HeightRequest="15"/>
+
+                            </Grid>
+                        </pv:PancakeView>
+                    </StackLayout>
+                    <!--#endregion-->
+                    
+                    <!--#region house address-->
+                    <StackLayout Margin="0,5,0,0">
+                        <pv:PancakeView BackgroundColor="Transparent"
+                                            Margin="0,0,0,10"
+                                        Padding="10,0,10,0"
+                                            x:Name="addrFrame"
+                                            CornerRadius="5"
+                                            HorizontalOptions="Fill"
+                                            HeightRequest="45">
+                            <pv:PancakeView.Border>
+                                <pv:Border Thickness="1" Color="{StaticResource FrameBorderColor}" />
+                            </pv:PancakeView.Border>
+                            
+                                <Controls:CustomEntry  x:Name="usraddr"
+                                                       PlaceholderColor="{StaticResource PlaceholderColor}"
+                                                    TextColor="{StaticResource TextColor}" 
+                                                    Placeholder="Enter your house address" 
+                                                    Text="" 
+                                                    FontSize="12"
+                                                    Keyboard="Default"
+                                                    FontFamily="{StaticResource FontRegular}"/>
+                               
+                        </pv:PancakeView>
+                    </StackLayout>
+                    <!--#endregion-->
+                    
+                    <!--#region account name and title-->
+                    <StackLayout Margin="0,5,0,0">
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--#region firstColumn-->
+                            <pv:PancakeView BackgroundColor="Transparent"
+                                            Margin="0,0,0,10"
+                                        Padding="10,0,10,0"
+                                            x:Name="acctTitleFrame"
+                                            CornerRadius="5"
+                                            HorizontalOptions="Fill"
+                                            HeightRequest="45">
+                                <pv:PancakeView.Border>
+                                    <pv:Border Thickness="1" Color="{StaticResource FrameBorderColor}" />
+                                </pv:PancakeView.Border>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <!--#region firstCol-->
+                                    <pv:PancakeView BackgroundColor="White"
+                                            CornerRadius="10"
+                                                    VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            HeightRequest="10"
+                                                    WidthRequest="10">
+                                        <pv:PancakeView.Border>
+                                            <pv:Border Thickness="3" Color="#C4C4C4" />
+                                        </pv:PancakeView.Border>
+                                    </pv:PancakeView>
+                                    <!--#endregion-->
+                                    
+                                    <!--#region secondCol-->
+                                    <Label
+                                        Grid.Column="1"
+                                        x:Name="desgn"
+                                        Text="Mrs"
+                                        TextColor="{StaticResource TextColor}"
+                                        FontSize="12"
+                                        Margin="0,0,5,0"
+                                        HorizontalOptions="StartAndExpand"
+                                        FontFamily="{StaticResource FontRegular}"
+                                        VerticalOptions="Center"/>
+                                    <!--#endregion-->
+                                    
+                                    <!--#region thirdCol-->
+                                    <ff1:SvgCachedImage
+                                        Source="arrow.svg"
+                                        Grid.Column="2"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        Aspect="AspectFit"
+                                        WidthRequest="10"
+                                        HeightRequest="15"/>
+                                    <!--#endregion-->
+                                </Grid>
+
+                                
+
+                            </pv:PancakeView>
+                            <!--#endregion-->
+                            
+                            <!--#region secondcolumn-->
+                            <pv:PancakeView BackgroundColor="Transparent"
+                                            Margin="0,0,0,10"
+                                        Padding="10,0,10,0"
+                                            Grid.Column="1"
+                                            x:Name="acctFrame"
+                                            CornerRadius="5"
+                                            HorizontalOptions="Fill"
+                                            HeightRequest="45">
+                                <pv:PancakeView.Border>
+                                    <pv:Border Thickness="1" Color="{StaticResource FrameBorderColor}" />
+                                </pv:PancakeView.Border>
+
+                                <Controls:CustomEntry  x:Name="usracctname"
+                                                       PlaceholderColor="{StaticResource PlaceholderColor}"
+                                                    TextColor="{StaticResource TextColor}" 
+                                                    Placeholder="Account Name" 
+                                                    Text="" 
+                                                    FontSize="12"
+                                                    Keyboard="Default"
+                                                    FontFamily="{StaticResource FontRegular}"/>
+
+                            </pv:PancakeView>
+                            <!--#endregion-->
+                        </Grid>
+                    </StackLayout>
+                    <!--#endregion-->
+                    
+                    <!--#region bank and acct number-->
+                    <StackLayout Margin="0,5,0,0">
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--#region firstColumn-->
+                            <pv:PancakeView BackgroundColor="Transparent"
+                                            Margin="0,0,0,10"
+                                        Padding="14,0,10,0"
+                                            x:Name="bankFrame"
+                                            CornerRadius="5"
+                                            HorizontalOptions="Fill"
+                                            HeightRequest="45">
+                                <pv:PancakeView.Border>
+                                    <pv:Border Thickness="1" Color="{StaticResource FrameBorderColor}" />
+                                </pv:PancakeView.Border>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        x:Name="bankName"
+                                        Text="Bank"
+                                        TextColor="{StaticResource TextColor}"
+                                        FontSize="12"
+                                        HorizontalOptions="StartAndExpand"
+                                        FontFamily="{StaticResource FontRegular}"
+                                        VerticalOptions="Center"/>
+
+                                    <ff1:SvgCachedImage
+                                        Source="arrow.svg"
+                                        Grid.Column="1"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        Aspect="AspectFit"
+                                        WidthRequest="10"
+                                        HeightRequest="15"/>
+
+                                </Grid>
+                            </pv:PancakeView>
+                            <!--#endregion-->
+                            
+                            <!--#region secondcolumn-->
+                            <pv:PancakeView BackgroundColor="Transparent"
+                                            Margin="0,0,0,10"
+                                        Padding="10,0,10,0"
+                                            Grid.Column="1"
+                                            x:Name="acctNoFrame"
+                                            CornerRadius="5"
+                                            HorizontalOptions="Fill"
+                                            HeightRequest="45">
+                                <pv:PancakeView.Border>
+                                    <pv:Border Thickness="1" Color="{StaticResource FrameBorderColor}" />
+                                </pv:PancakeView.Border>
+
+                                <Controls:CustomEntry  x:Name="usracctno"
+                                                     PlaceholderColor="{StaticResource PlaceholderColor}"
+                                                    TextColor="{StaticResource TextColor}" 
+                                                    Placeholder="Account Number" 
+                                                    Text="" 
+                                                    FontSize="12"
+                                                    Keyboard="Numeric"
+                                                    FontFamily="{StaticResource FontRegular}"/>
+
+                            </pv:PancakeView>
+                            <!--#endregion-->
+                        </Grid>
+                    </StackLayout>
+                    <!--#endregion-->
+                    
+                    <!--#region save button-->
+                    <Button
+                        Margin="0,30,0,15"
+                        Text="Save"
+                        TextColor="White"
+                        BackgroundColor="{StaticResource PurpleColor}"
+                        HeightRequest="45"
+                        FontFamily="{StaticResource FontBold}"
+                        FontSize="20"
+                        HorizontalOptions="Fill"
+                        CornerRadius="5"
+                        TextTransform="None"/>
+                    <!--#endregion-->
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

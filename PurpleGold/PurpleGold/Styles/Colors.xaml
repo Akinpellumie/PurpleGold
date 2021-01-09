@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PurpleGold.Styles.Colors">
+    
+    <!-- Colors -->
+    <Color x:Key="WhiteColor">#FFFFFF</Color>
+    <Color x:Key="BlackColor">#000000</Color>
+    <Color x:Key="AltTextColor">#8B8B8B</Color>
+    <Color x:Key="PageBgColor">#F6F5FC</Color>
+    <Color x:Key="PlaceholderColor">#BFBFBF</Color>
+    <Color x:Key="YellowColor">#EFBB17</Color>
+    <Color x:Key="TextColor">#000000</Color>
+    <Color x:Key="SubTextColor">#939393</Color>
+    <Color x:Key="PurpleColor">#9E079E</Color>
+    <Color x:Key="LightPurpleColor">#CC97CC</Color>
+    <Color x:Key="SecondPurpleColor">#6F34BF</Color>
+    <Color x:Key="FrameBorderColor">#8B8B8B</Color>
+    <Color x:Key="BgColor">#E7E0E7</Color>
+    <Color x:Key="HistColor">#F9F9F9</Color>
+    <Color x:Key="AltColor">#856A7AFB</Color>
+    <Color x:Key="AltBtnColor">#F9D050</Color>
+    <Color x:Key="CardColor">#FD6135</Color>
+    <Color x:Key="GreenColor">#69DD56</Color>
+    <Color x:Key="DarkGreenColor">#1D8C2E</Color>
+    <Color x:Key="LightRedColor">#FF9678</Color>
+    <Color x:Key="StaticFrameColor">#F5F0FC</Color>
+    <Color x:Key="FixedFrameColor">#DED8E5</Color>
+    <Color x:Key="LightGreenColor">#93CCAB</Color>
+
+</ResourceDictionary>

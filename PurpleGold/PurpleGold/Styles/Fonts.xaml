@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PurpleGold.Styles.Fonts">
+
+    <!-- Fonts -->
+    <OnPlatform 
+        x:Key="FontRegular"
+        x:TypeArguments="x:String"
+        iOS="BwModelicaCyrillicDEMORegular"
+        Android="BwModelicaCyrillicDEMORegular.ttf#BwModelicaRegular" /> 
+    
+    <OnPlatform 
+        x:Key="FontMedium"
+        x:TypeArguments="x:String"
+        iOS="BwModelicaCyrillicDEMOMedium"
+        Android="BwModelicaCyrillicDEMOMedium.ttf#BwModelicaMedium" /> 
+    
+    <OnPlatform 
+        x:Key="FontBold"
+        x:TypeArguments="x:String"
+        iOS="BwModelicaCyrillicDEMOBold"
+        Android="BwModelicaCyrillicDEMOBold.ttf#BwModelicaBold" />
+
+    <!-- Font sizes  -->
+    <x:Double x:Key="FontSize6">6</x:Double>
+    <x:Double x:Key="FontSize8">8</x:Double>
+    <x:Double x:Key="FontSize10">10</x:Double>
+    <x:Double x:Key="FontSize12">12</x:Double>
+    <x:Double x:Key="FontSize13">13</x:Double>
+    <x:Double x:Key="FontSize14">14</x:Double>
+    <x:Double x:Key="FontSize16">16</x:Double>
+    <x:Double x:Key="FontSize18">18</x:Double>
+    <x:Double x:Key="FontSize20">20</x:Double>
+    <x:Double x:Key="FontSize24">24</x:Double>
+    <x:Double x:Key="FontSize26">26</x:Double>
+    <x:Double x:Key="FontSize28">28</x:Double>
+    <x:Double x:Key="FontSize36">36</x:Double>
+    <x:Double x:Key="FontSize48">48</x:Double>
+    
+</ResourceDictionary>

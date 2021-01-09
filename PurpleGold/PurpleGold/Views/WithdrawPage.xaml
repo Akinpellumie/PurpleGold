@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:View="clr-namespace:PurpleGold.Views.Templates" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:Controls="clr-namespace:PurpleGold.Controls" xmlns:nav="clr-namespace:PurpleGold.Behaviors"
+             x:Class="PurpleGold.Views.WithdrawPage" 
+             BackgroundColor="{StaticResource PageBgColor}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid>
+            <Grid Padding="40,50,40,10"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand">
+                <nav:BackButtonView />
+
+                <ScrollView VerticalScrollBarVisibility="Never"
+                            Margin="0,50,0,40"
+                            Orientation="Vertical">
+                    <StackLayout Spacing="0" Margin="0,10,0,15">
+
+                    <Label
+                    x:Name="subTitle"
+                    Text="Withdrawal Request"
+                    TextColor="{StaticResource TextColor}"
+                    FontSize="20"
+                    Margin="0,0,0,30"
+                    FontFamily="{StaticResource FontRegular}"
+                    VerticalOptions="Start"/>
+
+                    <Label
+                    x:Name="bnk"
+                    Text="Bank Details"
+                    TextColor="{StaticResource TextColor}"
+                    FontSize="15"
+                    Margin="0,0,0,20"
+                    FontFamily="{StaticResource FontRegular}"
+                    VerticalOptions="Start"/>
+
+                    <!--#region name and bank name-->
+                    <StackLayout Margin="0,0,0,20">
+                        <Grid ColumnSpacing="15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--#region firstColumn-->
+                            <pv:PancakeView
+                                Grid.Column="0"
+                                Padding="15,10"
+                                HeightRequest="20"
+                                CornerRadius="5"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#F5F0FC">
+
+                                <Label
+                                    x:Name="usrname"
+                                    Text="Akinyemi  Ogungbaro"
+                                    TextColor="{StaticResource SecondPurpleColor}"
+                                    FontSize="10"
+                                    LineBreakMode="TailTruncation"
+                                    HorizontalOptions="StartAndExpand"
+                                    FontFamily="{StaticResource FontRegular}"
+                                    VerticalOptions="Center"/>
+                            </pv:PancakeView>
+                            <!--#endregion-->
+
+                            <!--#region secondColumn-->
+                            <pv:PancakeView
+                                Grid.Column="1"
+                                Padding="15,10"
+                                HeightRequest="20"
+                                CornerRadius="5"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#F5F0FC">
+
+                                <Label
+                                    x:Name="usrbnk"
+                                    Text="GTBank"
+                                    TextColor="{StaticResource SecondPurpleColor}"
+                                    FontSize="10"
+                                    LineBreakMode="TailTruncation"
+                                    HorizontalOptions="StartAndExpand"
+                                    FontFamily="{StaticResource FontRegular}"
+                                    VerticalOptions="Center"/>
+                            </pv:PancakeView>
+                            <!--#endregion-->
+                        </Grid>
+                    </StackLayout>
+                    <!--#endregion-->
+
+                    <!--#region phone number-->
+                    <StackLayout>
+                        <pv:PancakeView
+                                Padding="15,10"
+                                HeightRequest="20"
+                                CornerRadius="5"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#F5F0FC">
+                                <!--<pv:PancakeView.Shadow>
+                                    <pv:DropShadow Color="#F5F0FC" Offset="0,-5"/>
+                                </pv:PancakeView.Shadow>-->
+
+                                <Label
+                                    x:Name="usracctno"
+                                    Text="0943173289"
+                                    TextColor="{StaticResource SecondPurpleColor}"
+                                    FontSize="10"
+                                    HorizontalOptions="StartAndExpand"
+                                    FontFamily="{StaticResource FontRegular}"
+                                    VerticalOptions="Center"/>
+                        </pv:PancakeView>
+                    </StackLayout>
+                    <!--#endregion-->
+
+                    <!--#region amountdetails-->
+                    <Label
+                    x:Name="withdraw"
+                    Text="Amount to Withdraw"
+                    TextColor="{StaticResource TextColor}"
+                    FontSize="15"
+                    Margin="0,30,0,20"
+                    FontFamily="{StaticResource FontRegular}"
+                    VerticalOptions="Start"/>
+                    <!--#endregion-->
+
+                    <!--#region enterAmount-->
+                    <pv:PancakeView BackgroundColor="{StaticResource WhiteColor}"
+                                            Margin="0,0,0,20"
+                                        Padding="10,0,10,0"
+                                            x:Name="amtFrame"
+                                            CornerRadius="5"
+                                            HorizontalOptions="Fill"
+                                            HeightRequest="45">
+                        <pv:PancakeView.Shadow>
+                            <pv:DropShadow Color="#ECE9FF" Offset="10,10"/>
+                        </pv:PancakeView.Shadow>
+                        <Controls:CustomEntry  x:Name="tag"
+                                               PlaceholderColor="{StaticResource PlaceholderColor}"
+                                               TextColor="{StaticResource TextColor}" 
+                                               Placeholder="N 00.00" 
+                                               Text="" 
+                                               HorizontalOptions="FillAndExpand"
+                                               HorizontalTextAlignment="Center"
+                                               FontSize="20"
+                                               Keyboard="Numeric"
+                                               FontFamily="{StaticResource FontRegular}"/>
+                    </pv:PancakeView>
+                    <!--#endregion-->
+
+                    <!--#region enter password-->
+                    <pv:PancakeView BackgroundColor="{StaticResource WhiteColor}"
+                                            Margin="0,0,0,10"
+                                        Padding="10,0,10,0"
+                                            x:Name="passFrame"
+                                            CornerRadius="5"
+                                            HorizontalOptions="Fill"
+                                            HeightRequest="45">
+                        <pv:PancakeView.Shadow>
+                            <pv:DropShadow Color="#ECE9FF" Opacity="3" Offset="10,10"/>
+                        </pv:PancakeView.Shadow>
+                        <Controls:CustomEntry  x:Name="pswd"
+                                               PlaceholderColor="{StaticResource PlaceholderColor}"
+                                               TextColor="{StaticResource TextColor}" 
+                                               Placeholder="password" 
+                                               Text="" 
+                                               HorizontalOptions="FillAndExpand"
+                                               FontSize="12"
+                                               Keyboard="Default"
+                                               IsPassword="True"
+                                               FontFamily="{StaticResource FontRegular}"/>
+                    </pv:PancakeView>
+                    <!--#endregion-->
+
+                    <!--#region save button-->
+                    <Button
+                        Margin="0,30,0,15"
+                        Text="Request Withdrawal"
+                        TextColor="White"
+                        BackgroundColor="{StaticResource PurpleColor}"
+                        HeightRequest="45"
+                        FontFamily="{StaticResource FontBold}"
+                        FontSize="20"
+                        HorizontalOptions="Fill"
+                        CornerRadius="5"
+                        TextTransform="None"/>
+                    <!--#endregion-->
+                </StackLayout>
+                </ScrollView>
+            </Grid>
+
+            <!--#region  bottomBar-->
+            <Grid VerticalOptions="End"
+                  HorizontalOptions="FillAndExpand">
+                <View:AltBottomNavTemplate />
+            </Grid>
+            <!--#endregion-->
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

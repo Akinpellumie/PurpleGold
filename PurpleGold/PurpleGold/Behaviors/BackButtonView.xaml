@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="PurpleGold.Behaviors.BackButtonView">
+  <ContentView.Content>
+      <StackLayout>
+            <ff1:SvgCachedImage
+                Source="back.svg"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                Aspect="AspectFit"
+                Margin="0,0,0,35"
+                WidthRequest="20"
+                HeightRequest="16">
+                <ff1:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Back"
+                                          NumberOfTapsRequired="1"/>
+                </ff1:SvgCachedImage.GestureRecognizers>
+            </ff1:SvgCachedImage>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

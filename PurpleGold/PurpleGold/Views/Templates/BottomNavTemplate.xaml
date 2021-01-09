@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="PurpleGold.Views.Templates.BottomNavTemplate">
+  <ContentView.Content>
+        <Grid VerticalOptions="End"
+                  HorizontalOptions="FillAndExpand">
+            <pv:PancakeView
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                        BackgroundColor="White">
+                <pv:PancakeView.Shadow>
+                    <pv:DropShadow Color="#CC28CC" Opacity="3" Offset="0,-15"/>
+                </pv:PancakeView.Shadow>
+                <Grid ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <pv:PancakeView
+                            Grid.Column="0"
+                            BackgroundColor="White">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0"
+                                      Margin="15,0,0,0">
+                                <circle:CircleImage x:Name="userImagePro" Margin="0,0,0,0"
+                                                        Source="picture" Aspect="AspectFit"  BorderColor="White"  
+                                                        HorizontalOptions="Center" BorderThickness="1" HeightRequest="30" 
+                                                        WidthRequest="30" VerticalOptions="Center"/>
+
+                                <pv:PancakeView
+                                        BackgroundColor="Red"
+                                        HeightRequest="8" WidthRequest="8"
+                                        CornerRadius="5" HorizontalOptions="End"
+                                        VerticalOptions="Center" Margin="2,-17,0,0"/>
+                            </Grid>
+
+                            <Label
+                                    x:Name="profile"
+                                    Text="My Profile"
+                                    TextColor="Black"
+                                    FontSize="13"
+                                    Grid.Column="1"
+                                    Margin="5,0,0,0"
+                                    FontFamily="{StaticResource FontRegular}"
+                                    VerticalOptions="Center"/>
+                        </Grid>
+                        <pv:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ProfileStack_Clicked"
+                                                  NumberOfTapsRequired="1"/>
+                        </pv:PancakeView.GestureRecognizers>
+                    </pv:PancakeView>
+
+                    <pv:PancakeView
+                            Grid.Column="1"
+                            BackgroundColor="{StaticResource HistColor}">
+                        <StackLayout Orientation="Horizontal">
+
+                            <Image Grid.Column="0" 
+                                       Source="history.png" 
+                                       HeightRequest="20" 
+                                       WidthRequest="20" 
+                                       Margin="15,0,5,0"/>
+
+                            <Label
+                                    x:Name="hist"
+                                    Text="History"
+                                    TextColor="Black"
+                                    FontSize="13"
+                                    Grid.Column="1"
+                                    Margin="5,0,0,0"
+                                    FontFamily="{StaticResource FontRegular}"
+                                    VerticalOptions="Center"/>
+                        </StackLayout>
+                    </pv:PancakeView>
+
+                    <pv:PancakeView
+                            Grid.Column="2"
+                            HeightRequest="50"
+                            WidthRequest="60"
+                            BackgroundColor="{StaticResource PurpleColor}">
+                        <ImageButton Grid.Column="0" 
+                                       Source="power.png"
+                                             Padding="13"
+                                             BackgroundColor="Transparent"
+                                       HeightRequest="20" 
+                                       WidthRequest="20"/>
+
+                    </pv:PancakeView>
+                </Grid>
+            </pv:PancakeView>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Template="clr-namespace:PurpleGold.Views.Templates" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:Controls="clr-namespace:PurpleGold.Controls" xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" xmlns:nav="clr-namespace:PurpleGold.Behaviors"
+             x:Class="PurpleGold.Views.InvestPage"
+             BackgroundColor="{StaticResource PageBgColor}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand">
+
+            <ff1:SvgCachedImage
+                    Source="investBg.svg"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Aspect="AspectFit"/>
+
+            <Grid Padding="40,50,40,10"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand">
+                <nav:BackButtonView />
+
+
+                <StackLayout>
+                    <Label
+                    x:Name="sub"
+                    Text="Invest"
+                    TextColor="{StaticResource TextColor}"
+                    FontSize="20"
+                    Margin="0,0,0,30"
+                    FontFamily="{StaticResource FontRegular}"
+                    VerticalOptions="Start"/>
+
+                    <ScrollView Orientation="Vertical"
+                            Margin="0,30,0,40"
+                            VerticalScrollBarVisibility="Never">
+                        <StackLayout Margin="0,10,0,0">
+                            <!--#region choose plan-->
+                            <StackLayout Margin="0,10,0,0">
+                                <pv:PancakeView BackgroundColor="White"
+                                            Margin="0,0,0,10"
+                                        Padding="10,0,20,0"
+                                            x:Name="emailFrame"
+                                            CornerRadius="5"
+                                            HorizontalOptions="Fill"
+                                            HeightRequest="45">
+                                    <pv:PancakeView.Shadow>
+                                        <pv:DropShadow Color="#ECE9FF" Offset="20,20"/>
+                                    </pv:PancakeView.Shadow>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label  x:Name="myPlan"
+                                        Grid.Column="0" 
+                                        TextColor="{StaticResource TextColor}" 
+                                        Text="Choose a  Plan" 
+                                        FontSize="12"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalOptions="Center"
+                                        FontFamily="{StaticResource FontRegular}"/>
+
+                                        <ff1:SvgCachedImage
+                                        Source="arrow.svg"
+                                        Grid.Column="1"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        Aspect="AspectFit"
+                                        WidthRequest="10"
+                                        HeightRequest="15"/>
+
+                                    </Grid>
+                                </pv:PancakeView>
+                            </StackLayout>
+                            <!--#endregion-->
+
+                            <!--#region enter amount-->
+                            <pv:PancakeView Margin="0,30,0,20" BackgroundColor="{StaticResource PageBgColor}">
+                                <pv:PancakeView.Shadow  Color="#ECE9FF" Offset="30,30"/>
+                                <Grid RowSpacing="15">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackLayout Grid.Row="0">
+                                        <pv:PancakeView BackgroundColor="{StaticResource PageBgColor}">
+                                            <pv:PancakeView.Shadow  Color="#ECE9FF" Offset="30,30"/>
+                                            <Label  
+                                        x:Name="amt"
+                                        Grid.Column="0" 
+                                        TextColor="{StaticResource PurpleColor}" 
+                                        Text="Enter Amount to Invest" 
+                                        FontSize="12"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalOptions="Center"
+                                        FontFamily="{StaticResource FontRegular}"/>
+                                        </pv:PancakeView>
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="1">
+                                        <!--#region enterAmount-->
+                                        <pv:PancakeView BackgroundColor="{StaticResource WhiteColor}"
+                                            Margin="0,0,0,20"
+                                        Padding="10,0,10,0"
+                                            CornerRadius="5"
+                                            HorizontalOptions="Fill"
+                                            HeightRequest="45">
+                                            <pv:PancakeView.Shadow>
+                                                <pv:DropShadow Color="#ECE9FF" Offset="10,10"/>
+                                            </pv:PancakeView.Shadow>
+                                            <Controls:CustomEntry  x:Name="tag"
+                                               PlaceholderColor="{StaticResource PlaceholderColor}"
+                                               TextColor="{StaticResource TextColor}" 
+                                               Placeholder="N 00.00" 
+                                               Text="" 
+                                                           TextChanged="AmountInput_TextChanged"
+                                               HorizontalOptions="FillAndExpand"
+                                               HorizontalTextAlignment="Center"
+                                               FontSize="20"
+                                               Keyboard="Numeric"
+                                               FontFamily="{StaticResource FontRegular}"/>
+                                        </pv:PancakeView>
+                                        <!--#endregion-->
+                                    </StackLayout>
+                                </Grid>
+                            </pv:PancakeView>
+                            <!--#endregion-->
+
+                            <!--#region invest interest-->
+                            <pv:PancakeView Margin="0,10,0,20" BackgroundColor="Transparent">
+                                <pv:PancakeView.Shadow  Color="#ECE9FF" Offset="30,30"/>
+                                <Grid RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackLayout Grid.Row="0">
+                                        <pv:PancakeView Padding="0,15,0,15" CornerRadius="5,5,0,0"
+                                    BackgroundColor="{StaticResource WhiteColor}">
+                                            <pv:PancakeView.Shadow  Color="#ECE9FF" Offset="30,30"/>
+                                            <Label  
+                                        x:Name="txt"
+                                        Grid.Column="0" 
+                                        TextColor="{StaticResource PurpleColor}" 
+                                        Text="20% Approximate Return on your Investment" 
+                                        FontSize="12"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalOptions="Center"
+                                        FontFamily="{StaticResource FontRegular}"/>
+                                        </pv:PancakeView>
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="1">
+                                        <!--#region interest-->
+                                        <pv:PancakeView BackgroundColor="{StaticResource PageBgColor}"
+                                            Margin="0,0,0,20"
+                                        Padding="10,0,10,0"
+                                            CornerRadius="5"
+                                            HorizontalOptions="Fill"
+                                            HeightRequest="45">
+                                            <pv:PancakeView.Shadow>
+                                                <pv:DropShadow Color="#ECE9FF" Offset="20,-20"/>
+                                            </pv:PancakeView.Shadow>
+                                            <Label  
+                                        x:Name="interest"
+                                        Grid.Column="0" 
+                                        TextColor="{StaticResource PurpleColor}" 
+                                        Text="" 
+                                        FontSize="20"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalOptions="Center"
+                                        FontFamily="{StaticResource FontRegular}"/>
+                                        </pv:PancakeView>
+                                        <!--#endregion-->
+                                    </StackLayout>
+                                </Grid>
+                            </pv:PancakeView>
+                            <!--#endregion-->
+
+                            <!--#region  date-->
+                            <StackLayout Margin="0,0,0,20">
+                                <pv:PancakeView BackgroundColor="Transparent"
+                                        CornerRadius="10">
+                                    <pv:PancakeView.Shadow>
+                                        <pv:DropShadow Color="#ECE9FF" Offset="20,20"/>
+                                    </pv:PancakeView.Shadow>
+
+                                    <Grid RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <!--#region first row-->
+                                        <StackLayout Grid.Row="0"
+                                             BackgroundColor="{StaticResource WhiteColor}"
+                                             VerticalOptions="FillAndExpand"
+                                             Padding="20,15,20,15">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label
+                                                Text="Investment Date"
+                                                Grid.Column="0"
+                                                TextColor="#939393"
+                                                FontFamily="{StaticResource FontRegular}"
+                                                FontSize="12"
+                                                HorizontalOptions="StartAndExpand"
+                                                VerticalOptions="Center"/>
+
+                                                <Label
+                                                Text="Due Date"
+                                                Grid.Column="1"
+                                                TextColor="#939393"
+                                                FontFamily="{StaticResource FontRegular}"
+                                                FontSize="12"
+                                                HorizontalOptions="StartAndExpand"
+                                                VerticalOptions="Center"/>
+                                            </Grid>
+                                        </StackLayout>
+                                        <!--#endregion-->
+
+                                        <!--#region second row-->
+                                        <StackLayout Orientation="Vertical"
+                                             Grid.Row="1">
+                                            <pv:PancakeView BackgroundColor="{StaticResource PageBgColor}"
+                                                    VerticalOptions="FillAndExpand"
+                                                    Padding="20,15,20,15">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Label
+                                                Text="Tue. Dec. 1, 2020"
+                                                Grid.Column="0"
+                                                TextColor="{StaticResource TextColor}"
+                                                FontFamily="{StaticResource FontRegular}"
+                                                FontSize="14"
+                                                HorizontalOptions="StartAndExpand"
+                                                VerticalOptions="Center"/>
+
+                                                    <Label
+                                                Text="Thur. Dec. 31, 2020"
+                                                Grid.Column="1"
+                                                TextColor="{StaticResource TextColor}"
+                                                FontFamily="{StaticResource FontRegular}"
+                                                FontSize="14"
+                                                HorizontalOptions="StartAndExpand"
+                                                VerticalOptions="Center"/>
+                                                </Grid>
+                                            </pv:PancakeView>
+                                        </StackLayout>
+                                        <!--#endregion-->
+                                    </Grid>
+
+                                </pv:PancakeView>
+                            </StackLayout>
+                            <!--#endregion-->
+
+                            <!--#region save button and terms-->
+
+                            <StackLayout Margin="0,10,0,15" Orientation="Vertical">
+
+                                <StackLayout Orientation="Horizontal">
+                                    <CheckBox BackgroundColor="Transparent"
+                                      Color="{StaticResource PurpleColor}"
+                                      IsChecked="False"/>
+
+                                    <Label
+                                Text="I agree to the terms and condition of this Investment"
+                                Grid.Column="1"
+                                TextColor="{StaticResource PurpleColor}"
+                                FontFamily="{StaticResource FontRegular}"
+                                FontSize="12"
+                                LineBreakMode="WordWrap"
+                                HorizontalOptions="StartAndExpand"
+                                VerticalOptions="Center"/>
+
+                                </StackLayout>
+                                <Button
+                            Margin="0,3,0,0"
+                            Text="Confirm"
+                            TextColor="White"
+                            BackgroundColor="{StaticResource PurpleColor}"
+                            HeightRequest="45"
+                            FontFamily="{StaticResource FontBold}"
+                            FontSize="20"
+                            HorizontalOptions="Fill"
+                            CornerRadius="5"
+                            TextTransform="None"/>
+                            </StackLayout>
+                            <!--#endregion-->
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+            </Grid>
+            
+            <!--#region Bottom NavBar-->
+            <Grid VerticalOptions="End"
+                      HorizontalOptions="FillAndExpand">
+                <Template:AltBottomNavTemplate />
+            </Grid>
+            <!--#endregion-->
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
