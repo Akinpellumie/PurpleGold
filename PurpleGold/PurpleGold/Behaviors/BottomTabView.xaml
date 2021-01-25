@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="PurpleGold.Behaviors.BottomTabView">
+    <ContentView.Content>
+        <pv:PancakeView
+            Padding="10"
+            BackgroundColor="{StaticResource PageBgColor}"
+            HorizontalOptions="FillAndExpand"
+            HeightRequest="50">
+            <Grid VerticalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!--#region First column-->
+                <StackLayout Grid.Column="0"
+                             Spacing="3"
+                             x:Name="Home"
+                             VerticalOptions="EndAndExpand"
+                             Orientation="Vertical">
+                    <ff1:SvgCachedImage
+                        x:Name="HomeIcon"
+                        Source="homeActive.svg"
+                        HorizontalOptions="Center"
+                        VerticalOptions="CenterAndExpand"
+                        Aspect="AspectFit"
+                        HeightRequest="20"/>
+                    
+                    <Label
+                        x:Name="HomeTitle"
+                        Text="Home"
+                        TextColor="{StaticResource SecondPurpleColor}"
+                        FontSize="{StaticResource FontSize10}"
+                        HorizontalOptions="Center"
+                        FontFamily="{StaticResource FontBold}"
+                        LineBreakMode="TailTruncation"
+                        VerticalOptions="Center"/>
+
+                    <pv:PancakeView
+                        BackgroundColor="{StaticResource SecondPurpleColor}"
+                        HeightRequest="5" WidthRequest="5"
+                        IsVisible="True"
+                        x:Name="HomeCircle"
+                        CornerRadius="5" HorizontalOptions="Center"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Home_Clicked"
+                                              NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <!--#endregion-->
+                
+                <!--#region Second column-->
+                <StackLayout Grid.Column="1"
+                             Spacing="3"
+                             x:Name="Invest"
+                             VerticalOptions="EndAndExpand"
+                             Orientation="Vertical">
+                    <ff1:SvgCachedImage
+                        x:Name="InvestIcon"
+                        Source="investInactive.svg"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Aspect="AspectFit"
+                        HeightRequest="20"/>
+                    
+                    <Label
+                        x:Name="InvestTitle"
+                        Text="Invest"
+                        LineBreakMode="TailTruncation"
+                        TextColor="{StaticResource SubTextColor}"
+                        FontSize="{StaticResource FontSize10}"
+                        HorizontalOptions="Center"
+                        FontFamily="{StaticResource FontBold}"
+                        VerticalOptions="Center"/>
+                    
+                    <pv:PancakeView BackgroundColor="{StaticResource SecondPurpleColor}"
+                                    CornerRadius="5"
+                             HeightRequest="5" WidthRequest="5"
+                             IsVisible="False"
+                             HorizontalOptions="Center"
+                             x:Name="InvestCircle"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Invest_Clicked"
+                                              NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <!--#endregion-->
+                
+                <!--#region Third column-->
+                <StackLayout Grid.Column="2"
+                             Spacing="3"
+                             x:Name="Deposit"
+                             VerticalOptions="EndAndExpand"
+                             Orientation="Vertical">
+                    <ff1:SvgCachedImage
+                        x:Name="DepositIcon"
+                        Source="depositInactive.svg"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Aspect="AspectFit"
+                        HeightRequest="20"/>
+                    
+                    <Label
+                        x:Name="DepositTitle"
+                        Text="Deposit"
+                        TextColor="{StaticResource SubTextColor}"
+                        FontSize="{StaticResource FontSize10}"
+                        HorizontalOptions="Center"
+                        FontFamily="{StaticResource FontBold}"
+                        LineBreakMode="TailTruncation"
+                        VerticalOptions="Center"/>
+                    
+                    <pv:PancakeView BackgroundColor="{StaticResource SecondPurpleColor}"
+                                    CornerRadius="5"
+                             HeightRequest="5" WidthRequest="5"
+                             IsVisible="False"
+                             HorizontalOptions="Center"
+                             x:Name="DepositCircle"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Deposit_Clicked"
+                                              NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <!--#endregion-->
+                
+                <!--#region Fourth column-->
+                <StackLayout Grid.Column="3"
+                             Spacing="3"
+                             x:Name="Asset"
+                             VerticalOptions="EndAndExpand"
+                             Orientation="Vertical">
+                    <ff1:SvgCachedImage
+                        x:Name="AssetIcon"
+                        Source="assetInactive.svg"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Aspect="AspectFit"
+                        HeightRequest="20"/>
+                    
+                    <Label
+                        x:Name="AssetTitle"
+                        Text="Asset"
+                        TextColor="{StaticResource SubTextColor}"
+                        FontSize="{StaticResource FontSize10}"
+                        HorizontalOptions="Center"
+                        FontFamily="{StaticResource FontBold}"
+                        LineBreakMode="TailTruncation"
+                        VerticalOptions="Center"/>
+                    
+                    <pv:PancakeView BackgroundColor="{StaticResource SecondPurpleColor}"
+                                    CornerRadius="5"
+                             HeightRequest="5" WidthRequest="5"
+                             IsVisible="False"
+                             HorizontalOptions="Center"
+                             x:Name="AssetCircle"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Asset_Clicked"
+                                              NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <!--#endregion-->
+                
+                <!--#region Fifth column-->
+                <StackLayout Grid.Column="4"
+                             Spacing="3"
+                             x:Name="Account"
+                             VerticalOptions="EndAndExpand"
+                             Orientation="Vertical">
+                    <StackLayout HorizontalOptions="Center">
+                        <Grid HorizontalOptions="Center">
+                            <circle:CircleImage x:Name="userImagePro"
+                                                Source="picture" Aspect="AspectFit"
+                                                BorderColor="#73DBD6FF"
+                                                HorizontalOptions="Center" 
+                                                BorderThickness="3" HeightRequest="23" 
+                                                WidthRequest="23" VerticalOptions="Center"/>
+
+                            <pv:PancakeView
+                                BackgroundColor="Red"
+                                HeightRequest="6" WidthRequest="6"
+                                CornerRadius="5" HorizontalOptions="Center"
+                                VerticalOptions="Center" Margin="15,-17,0,0"/>
+                        </Grid>
+                    </StackLayout>
+
+                    <Label
+                        x:Name="ProfileTitle"
+                        Text="Account"
+                        TextColor="{StaticResource SubTextColor}"
+                        FontSize="{StaticResource FontSize10}"
+                        HorizontalOptions="Center"
+                        FontFamily="{StaticResource FontBold}"
+                        LineBreakMode="TailTruncation"
+                        VerticalOptions="Center"/>
+
+                    <pv:PancakeView BackgroundColor="{StaticResource SecondPurpleColor}"
+                                    HeightRequest="5" WidthRequest="5"
+                                    CornerRadius="5"
+                                     IsVisible="False"
+                                     HorizontalOptions="Center"
+                                     x:Name="ProfileCircle"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Account_Clicked"
+                                              NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <!--#endregion-->
+            </Grid>
+        </pv:PancakeView>
+    </ContentView.Content>
+</ContentView>

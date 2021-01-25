@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:PurpleGold.Views"
+       Title="PurpleGold"
+       x:Class="PurpleGold.AppShell"
+      NavigationPage.HasNavigationBar="False">
+
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource SecondPurpleColor}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource PageBgColor}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource WhiteColor}"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource SubTextColor}"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource SecondPurpleColor}"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+
+
+            <Style Class="TabBarLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource TextColor}" />
+                                    <Setter TargetName="TabBarLabel" Property="Label.FontFamily" Value="{StaticResource FontRegular}"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar Route="main">
+        <Tab Title="Home" Icon="home.png">
+            <ShellContent ContentTemplate="{DataTemplate local:DashboardPage}" />
+        </Tab>
+        <Tab Title="Invest" Icon="rocket.png">
+            <ShellContent ContentTemplate="{DataTemplate local:InvestPage}" />
+        </Tab>
+        <Tab Title="Deposit" Icon="wallet.png">
+            <ShellContent ContentTemplate="{DataTemplate local:DepositPage}" />
+        </Tab>
+        <Tab Title="Asset" Icon="calculator.png">
+            <ShellContent ContentTemplate="{DataTemplate local:AssetPage}" />
+        </Tab>
+        <Tab Title="More" Icon="more.png">
+            <ShellContent ContentTemplate="{DataTemplate local:MorePage}" />
+        </Tab>
+
+    </TabBar>
+</Shell>

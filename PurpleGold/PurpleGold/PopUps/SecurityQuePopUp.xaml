@@ -37,34 +37,45 @@
         <pv:PancakeView.Shadow>
             <pv:DropShadow Color="#60000000" Offset="10,10"/>
         </pv:PancakeView.Shadow>
+        <StackLayout>
+            
 
-        <ScrollView>
-            <StackLayout>
-                <ListView x:Name="list" ItemsSource="{Binding QuestionModelList}"
+        <ActivityIndicator 
+                Grid.RowSpan="2"
+                IsVisible="{Binding IsBusy}"
+                IsRunning="{Binding IsBusy}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
+
+            <ScrollView>
+                <StackLayout>
+                    <ListView x:Name="list" ItemsSource="{Binding QuestionModelList}"
                                       ItemTapped="SelectedBank_Tapped"
                                      SeparatorVisibility="None">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout>
-                                    <Label Text="{Binding Question}" 
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout>
+                                        <Label Text="{Binding Question}" 
                                            VerticalOptions="Center"
                                            HorizontalOptions="StartAndExpand"
                                            Margin="25,0,25,0"
                                            TextColor="{StaticResource TextColor}"
                                            FontFamily="{StaticResource FontRegular}" 
                                            FontSize="{StaticResource FontSize12}"/>
-                                    <BoxView Color="{StaticResource SubTextColor}"
+                                        <BoxView Color="{StaticResource SubTextColor}"
                                                  Margin="0,13,0,0"
                                                  BackgroundColor="{StaticResource SubTextColor}"
                                                  HeightRequest="0.1"
                                                  HorizontalOptions="Fill"/>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-        </ScrollView>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ScrollView>
+            
+        </StackLayout>
     </pv:PancakeView>
 </pages:PopupPage>

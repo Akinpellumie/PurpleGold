@@ -24,16 +24,5 @@ namespace PurpleGold.Models
     {
         public List<Asset> Assets { get; set; }
     }
-    public class Settings
-    {
-        //public string FormatPrice 
-        //{
-        //    get 
-        //    {
-        //        var pel = Assets.CurrentAmount;
-        //        return pel;
-        //    }
-        //    set { FormatPrice = value; } 
-        //}
-    }
+   
 }

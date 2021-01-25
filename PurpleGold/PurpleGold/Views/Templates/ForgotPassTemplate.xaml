@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" xmlns:Controls="clr-namespace:PurpleGold.Controls" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="PurpleGold.Views.Templates.ForgotPassTemplate">
+  <ContentView.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout x:Name="forgotPassView"
+                         IsVisible="True">
+                    <StackLayout Orientation="Vertical"
+                                     Margin="20,0,0,0">
+                        <Label LineBreakMode="WordWrap" VerticalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Reset " TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontBold}"
+                                      FontSize="{StaticResource FontSize20}"/>
+                                    <Span Text="Password" TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontRegular}" 
+                                      FontSize="{StaticResource FontSize20}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label
+                    Margin="0,20,0,0"
+                    FontSize="{StaticResource FontSize20}"
+                    FontFamily="{StaticResource FontRegular}"
+                    Text="Forgot Security Question?"
+                    x:Name="forgSec"
+                    IsVisible="False"
+                    TextColor="{StaticResource TextColor}"/>
+                    </StackLayout>
+
+                    <StackLayout x:Name="EntryField"
+                                     Margin="0,40,0,0"
+                                     Orientation="Vertical">
+                        <pv:PancakeView BackgroundColor="Transparent"
+                                            Margin="0,0,0,10"
+                                            x:Name="emailFrame"
+                                            CornerRadius="5"
+                                            HorizontalOptions="Fill"
+                                            HeightRequest="45">
+                            <pv:PancakeView.Border>
+                                <pv:Border Thickness="1" Color="{StaticResource FrameBorderColor}" />
+                            </pv:PancakeView.Border>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <ff1:SvgCachedImage
+                                        Source="mail.svg"
+                                        Grid.Column="0"
+                                        Margin="10,0,0,0"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        Aspect="AspectFit"
+                                        HeightRequest="20"/>
+                                <Controls:CustomEntry  x:Name="usrEmail"
+                                                           Grid.Column="1" 
+                                                           PlaceholderColor="{StaticResource FrameBorderColor}" 
+                                                           TextColor="{StaticResource FrameBorderColor}" 
+                                                           Placeholder="Email Address" 
+                                                           Text="" 
+                                                           FontSize="12"
+                                                           Margin="10,0,0,0"
+                                                           Keyboard="Default"
+                                                           FontFamily="{StaticResource FontRegular}"/>
+                            </Grid>
+                        </pv:PancakeView>
+
+                        <pv:PancakeView BackgroundColor="Transparent"
+                                            Margin="0,20,0,5"
+                                            x:Name="SecurFrame"
+                                            CornerRadius="5"
+                                            HorizontalOptions="Fill"
+                                            HeightRequest="45">
+                            <pv:PancakeView.Border>
+                                <pv:Border Thickness="1" Color="{StaticResource FrameBorderColor}" />
+                            </pv:PancakeView.Border>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <ff1:SvgCachedImage
+                                        Source="security.svg"
+                                        Grid.Column="0"
+                                        Margin="10,0,0,0"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        Aspect="AspectFit"
+                                        HeightRequest="20"/>
+                                <Controls:CustomEntry  x:Name="answer"
+                                        Grid.Column="1" 
+                                        PlaceholderColor="{StaticResource FrameBorderColor}" 
+                                        TextColor="{StaticResource FrameBorderColor}" 
+                                        Placeholder="Answer to your Security Question" 
+                                        Text="" 
+                                        FontSize="12"
+                                        Margin="10,0,0,0"
+                                        Keyboard="Default"
+                                        FontFamily="{StaticResource FontRegular}">
+                                </Controls:CustomEntry>
+                            </Grid>
+                        </pv:PancakeView>
+
+                        <StackLayout Orientation="Horizontal"
+                             IsVisible="False"
+                             Margin="15,0,0,0"
+                             Spacing="5" x:Name="errorMsg">
+                            <ff1:SvgCachedImage
+                        Source="alert.png"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Aspect="AspectFit"
+                        HeightRequest="20"/>
+
+                            <Label
+                                x:Name="errLbl"
+                                Text="Invalid Credentials"
+                                TextColor="Red"
+                                FontFamily="{StaticResource FontRegular}"
+                                FontSize="{StaticResource FontSize12}"
+                                HorizontalOptions="StartAndExpand"
+                                VerticalOptions="Center"/>
+                        </StackLayout>
+
+                        <!--#region  submit button-->
+                        <pv:PancakeView BackgroundColor="{StaticResource PurpleColor}"
+                                HeightRequest="50"
+                                HorizontalOptions="Fill"
+                                CornerRadius="5"
+                                Margin="0,30,0,0">
+                            <Grid HorizontalOptions="Center">
+                                <Label Text="Submit"
+                                   FontSize="{StaticResource FontSize20}"
+                                    FontFamily="{StaticResource FontRegular}"
+                                    TextColor="White"
+                                    VerticalOptions="Center"
+                                    IsVisible="True"
+                                    x:Name="BtnLbl"/>
+
+                                <ff:CachedImage 
+                                    Source="loading.gif"
+                                    x:Name="load"
+                                    IsVisible="False"
+                                    HeightRequest="30"
+                                    WidthRequest="30"
+                                    HorizontalOptions="Center"/>
+                            </Grid>
+                            <pv:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ForgotPasswordClicked"
+                                              NumberOfTapsRequired="1"/>
+                            </pv:PancakeView.GestureRecognizers>
+                        </pv:PancakeView>
+                        <!--#endregion-->
+                        
+
+                        <Label
+                    x:Name="remQue"
+                    IsVisible="True"
+                    Text="Can't remember Security Question?"
+                    TextColor="{StaticResource FrameBorderColor}"
+                    FontFamily="{StaticResource FontRegular}"
+                    FontSize="{StaticResource FontSize12}"
+                    Margin="0,20,0,0"
+                    VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                              NumberOfTapsRequired="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </StackLayout>
+
+                <Grid x:Name="successView"
+                             IsVisible="False"
+                      Margin="0,20,0,0"
+                             VerticalOptions="CenterAndExpand"
+                             HorizontalOptions="Fill">
+                    <StackLayout Orientation="Vertical">
+                        
+                        <Label
+                            x:Name="suc"
+                            Text="Successful!"
+                            TextColor="{StaticResource TextColor}"
+                            FontFamily="{StaticResource FontBold}"
+                            FontSize="{StaticResource FontSize14}"
+                            Margin="10,20,10,0"
+                            VerticalOptions="Center"/>
+
+                        <Label
+                            Text="Your Security Question has been sent to your email!"
+                            TextColor="{StaticResource FrameBorderColor}"
+                            FontFamily="{StaticResource FontRegular}"
+                            FontSize="{StaticResource FontSize12}"
+                            Margin="10,20,10,0"
+                            VerticalOptions="Center"/>
+
+                        <Button
+                            Margin="0,40,0,0"
+                            Text="Back to Reset Password"
+                            TextColor="White"
+                            BackgroundColor="{StaticResource PurpleColor}"
+                            HeightRequest="45"
+                            Clicked="Button_Clicked"
+                            FontFamily="{StaticResource FontRegular}"
+                            FontSize="{StaticResource FontSize16}"
+                            HorizontalOptions="Fill"
+                            CornerRadius="5"
+                            TextTransform="None"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

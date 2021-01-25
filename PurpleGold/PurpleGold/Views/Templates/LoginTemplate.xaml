@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" xmlns:Controls="clr-namespace:PurpleGold.Controls" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" xmlns:Controls="clr-namespace:PurpleGold.Controls" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="PurpleGold.Views.Templates.LoginTemplate">
   <ContentView.Content>
+        <ScrollView>
+            
         <StackLayout x:Name="loginView">
             <StackLayout Orientation="Horizontal"
                                      Margin="20,0,0,0">
-                <Label
-                                Text="Welcome"
-                                TextColor="Black"
-                                FontFamily="{StaticResource FontBold}"
-                                FontSize="20"
-                                VerticalOptions="Center"/>
-                <Label
-                                Text="Back!"
-                                TextColor="Black"
-                                FontFamily="{StaticResource FontRegular}"
-                                FontSize="20"
-                                VerticalOptions="Center"/>
+                <Label LineBreakMode="WordWrap" VerticalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Welcome " TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontBold}"
+                                      FontSize="{StaticResource FontSize20}"/>
+                            <Span Text="Back!" TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontRegular}" 
+                                      FontSize="{StaticResource FontSize20}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
             </StackLayout>
 
             <StackLayout x:Name="entryField"
@@ -48,10 +48,11 @@
                         <Controls:CustomEntry  x:Name="usrEmail"
                                                            Grid.Column="1" 
                                                            PlaceholderColor="{StaticResource FrameBorderColor}" 
-                                                           TextColor="{StaticResource FrameBorderColor}" 
+                                                           TextColor="{StaticResource TextColor}" 
                                                            Placeholder="Email Address" 
-                                                           Text="" 
-                                                           FontSize="12"
+                                                           Text="{Binding Email, Mode=TwoWay}"
+                                                           FontSize="{StaticResource FontSize12}"
+                                               TextChanged="usrEmail_TextChanged"
                                                            Margin="10,0,0,0"
                                                            Keyboard="Default"
                                                            FontFamily="{StaticResource FontRegular}"/>
@@ -59,7 +60,7 @@
                 </pv:PancakeView>
 
                 <pv:PancakeView BackgroundColor="Transparent"
-                                            Margin="0,20,0,10"
+                                            Margin="0,20,0,5"
                                             x:Name="pswdFrame"
                                             CornerRadius="5"
                                             HorizontalOptions="Fill"
@@ -83,11 +84,12 @@
                         <Controls:CustomEntry  x:Name="usrPass"
                                                            Grid.Column="1" 
                                                            PlaceholderColor="{StaticResource FrameBorderColor}" 
-                                                           TextColor="{StaticResource FrameBorderColor}" 
+                                                           TextColor="{StaticResource TextColor}" 
                                                            Placeholder="Password" 
-                                                           Text="" 
+                                                           Text="{Binding Password, Mode=TwoWay}" 
                                                            FontSize="12"
                                                            Margin="10,0,0,0"
+                                               TextChanged="usrPass_TextChanged"
                                                            Keyboard="Default"
                                                            IsPassword="True"
                                                            FontFamily="{StaticResource FontRegular}">
@@ -98,7 +100,55 @@
                     </Grid>
                 </pv:PancakeView>
 
-                <Button
+                <StackLayout Orientation="Horizontal"
+                             IsVisible="False"
+                             Margin="15,0,0,0"
+                             Spacing="5" x:Name="errorMsg">
+                    <ff1:SvgCachedImage
+                        Source="alert.png"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Aspect="AspectFit"
+                        HeightRequest="20"/>
+
+                    <Label
+                        Text="Invalid Credentials"
+                        TextColor="Red"
+                        x:Name="errorLabel"
+                        FontFamily="{StaticResource FontRegular}"
+                        FontSize="{StaticResource FontSize12}"
+                        HorizontalOptions="StartAndExpand"
+                        VerticalOptions="Center"/>
+                </StackLayout>
+
+                <pv:PancakeView BackgroundColor="{StaticResource PurpleColor}"
+                                HeightRequest="50"
+                                HorizontalOptions="Fill"
+                                CornerRadius="5"
+                                Margin="0,30,0,0">
+                    <Grid HorizontalOptions="Center">
+                        <Label Text="Log in"
+                           FontSize="{StaticResource FontSize20}"
+                           FontFamily="{StaticResource FontRegular}"
+                           TextColor="White"
+                               VerticalOptions="Center"
+                               IsVisible="True"
+                           x:Name="BtnLbl"/>
+                        
+                        <ff:CachedImage 
+                            Source="loading.gif"
+                            x:Name="load"
+                            IsVisible="False"
+                            HeightRequest="30"
+                            WidthRequest="30"
+                            HorizontalOptions="Center"/>
+                    </Grid>
+                    <pv:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding LoginCommand}"
+                                              NumberOfTapsRequired="1"/>
+                    </pv:PancakeView.GestureRecognizers>
+                </pv:PancakeView>
+                <!--<Button
                                 Margin="0,30,0,0"
                                 Text="Log in"
                     Clicked="LoginBtn_Clicked"
@@ -109,16 +159,45 @@
                                 FontSize="20"
                                 HorizontalOptions="Fill"
                                 CornerRadius="5"
-                                TextTransform="None"/>
+                                TextTransform="None"/>-->
 
                 <Label
-                                Text="Forgot your password?"
-                                TextColor="{StaticResource FrameBorderColor}"
-                                FontFamily="{StaticResource FontRegular}"
-                                FontSize="12"
-                                Margin="0,20,0,0"
-                                VerticalOptions="Center"/>
+                    Text="Forgot your password?"
+                    TextColor="{StaticResource FrameBorderColor}"
+                    FontFamily="{StaticResource FontRegular}"
+                    FontSize="{StaticResource FontSize12}"
+                    Margin="0,20,0,0"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                              NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
             </StackLayout>
-        </StackLayout>
+            
+            <!--#region fingerprint lock-->
+            <StackLayout Orientation="Vertical"
+                         Margin="0,20,0,0"
+                         HorizontalOptions="Center">
+                <ff1:SvgCachedImage
+                    Source="fingerprint.svg"
+                    Margin="0,0,0,10"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Aspect="AspectFit"
+                    HeightRequest="40"/>
+
+                <Label
+                    Text="Login with Fingerprint"
+                    TextColor="{StaticResource FrameBorderColor}"
+                    FontFamily="{StaticResource FontRegular}"
+                    FontSize="{StaticResource FontSize12}"
+                    Margin="0,5,0,0"
+                    VerticalOptions="Center"/>
+
+            </StackLayout>
+            <!--#endregion-->
+            </StackLayout>
+        </ScrollView>
     </ContentView.Content>
 </ContentView>

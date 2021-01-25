@@ -7,166 +7,204 @@
         <ScrollView Orientation="Vertical" 
                     VerticalScrollBarVisibility="Never" 
                     VerticalOptions="Fill">
-            
-            <StackLayout
-                     x:Name="AssetItems"
-                    BindableLayout.ItemsSource="{Binding AssetModelList}"
-                    Orientation="Vertical"
-                    Spacing="10"
-                    Padding="0">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <pv:PancakeView Padding="25,15,25,15"
-                                        CornerRadius="10"
-                            BackgroundColor="{StaticResource WhiteColor}">
-                            <Grid RowSpacing="7"
-                      HorizontalOptions="FillAndExpand"
-                      VerticalOptions="FillAndExpand">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
 
-                                <!--#region First Row-->
-                                <StackLayout Grid.Row="0">
-                                    <Grid ColumnSpacing="0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="60*"/>
-                                            <ColumnDefinition Width="40*"/>
-                                        </Grid.ColumnDefinitions>
+            <StackLayout>
 
-                                        <Label  x:Name="port"
-                                    Grid.Column="0" 
-                                    TextColor="{StaticResource GreenColor}" 
-                                    Text="{Binding Count}" 
-                                    FontSize="{StaticResource FontSize8}"
-                                    VerticalOptions="Center"
-                                    FontFamily="{StaticResource FontBold}"/>
+                <Grid IsVisible="{Binding IsBusy}"
+                             VerticalOptions="CenterAndExpand"
+                             HorizontalOptions="CenterAndExpand">
+                    <ff1:SvgCachedImage
+                        Source="search.gif"
+                        HeightRequest="300"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"/>
+                </Grid>
+                
+                <Grid IsVisible="{Binding IsVisible}"
+                             VerticalOptions="CenterAndExpand"
+                             HorizontalOptions="CenterAndExpand">
+                    <ff1:SvgCachedImage
+                        Source="empty.gif"
+                        HeightRequest="300"
+                        VerticalOptions="Center"
+                        HorizontalOptions="CenterAndExpand"/>
 
-                                        <Label  x:Name="rem"
-                                    Grid.Column="1" 
-                                    TextColor="{StaticResource LightRedColor}" 
-                                    Text="{Binding RemDays}" 
-                                    FontSize="{StaticResource FontSize8}"
-                                    VerticalOptions="Center"
-                                    FontFamily="{StaticResource FontBold}"/>
-                                    </Grid>
-                                </StackLayout>
-                                <!--#endregion-->
+                    <Label LineBreakMode="WordWrap" VerticalOptions="End"
+                           HorizontalOptions="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Your active investment portfolio is " TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontRegular}"
+                                      FontSize="{StaticResource FontSize14}"/>
+                                <Span Text="Empty!" TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontBold}" 
+                                      FontSize="{StaticResource FontSize14}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                
+                <StackLayout
+                         x:Name="AssetItems"
+                        BindableLayout.ItemsSource="{Binding InvestmentData}"
+                        Orientation="Vertical"
+                        Spacing="10"
+                        Padding="0">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <pv:PancakeView Padding="15,15,15,15"
+                                            CornerRadius="10"
+                                BackgroundColor="{StaticResource WhiteColor}">
+                                <Grid RowSpacing="7"
+                          HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
-                                <!--#region Second Row-->
-                                <StackLayout Grid.Row="1">
-                                    <Grid ColumnSpacing="0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="60*"/>
-                                            <ColumnDefinition Width="40*"/>
-                                        </Grid.ColumnDefinitions>
+                                    <!--#region First Row-->
+                                    <StackLayout Grid.Row="0">
+                                        <Grid ColumnSpacing="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60*"/>
+                                                <ColumnDefinition Width="40*"/>
+                                            </Grid.ColumnDefinitions>
 
-                                        <StackLayout Orientation="Vertical"
-                                                     VerticalOptions="Center"
-                                         Grid.Column="0">
-                                            <Label  x:Name="current"
-                                        TextColor="{StaticResource SubTextColor}" 
-                                        Text="{Binding CurrentDate}" 
-                                        FontSize="{StaticResource FontSize10}"
-                                        VerticalOptions="Center"
-                                        FontFamily="{StaticResource FontRegular}"/>
-
-                                            <Label  x:Name="opnAmt"
-                                        TextColor="{StaticResource PurpleColor}" 
-                                        Text="{Binding OpeningAmount}" 
-                                        FontSize="{StaticResource FontSize16}"
-                                        FontAttributes="Bold"
-                                        VerticalOptions="Center"
-                                        FontFamily="{StaticResource FontBold}"/>
-                                        </StackLayout>
-
-                                        <StackLayout Grid.Column="1"
-                                                     VerticalOptions="Fill"
-                                                     HorizontalOptions="Fill">
-                                            <ff1:SvgCachedImage
-                                                Source="progbar.png"
-                                                Grid.Column="1"
-                                                HorizontalOptions="Fill"
-                                                VerticalOptions="Fill"
-                                                HeightRequest="50"/>
-                                        </StackLayout>
-                                    </Grid>
-                                </StackLayout>
-                                <!--#endregion-->
-
-                                <!--#region Third Row-->
-                                <StackLayout Grid.Row="2">
-                                    <Grid ColumnSpacing="0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="60*"/>
-                                            <ColumnDefinition Width="40*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <StackLayout Orientation="Vertical"
-                                                     VerticalOptions="Center"
-                                         Grid.Column="0">
-                                            <Grid ColumnSpacing="0">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-
-                                                <StackLayout Orientation="Vertical"
-                                         Grid.Column="0">
-                                                    <Label
-                                        TextColor="{StaticResource DarkGreenColor}" 
-                                        Text="START" 
-                                        FontSize="{StaticResource FontSize6}"
+                                            <Label  x:Name="port"
+                                        Grid.Column="0" 
+                                        TextColor="{StaticResource GreenColor}" 
+                                        Text="PORTFOLIO1" 
+                                        FontSize="{StaticResource FontSize8}"
                                         VerticalOptions="Center"
                                         FontFamily="{StaticResource FontBold}"/>
 
-                                                    <Label  x:Name="strtDate"
-                                        TextColor="{StaticResource SubTextColor}" 
-                                        Text="{Binding StartDate}" 
-                                        FontSize="{StaticResource FontSize6}"
+                                            <Label  x:Name="rem"
+                                        Grid.Column="1" 
+                                        TextColor="{StaticResource LightRedColor}" 
+                                        Text="{Binding CountDown}" 
+                                        FontSize="{StaticResource FontSize8}"
                                         VerticalOptions="Center"
-                                        FontFamily="{StaticResource FontRegular}"/>
-                                                </StackLayout>
-
-                                                <StackLayout Orientation="Vertical"
-                                         Grid.Column="1">
-                                                    <Label
-                                        TextColor="{StaticResource DarkGreenColor}" 
-                                        Text="END" 
-                                        FontSize="{StaticResource FontSize6}"
-                                        VerticalOptions="Center"
+                                                    HorizontalOptions="CenterAndExpand"
                                         FontFamily="{StaticResource FontBold}"/>
+                                        </Grid>
+                                    </StackLayout>
+                                    <!--#endregion-->
 
-                                                    <Label  x:Name="endDate"
-                                        TextColor="{StaticResource SubTextColor}" 
-                                        Text="{Binding EndDate}" 
-                                        FontSize="{StaticResource FontSize6}"
-                                        VerticalOptions="Center"
-                                        FontFamily="{StaticResource FontRegular}"/>
-                                                </StackLayout>
-                                            </Grid>
-                                        </StackLayout>
+                                    <!--#region Second Row-->
+                                    <StackLayout Grid.Row="1">
+                                        <Grid ColumnSpacing="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60*"/>
+                                                <ColumnDefinition Width="40*"/>
+                                            </Grid.ColumnDefinitions>
 
-                                        <StackLayout Grid.Column="1"
-                                                     VerticalOptions="Center">
-                                            <htmlLabel:HtmlLabel x:Name="htmlLabel" />
-                                            <Label  x:Name="crntAmt"
-                                        TextColor="{StaticResource DarkGreenColor}" 
-                                                    Text="{Binding Path=FormatAmount, UpdateSourceEventName=CurrentAmount, Source={x:Reference AssetDetails}}"
-                                        FontSize="{StaticResource FontSize18}"
-                                        FontAttributes="Bold"
-                                        VerticalOptions="Center"
-                                        FontFamily="{StaticResource FontBold}"/>
-                                        </StackLayout>
-                                    </Grid>
-                                </StackLayout>
-                                <!--#endregion-->
-                            </Grid>
-                        </pv:PancakeView>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
+                                            <StackLayout Orientation="Vertical"
+                                                         VerticalOptions="Center"
+                                             Grid.Column="0">
+                                                <Label  x:Name="current"
+                                            TextColor="{StaticResource SubTextColor}" 
+                                            Text="{Binding StartDate}" 
+                                            FontSize="{StaticResource FontSize10}"
+                                            VerticalOptions="Center"
+                                            FontFamily="{StaticResource FontRegular}"/>
+
+                                                <Label  x:Name="opnAmt"
+                                            TextColor="{StaticResource PurpleColor}" 
+                                            Text="{Binding Amount}" 
+                                            FontSize="{StaticResource FontSize16}"
+                                            FontAttributes="Bold"
+                                            VerticalOptions="Center"
+                                            FontFamily="{StaticResource FontBold}"/>
+                                            </StackLayout>
+
+                                            <StackLayout Grid.Column="1"
+                                                         VerticalOptions="Fill"
+                                                         HorizontalOptions="Fill">
+                                                <ff1:SvgCachedImage
+                                                    Source="progbar.png"
+                                                    Grid.Column="1"
+                                                    HorizontalOptions="Fill"
+                                                    VerticalOptions="Fill"
+                                                    HeightRequest="50"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </StackLayout>
+                                    <!--#endregion-->
+
+                                    <!--#region Third Row-->
+                                    <StackLayout Grid.Row="2">
+                                        <Grid ColumnSpacing="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60*"/>
+                                                <ColumnDefinition Width="40*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackLayout Orientation="Vertical"
+                                                         VerticalOptions="Center"
+                                             Grid.Column="0">
+                                                <Grid ColumnSpacing="0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <StackLayout Orientation="Vertical"
+                                             Grid.Column="0">
+                                                        <Label
+                                                        TextColor="{StaticResource DarkGreenColor}" 
+                                                        Text="START" 
+                                                        FontSize="{StaticResource FontSize8}"
+                                                        VerticalOptions="Center"
+                                                        FontFamily="{StaticResource FontBold}"/>
+
+                                                        <Label  x:Name="strtDate"
+                                                        TextColor="{StaticResource SubTextColor}" 
+                                                        Text="{Binding StartDate}" 
+                                                        FontSize="{StaticResource FontSize10}"
+                                                        VerticalOptions="Center"
+                                                        FontFamily="{StaticResource FontRegular}"/>
+                                                    </StackLayout>
+
+                                                    <StackLayout Orientation="Vertical"
+                                             Grid.Column="1">
+                                                        <Label
+                                                        TextColor="{StaticResource DarkGreenColor}" 
+                                                        Text="END" 
+                                                        FontSize="{StaticResource FontSize8}"
+                                                        VerticalOptions="Center"
+                                                        FontFamily="{StaticResource FontBold}"/>
+
+                                                        <Label  x:Name="endDate"
+                                                        TextColor="{StaticResource SubTextColor}" 
+                                                        Text="{Binding EndDate}" 
+                                                        FontSize="{StaticResource FontSize10}"
+                                                        VerticalOptions="Center"
+                                                        FontFamily="{StaticResource FontRegular}"/>
+                                                    </StackLayout>
+                                                </Grid>
+                                            </StackLayout>
+
+                                            <StackLayout Grid.Column="1"
+                                                         VerticalOptions="Center">
+                                                <!--//<htmlLabel:HtmlLabel x:Name="htmlLabel" />-->
+                                                <Label  x:Name="crntAmt"
+                                            TextColor="{StaticResource DarkGreenColor}" 
+                                                        Text="{Binding TotalBalance}"
+                                            FontSize="{StaticResource FontSize14}"
+                                            FontAttributes="Bold"
+                                                        HorizontalOptions="CenterAndExpand"
+                                            VerticalOptions="Center"
+                                            FontFamily="{StaticResource FontBold}"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </StackLayout>
+                                    <!--#endregion-->
+                                </Grid>
+                            </pv:PancakeView>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+
             </StackLayout>
         </ScrollView>
     </ContentView.Content>

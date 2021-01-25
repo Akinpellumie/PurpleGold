@@ -13,7 +13,7 @@ namespace PurpleGold.Views.Templates
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AssetViewTemplate : ContentView
     {
-        AssetViewModel assetViewModel;
+        InvestViewModel investViewModel;
         public static readonly BindableProperty FormatAmountProperty = BindableProperty.Create(
            nameof(FormatAmount),
            typeof(string),
@@ -21,9 +21,9 @@ namespace PurpleGold.Views.Templates
            string.Empty);
         public AssetViewTemplate()
         {
-            assetViewModel = new AssetViewModel(Navigation);
+            investViewModel = new InvestViewModel(Navigation);
             InitializeComponent();
-            BindingContext = assetViewModel;
+            BindingContext = investViewModel;
         }
 
         public string FormatAmount

@@ -97,6 +97,10 @@
                         <Template:LoginTemplate />
                     </StackLayout>
 
+                    <StackLayout x:Name="forgotPassStack" IsVisible="False">
+                        <Template:ForgotPassTemplate />
+                    </StackLayout>
+
                     <StackLayout x:Name="signUpStack" IsVisible="False">
                         <Template:SignUpTemplate />
                     </StackLayout>

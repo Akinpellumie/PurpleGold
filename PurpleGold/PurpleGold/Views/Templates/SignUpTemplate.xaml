@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Controls="clr-namespace:PurpleGold.Controls" xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Controls="clr-namespace:PurpleGold.Controls" xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:local="clr-namespace:PurpleGold.Behaviors" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="PurpleGold.Views.Templates.SignUpTemplate">
   <ContentView.Content>
+        <ScrollView>
+            
         <StackLayout x:Name="SignUpView">
 
             <StackLayout x:Name="FirstView"
-                          IsVisible="True">
+                          IsVisible="False">
 
                 <StackLayout Orientation="Horizontal"
                                      Margin="20,0,0,0">
-                    <Label
-                    Text="Let's get"
-                    TextColor="Black"
-                    FontFamily="{StaticResource FontBold}"
-                    FontSize="20"
-                    VerticalOptions="Center"/>
-                    <Label
-                    Text="Started!"
-                    TextColor="Black"
-                    FontFamily="{StaticResource FontRegular}"
-                    FontSize="20"
-                    VerticalOptions="Center"/>
+                    <Label LineBreakMode="WordWrap" VerticalOptions="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Let's get " TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontBold}"
+                                      FontSize="{StaticResource FontSize20}"/>
+                                <Span Text="Started!" TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontRegular}" 
+                                      FontSize="{StaticResource FontSize20}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                 </StackLayout>
 
                 <StackLayout x:Name="entryField"
@@ -56,8 +56,9 @@
                                                            PlaceholderColor="{StaticResource FrameBorderColor}" 
                                                            TextColor="{StaticResource FrameBorderColor}" 
                                                            Placeholder="Full Name" 
-                                                           Text="" 
-                                                           FontSize="12"
+                                                   Text="{Binding FullName, Mode=TwoWay}" 
+                                                           FontSize="{StaticResource FontSize12}"
+                                                   TextChanged="usrFullname_TextChanged"
                                                            Margin="10,0,0,0"
                                                            Keyboard="Default"
                                                            FontFamily="{StaticResource FontRegular}"/>
@@ -91,11 +92,16 @@
                                                            PlaceholderColor="{StaticResource FrameBorderColor}" 
                                                            TextColor="{StaticResource FrameBorderColor}" 
                                                            Placeholder="Email Address" 
-                                                           Text="" 
-                                                           FontSize="12"
+                                                           Text="{Binding Email, Mode=TwoWay}" 
+                                                           FontSize="{StaticResource FontSize12}"
+                                                   TextChanged="usrEmail_TextChanged"
                                                            Margin="10,0,0,0"
                                                            Keyboard="Email"
-                                                           FontFamily="{StaticResource FontRegular}"/>
+                                                           FontFamily="{StaticResource FontRegular}">
+                                <Controls:CustomEntry.Behaviors>
+                                    <local:EmailValidatorBehavior />
+                                </Controls:CustomEntry.Behaviors>
+                            </Controls:CustomEntry>
                         </Grid>
                     </pv:PancakeView>
 
@@ -125,9 +131,11 @@
                                                            Grid.Column="1" 
                                                            PlaceholderColor="{StaticResource FrameBorderColor}" 
                                                            TextColor="{StaticResource FrameBorderColor}" 
-                                                           Placeholder="Phone Number" 
-                                                           Text="" 
-                                                           FontSize="12"
+                                                           Placeholder="Phone Number (e.g 08090807060)"
+                                                   MaxLength="11"
+                                                   Text="{Binding PhoneNumber, Mode=TwoWay}" 
+                                                           FontSize="{StaticResource FontSize12}"
+                                                   TextChanged="usrPhone_TextChanged"
                                                            Margin="10,0,0,0"
                                                            Keyboard="Numeric"
                                                            FontFamily="{StaticResource FontRegular}"/>
@@ -159,17 +167,66 @@
                             <Controls:CustomEntry  x:Name="usrRef"
                                                            Grid.Column="1" 
                                                            PlaceholderColor="{StaticResource FrameBorderColor}" 
-                                                           TextColor="{StaticResource FrameBorderColor}" 
-                                                           Placeholder="Enter  Referal Code (Optional)" 
-                                                           Text="" 
-                                                           FontSize="12"
+                                                           TextColor="{StaticResource TextColor}" 
+                                                           Placeholder="Enter  Referal Code (Optional)"                                                            
+                                                   Text="{Binding RefCode, Mode=TwoWay}" 
+                                                   TextChanged="usrRef_TextChanged"
+                                                           FontSize="{StaticResource FontSize12}"
                                                            Margin="10,0,0,0"
                                                            Keyboard="Numeric"
                                                            FontFamily="{StaticResource FontRegular}"/>
                         </Grid>
                     </pv:PancakeView>
 
-                    <Button
+                    <StackLayout Orientation="Horizontal"
+                             IsVisible="False"
+                             Margin="15,0,0,0"
+                             Spacing="5" x:Name="FirstViewErrorMsg">
+                        <ff1:SvgCachedImage
+                        Source="alert.png"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Aspect="AspectFit"
+                        HeightRequest="20"/>
+
+                        <Label
+                        Text="Invalid Credentials"
+                        TextColor="Red"
+                        x:Name="FirstErrorLabel"
+                        FontFamily="{StaticResource FontRegular}"
+                        FontSize="{StaticResource FontSize12}"
+                        HorizontalOptions="StartAndExpand"
+                        VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <pv:PancakeView BackgroundColor="{StaticResource PurpleColor}"
+                                HeightRequest="50"
+                                HorizontalOptions="Fill"
+                                CornerRadius="5"
+                                Margin="0,30,0,0">
+                        <Grid HorizontalOptions="Center">
+                            <Label Text="Continue"
+                           FontSize="{StaticResource FontSize20}"
+                           FontFamily="{StaticResource FontRegular}"
+                           TextColor="White"
+                               VerticalOptions="Center"
+                               IsVisible="True"
+                           x:Name="FirstContBtnLbl"/>
+
+                            <ff:CachedImage 
+                            Source="loading.gif"
+                            x:Name="FirstLoad"
+                            IsVisible="False"
+                            HeightRequest="30"
+                            WidthRequest="30"
+                            HorizontalOptions="Center"/>
+                        </Grid>
+                        <pv:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ContinueCommand}"
+                                              NumberOfTapsRequired="1"/>
+                        </pv:PancakeView.GestureRecognizers>
+                    </pv:PancakeView>
+                    <!--<Button
                         Margin="0,30,0,0"
                         Text="Continue"
                         TextColor="White"
@@ -180,7 +237,7 @@
                         Clicked="FirstCont_Clicked"
                         HorizontalOptions="Fill"
                         CornerRadius="5"
-                        TextTransform="None"/>
+                        TextTransform="None"/>-->
 
                 </StackLayout>
             </StackLayout>
@@ -193,151 +250,221 @@
                     <StackLayout Orientation="Horizontal"
                                      Margin="20,0,0,0">
 
-                        <Label
-                        Text="Enter"
-                        TextColor="Black"
-                        FontFamily="{StaticResource FontRegular}"
-                        FontSize="20"
-                        VerticalOptions="Center"/>
+                        <Label LineBreakMode="WordWrap" VerticalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Enter " TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontRegular}"
+                                      FontSize="{StaticResource FontSize20}"/>
+                                    <Span Text="OTP " TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontBold}" 
+                                      FontSize="{StaticResource FontSize20}"/>
+                                    <Span Text="sent to your " TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontRegular}" 
+                                      FontSize="{StaticResource FontSize20}"/>
+                                    <Span Text="Phone/Email" TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontRegular}" 
+                                      FontSize="{StaticResource FontSize20}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
 
-                        <Label
-                        Text="OTP"
-                        TextColor="Black"
-                        FontFamily="{StaticResource FontBold}"
-                        FontSize="20"
-                        VerticalOptions="Center"/>
-
-                        <Label
-                        Text="sent to your"
-                        LineBreakMode="WordWrap"
-                        TextColor="Black"
-                        FontFamily="{StaticResource FontRegular}"
-                        FontSize="20"
-                    VerticalOptions="Center"/>
                     </StackLayout>
-
-                    <Label
-                        Margin="20,0,0,0"
-                        Text="Phone/Email"
-                        LineBreakMode="WordWrap"
-                        TextColor="Black"
-                        FontFamily="{StaticResource FontRegular}"
-                        FontSize="20"
-                    VerticalOptions="Center"/>
                 </StackLayout>
 
                 <StackLayout x:Name="sndEntryField"
                                      Margin="0,60,0,0"
                                      Orientation="Vertical">
 
-                    <pv:PancakeView BackgroundColor="Transparent"
-                                            Margin="0,0,0,10"
-                                            x:Name="OtpFrame"
-                                            CornerRadius="5"
-                                            HorizontalOptions="Fill"
-                                            HeightRequest="45">
-                        <pv:PancakeView.Border>
-                            <pv:Border Thickness="1" Color="{StaticResource FrameBorderColor}" />
-                        </pv:PancakeView.Border>
                         <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="Center">
 
-                            <pv:PancakeView BackgroundColor="Transparent"
-                                            x:Name="frstOtp"
-                                            CornerRadius="20"
-                                            VerticalOptions="Center"
-                                            HorizontalOptions="Center"
-                                            HeightRequest="20">
+                            <pv:PancakeView 
+                                BackgroundColor="Transparent"
+                                HeightRequest="45"                                
+                                WidthRequest="45"
+                                CornerRadius="10">
                                 <pv:PancakeView.Border>
                                     <pv:Border Thickness="1" Color="{StaticResource FrameBorderColor}" />
                                 </pv:PancakeView.Border>
-
-                                <Controls:CustomEntry
-                                    PlaceholderColor="{StaticResource FrameBorderColor}" 
-                                    TextColor="{StaticResource FrameBorderColor}"  
+                            <Controls:OTPCustomEntry
+                                    x:Name="firstStep"
+                                    TextColor="{StaticResource TextColor}"  
                                     HorizontalOptions="Center"
-                                    FontSize="12"
-                                    Margin="10,0,0,0"                                   
-                                    VerticalOptions="Center"
-                                    VerticalTextAlignment="Center"
+                                    FontSize="{StaticResource FontSize20}"
+                                    VerticalOptions="End"
+                                MaxLength="1"
+                                    TextChanged="firstStep_TextChanged"
                                     IsPassword="True"
                                     Keyboard="Numeric"
-                                    FontFamily="{StaticResource FontRegular}"/>
+                                    FontFamily="{StaticResource FontBold}"/>
                             </pv:PancakeView>
 
-                            <pv:PancakeView BackgroundColor="Transparent"
-                                            x:Name="scndOtp"
-                                            CornerRadius="30"
-                                            VerticalOptions="Center"
-                                            HorizontalOptions="Center"
-                                            HeightRequest="20">
+                            <pv:PancakeView 
+                                BackgroundColor="Transparent"
+                                HeightRequest="45"                               
+                                WidthRequest="45"
+                                CornerRadius="10">
                                 <pv:PancakeView.Border>
                                     <pv:Border Thickness="1" Color="{StaticResource FrameBorderColor}" />
                                 </pv:PancakeView.Border>
-
-                                <Controls:CustomEntry
-                                    PlaceholderColor="{StaticResource FrameBorderColor}" 
-                                    TextColor="{StaticResource FrameBorderColor}"  
+                            <Controls:OTPCustomEntry
+                                    x:Name="secondStep"
+                                    TextColor="{StaticResource TextColor}"  
                                     HorizontalOptions="Center"
-                                    FontSize="12"                                    
-                                    VerticalOptions="Center"
-                                    VerticalTextAlignment="Center"
-                                    Margin="10,0,0,0"
+                                    FontSize="{StaticResource FontSize20}"
+                                    VerticalOptions="End"
+                                MaxLength="1"
+                                TextChanged="secondStep_TextChanged"
                                     IsPassword="True"
                                     Keyboard="Numeric"
-                                    FontFamily="{StaticResource FontRegular}"/>
+                                    FontFamily="{StaticResource FontBold}"/>
                             </pv:PancakeView>
 
-                            <pv:PancakeView BackgroundColor="Transparent"
-                                            x:Name="thrdOtp"
-                                            CornerRadius="30"
-                                            VerticalOptions="Center"
-                                            HorizontalOptions="Center"
-                                            HeightRequest="20">
+                            <pv:PancakeView 
+                                BackgroundColor="Transparent"
+                                HeightRequest="45"                                
+                                WidthRequest="45"
+                                CornerRadius="10"
+                                Margin="0,0,3,0">
                                 <pv:PancakeView.Border>
                                     <pv:Border Thickness="1" Color="{StaticResource FrameBorderColor}" />
                                 </pv:PancakeView.Border>
-
-                                <Controls:CustomEntry
-                                    PlaceholderColor="{StaticResource FrameBorderColor}" 
-                                    TextColor="{StaticResource FrameBorderColor}"  
+                            <Controls:OTPCustomEntry
+                                    x:Name="thirdStep"
+                                    TextColor="{StaticResource TextColor}"  
                                     HorizontalOptions="Center"
-                                    FontSize="12"
-                                    VerticalOptions="Center"
-                                    VerticalTextAlignment="Center"
-                                    Margin="10,0,0,0"
+                                    FontSize="{StaticResource FontSize20}"
+                                    VerticalOptions="End"
+                                TextChanged="thirdStep_TextChanged"
                                     IsPassword="True"
                                     Keyboard="Numeric"
-                                    FontFamily="{StaticResource FontRegular}"/>
+                                MaxLength="1"
+                                    FontFamily="{StaticResource FontBold}"/>
                             </pv:PancakeView>
 
-                            <pv:PancakeView BackgroundColor="Transparent"
-                                            x:Name="frthOtp"
-                                            CornerRadius="30"
-                                            VerticalOptions="Center"
-                                            HorizontalOptions="Center"
-                                            HeightRequest="20">
+
+                        <BoxView BackgroundColor="{StaticResource FrameBorderColor}"
+                                     HeightRequest="1"
+                                     WidthRequest="8"
+                                     Color="{StaticResource FrameBorderColor}"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center"/>
+
+                        <pv:PancakeView 
+                                BackgroundColor="Transparent"
+                                HeightRequest="45"                               
+                                WidthRequest="45"
+                                CornerRadius="10"
+                                Margin="3,0,0,0">
                                 <pv:PancakeView.Border>
                                     <pv:Border Thickness="1" Color="{StaticResource FrameBorderColor}" />
                                 </pv:PancakeView.Border>
-
-                                <Controls:CustomEntry
-                                    PlaceholderColor="{StaticResource FrameBorderColor}" 
-                                    TextColor="{StaticResource FrameBorderColor}"  
+                            <Controls:OTPCustomEntry
+                                    x:Name="fourthStep"
+                                    TextColor="{StaticResource TextColor}"  
                                     HorizontalOptions="Center"
-                                    VerticalOptions="Center"
-                                    VerticalTextAlignment="Center"
-                                    FontSize="12"
-                                    Margin="10,0,0,0"
+                                    FontSize="{StaticResource FontSize20}"
+                                    VerticalOptions="End"
+                                    TextChanged="fourthStep_TextChanged"
                                     IsPassword="True"
+                                MaxLength="1"
                                     Keyboard="Numeric"
-                                    FontFamily="{StaticResource FontRegular}"/>
+                                    Margin="5,0,0,0"
+                                    FontFamily="{StaticResource FontBold}"/>
                             </pv:PancakeView>
+
+                            <pv:PancakeView 
+                                BackgroundColor="Transparent"
+                                HeightRequest="45"
+                                WidthRequest="45"
+                                CornerRadius="10">
+                                <pv:PancakeView.Border>
+                                    <pv:Border Thickness="1" Color="{StaticResource FrameBorderColor}" />
+                                </pv:PancakeView.Border>
+                            <Controls:OTPCustomEntry
+                                    x:Name="fifthStep"
+                                    TextColor="{StaticResource TextColor}"  
+                                    HorizontalOptions="Center"
+                                    FontSize="{StaticResource FontSize20}"
+                                    VerticalOptions="End"
+                                TextChanged="fifthStep_TextChanged"
+                                    IsPassword="True"
+                                MaxLength="1"
+                                    Keyboard="Numeric"
+                                    FontFamily="{StaticResource FontBold}"/>
+                            </pv:PancakeView>
+
+                            <pv:PancakeView 
+                                BackgroundColor="Transparent"
+                                HeightRequest="45"
+                                WidthRequest="45"
+                                CornerRadius="10">
+                                <pv:PancakeView.Border>
+                                    <pv:Border Thickness="1" Color="{StaticResource FrameBorderColor}" />
+                                </pv:PancakeView.Border>
+                            <Controls:OTPCustomEntry
+                                x:Name="sixthStep"
+                                TextColor="{StaticResource TextColor}"  
+                                HorizontalOptions="Center"
+                                PlaceholderColor="{StaticResource TextColor}"
+                                FontSize="{StaticResource FontSize20}"
+                                VerticalOptions="End"
+                                MaxLength="1"
+                                TextChanged="sixthStep_TextChanged"
+                                IsPassword="True"
+                                Keyboard="Numeric"
+                                FontFamily="{StaticResource FontBold}"/>
+                            </pv:PancakeView>
+
                         </StackLayout>
-                    </pv:PancakeView>
 
-                   
-                    <Button
+                        <StackLayout Orientation="Horizontal"
+                             IsVisible="False"
+                             Margin="15,0,0,0"
+                             Spacing="5" x:Name="secondViewErrorMsg">
+                            <ff1:SvgCachedImage
+                        Source="alert.png"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Aspect="AspectFit"
+                        HeightRequest="20"/>
+
+                            <Label
+                        Text="Invalid Credentials"
+                        TextColor="Red"
+                        x:Name="secondErrorLabel"
+                        FontFamily="{StaticResource FontRegular}"
+                        FontSize="{StaticResource FontSize12}"
+                        HorizontalOptions="StartAndExpand"
+                        VerticalOptions="Center"/>
+                        </StackLayout>
+
+                        <pv:PancakeView BackgroundColor="{StaticResource PurpleColor}"
+                                HeightRequest="50"
+                                HorizontalOptions="Fill"
+                                CornerRadius="5"
+                                Margin="0,30,0,0">
+                            <Grid HorizontalOptions="Center">
+                                <Label Text="Continue"
+                           FontSize="{StaticResource FontSize20}"
+                           FontFamily="{StaticResource FontRegular}"
+                           TextColor="White"
+                               VerticalOptions="Center"
+                               IsVisible="True"
+                           x:Name="ScndContBtnLbl"/>
+
+                                <ff:CachedImage 
+                                Source="loading.gif"
+                                x:Name="SecondLoad"
+                                IsVisible="False"
+                                HeightRequest="30"
+                                WidthRequest="30"
+                                HorizontalOptions="Center"/>
+                            </Grid>
+                            <pv:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="VerifyOtpClicked"
+                                              NumberOfTapsRequired="1"/>
+                            </pv:PancakeView.GestureRecognizers>
+                        </pv:PancakeView>
+                    
+                        <!--<Button
                         Margin="0,30,0,0"
                         Text="Continue"
                         TextColor="White"
@@ -348,54 +475,54 @@
                         Clicked="SecondCont_Clicked"
                         HorizontalOptions="Fill"
                         CornerRadius="5"
-                        TextTransform="None"/>
+                        TextTransform="None"/>-->
 
-                    <StackLayout Orientation="Horizontal"
-                                     Margin="20,20,0,0">
+                    <StackLayout Margin="20,20,0,0" Orientation="Vertical">
 
-                        <Label
-                        Text="Didn't get"
-                        TextColor="Black"
-                        FontFamily="{StaticResource FontRegular}"
-                        FontSize="12"
-                        VerticalOptions="Center"/>
+                            <Label LineBreakMode="WordWrap" x:Name="resend" VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Didn't get " TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontRegular}"
+                                      FontSize="{StaticResource FontSize20}"/>
+                                        <Span Text="OTP? " TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontBold}" 
+                                      FontSize="{StaticResource FontSize20}"/>
+                                        <Span Text="Click to resend " TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontRegular}" 
+                                      FontSize="{StaticResource FontSize20}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ResendOtpClicked"
+                                                          NumberOfTapsRequired="1"/>
+                                </Label.GestureRecognizers>
+                            </Label>
 
-                        <Label
-                        Text="OTP?"
-                        TextColor="Black"
-                        FontFamily="{StaticResource FontBold}"
-                        FontSize="12"
-                        VerticalOptions="Center"/>
-
-                        <Label
-                        Text="Click to resend   "
-                        LineBreakMode="WordWrap"
-                        TextColor="Black"
-                        FontFamily="{StaticResource FontRegular}"
-                        FontSize="12"
-                    VerticalOptions="Center"/>
-                    </StackLayout>
+                            <Label Text="Please wait..."
+                               IsVisible="False"
+                               x:Name="resendOtp"
+                               FontSize="{StaticResource FontSize12}"
+                               TextColor="{StaticResource TextColor}"
+                               FontFamily="{StaticResource FontRegular}"/>
+                        </StackLayout>
 
                 </StackLayout>
             </StackLayout>
 
             <StackLayout x:Name="ThirdView"
-                          IsVisible="False">
+                          IsVisible="True">
 
                 <StackLayout Orientation="Horizontal"
                                      Margin="20,0,0,0">
-                    <Label
-                    Text="You are"
-                    TextColor="Black"
-                    FontFamily="{StaticResource FontRegular}"
-                    FontSize="20"
-                    VerticalOptions="Center"/>
-                    <Label
-                    Text="Secured!"
-                    TextColor="Black"
-                    FontFamily="{StaticResource FontBold}"
-                    FontSize="20"
-                    VerticalOptions="Center"/>
+
+                    <Label LineBreakMode="WordWrap" VerticalOptions="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="You are " TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontRegular}"
+                                      FontSize="{StaticResource FontSize20}"/>
+                                <Span Text="Secured! " TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontBold}" 
+                                      FontSize="{StaticResource FontSize20}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                 </StackLayout>
 
                 <StackLayout x:Name="ThirdEntryField"
@@ -415,6 +542,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <ff1:SvgCachedImage
                                         Source="security.svg"
@@ -433,6 +561,16 @@
                                                            FontSize="12"
                                                            Margin="10,0,0,0"
                                                            FontFamily="{StaticResource FontRegular}"/>
+
+                            <ff1:SvgCachedImage
+                                        Source="arrow.svg"
+                                        Grid.Column="2"
+                                Margin="0,0,15,0"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        Aspect="AspectFit"
+                                        WidthRequest="10"
+                                        HeightRequest="15"/>
                         </Grid>
                         <pv:PancakeView.GestureRecognizers>
                             <TapGestureRecognizer Tapped="CallPickerScreen_Clicked"
@@ -474,7 +612,13 @@
                                                            FontFamily="{StaticResource FontRegular}"/>
                         </Grid>
                     </pv:PancakeView>
-                    
+
+
+                    <Label Text="Password must contain at least one (a-z, A-Z, 1-9, and special character)"
+                           TextColor="Red" FontSize="{StaticResource FontSize10}"
+                           FontFamily="{StaticResource FontRegular}"
+                           IsVisible="False"
+                           x:Name="pswdMsg"/>
                     <pv:PancakeView BackgroundColor="Transparent"
                                             Margin="0,0,0,10"
                                             x:Name="pswdFrame"
@@ -502,8 +646,9 @@
                                                            PlaceholderColor="{StaticResource FrameBorderColor}" 
                                                            TextColor="{StaticResource FrameBorderColor}" 
                                                            Placeholder="Password" 
-                                                           Text="" 
+                                                           Text="{Binding Password, Mode=TwoWay}" 
                                                            FontSize="12"
+                                                   TextChanged="usrPass_TextChanged"
                                                            Margin="10,0,0,0"
                                                            Keyboard="Default"
                                                            IsPassword="True"
@@ -511,10 +656,20 @@
                                 <Controls:CustomEntry.Effects>
                                     <Controls:ShowHidePassEffect />
                                 </Controls:CustomEntry.Effects>
+                                <Controls:CustomEntry.Behaviors>
+                                    <local:PasswordValidationBehavior />
+                                </Controls:CustomEntry.Behaviors>
                             </Controls:CustomEntry>
                         </Grid>
                     </pv:PancakeView>
 
+                    
+                    <Label Text="Enter the same as above"
+                           TextColor="{StaticResource FrameBorderColor}" 
+                           FontSize="{StaticResource FontSize10}"
+                           FontFamily="{StaticResource FontRegular}"
+                           IsVisible="False"
+                           x:Name="verPswdMsg"/>
                     <pv:PancakeView BackgroundColor="Transparent"
                                             Margin="0,0,0,10"
                                             x:Name="VerPswdFrame"
@@ -543,6 +698,7 @@
                                                            TextColor="{StaticResource FrameBorderColor}" 
                                                            Placeholder="Verify Password" 
                                                            Text="" 
+                                                   TextChanged="usrVerPass_TextChanged"
                                                            FontSize="12"
                                                            Margin="10,0,0,0"
                                                            Keyboard="Default"
@@ -551,11 +707,97 @@
                                 <Controls:CustomEntry.Effects>
                                     <Controls:ShowHidePassEffect />
                                 </Controls:CustomEntry.Effects>
+                                <Controls:CustomEntry.Behaviors>
+                                    <local:PasswordValidationBehavior />
+                                    <local:CompareValidationBehavior BindingContext="{x:Reference usrPass}" Text="{Binding Text, Mode=TwoWay}"/>
+                                </Controls:CustomEntry.Behaviors>
                             </Controls:CustomEntry>
                         </Grid>
                     </pv:PancakeView>
 
-                    <Button
+                        <StackLayout Orientation="Horizontal"
+                             IsVisible="False"
+                             Margin="15,0,0,0"
+                             Spacing="5" x:Name="thirdViewErrorMsg">
+                            <ff1:SvgCachedImage
+                        Source="alert.png"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Aspect="AspectFit"
+                        HeightRequest="20"/>
+
+                            <Label
+                        Text="Invalid Credentials"
+                        TextColor="Red"
+                        x:Name="thirdErrorLabel"
+                        FontFamily="{StaticResource FontRegular}"
+                        FontSize="{StaticResource FontSize12}"
+                        HorizontalOptions="StartAndExpand"
+                        VerticalOptions="Center"/>
+                        </StackLayout>
+                    
+                        <!--#region button for third view-->
+                        <pv:PancakeView BackgroundColor="{StaticResource PurpleColor}"
+                                HeightRequest="50"
+                                HorizontalOptions="Fill"
+                                CornerRadius="5"
+                                Margin="0,30,0,0">
+                            <Grid HorizontalOptions="Center">
+                                <Label Text="Submit"
+                           FontSize="{StaticResource FontSize20}"
+                           FontFamily="{StaticResource FontRegular}"
+                           TextColor="White"
+                               VerticalOptions="Center"
+                               IsVisible="True"
+                           x:Name="ThirdContBtnLbl"/>
+
+                                <ff:CachedImage 
+                                Source="loading.gif"
+                                x:Name="ThirdLoad"
+                                IsVisible="False"
+                                HeightRequest="30"
+                                WidthRequest="30"
+                                HorizontalOptions="Center"/>
+                            </Grid>
+                            <pv:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="VerifyUserSecurityClicked"
+                                              NumberOfTapsRequired="1"/>
+                            </pv:PancakeView.GestureRecognizers>
+                        </pv:PancakeView>
+                        <!--#region -->
+                    
+                    <!--#region  Go Back-->
+                        <StackLayout Orientation="Horizontal" 
+                                     x:Name="backArr"
+                                     Margin="0,30,0,0"
+                                     Spacing="15"
+                                     IsVisible="True">
+                            <ff1:SvgCachedImage
+                                Source="back.svg"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                Aspect="AspectFit"
+                                WidthRequest="20"
+                                HeightRequest="16">
+                                <ff1:SvgCachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="BackBtn_Clicked"
+                                          NumberOfTapsRequired="1"/>
+                                </ff1:SvgCachedImage.GestureRecognizers>
+                            </ff1:SvgCachedImage>
+
+                            <Label Text="Go Back"
+                                   FontSize="{StaticResource FontSize16}"
+                                   TextColor="{StaticResource TextColor}"
+                                   FontFamily="{StaticResource FontBold}"
+                                   HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="Center"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="BackBtn_Clicked"
+                                                      NumberOfTapsRequired="1"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <!--#endregion-->
+                    <!--<Button
                         Margin="0,30,0,0"
                         Text="Complete"
                         TextColor="White"
@@ -566,10 +808,11 @@
                         Clicked="CompleteBtn_Clicked"
                         HorizontalOptions="Fill"
                         CornerRadius="5"
-                        TextTransform="None"/>
+                        TextTransform="None"/>-->
 
                 </StackLayout>
             </StackLayout>
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentView.Content>
 </ContentView>

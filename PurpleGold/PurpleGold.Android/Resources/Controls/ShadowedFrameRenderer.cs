@@ -1,5 +1,5 @@
 ﻿using Android.Graphics;
-using Android.Support.V4.View;
+using AndroidX.Core.View;
 using PurpleGold.Controls;
 using PurpleGold.Droid.Resources.Controls;
 using Xamarin.Forms;
@@ -9,6 +9,7 @@ using FrameRenderer = Xamarin.Forms.Platform.Android.AppCompat.FrameRenderer;
 
 namespace PurpleGold.Droid.Resources.Controls
 {
+    [System.Obsolete]
     public class ShadowedFrameRenderer : FrameRenderer
     {
         public override void Draw(Canvas canvas)

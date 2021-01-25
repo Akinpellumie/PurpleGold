@@ -2,9 +2,10 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-             x:Class="PurpleGold.Behaviors.BackButtonView">
+             x:Class="PurpleGold.Behaviors.BackButtonView"
+             x:Name="RootToolBar">
   <ContentView.Content>
-      <StackLayout>
+        <StackLayout IsVisible="{Binding Source={x:Reference RootToolBar}, Path=BackBtn}">
             <ff1:SvgCachedImage
                 Source="back.svg"
                 HorizontalOptions="Start"

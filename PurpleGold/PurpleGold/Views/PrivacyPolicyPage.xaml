@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:nav="clr-namespace:PurpleGold.Behaviors"
+             x:Class="PurpleGold.Views.PrivacyPolicyPage"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <StackLayout Margin="30,40,30,0"
+                     IsVisible="True"
+                     x:Name="changePassStack">
+            <nav:BackButton />
+            <Label Text="Our Privacy Policy"
+                   Margin="0,20,0,0" 
+                   FontSize="{StaticResource FontSize20}"
+                   FontFamily="{StaticResource FontBold}"
+                   TextColor="{StaticResource PurpleColor}"
+                HorizontalOptions="StartAndExpand" />
+
+            <ScrollView Orientation="Vertical"
+                        VerticalScrollBarVisibility="Never">
+                
+            <Label Text="In case you need any help beyond what we have in our FAQ section, please do not hesisitate to call/message us on WhatsApp or send an E-mail. Our customer friendly agents will be available to attend to you. In case you need any help beyond what we have in our FAQ section, please do not hesisitate to call/message us on WhatsApp or send an E-mail. Our customer friendly agents will be available to attend to you.In case you need any help beyond what we have in our FAQ section, please do not hesisitate to call/message us on WhatsApp or send an E-mail. Our customer friendly agents will be available to attend to you.In case you need any help beyond what we have in our FAQ section, please do not hesisitate to call/message us on WhatsApp or send an E-mail. Our customer friendly agents will be available to attend to you.In case you need any help beyond what we have in our FAQ section, please do not hesisitate to call/message us on WhatsApp or send an E-mail. Our customer friendly agents will be available to attend to you.In case you need any help beyond what we have in our FAQ section, please do not hesisitate to call/message us on WhatsApp or send an E-mail. Our customer friendly agents will be available to attend to you.In case you need any help beyond what we have in our FAQ section, please do not hesisitate to call/message us on WhatsApp or send an E-mail. Our customer friendly agents will be available to attend to you.In case you need any help beyond what we have in our FAQ section, please do not hesisitate to call/message us on WhatsApp or send an E-mail. Our customer friendly agents will be available to attend to you."
+                   Margin="0,30,0,0" 
+                   LineBreakMode="WordWrap"
+                   FontSize="{StaticResource FontSize12}"
+                   FontFamily="{StaticResource FontRegular}"
+                   TextColor="{StaticResource TextColor}"
+                HorizontalOptions="StartAndExpand" />
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

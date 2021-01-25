@@ -1,5 +1,6 @@
 ﻿using PurpleGold.Helpers;
 using PurpleGold.Models;
+using PurpleGold.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,14 @@ namespace PurpleGold.Views
         public AssetPage()
         {
             InitializeComponent();
+            MessagingCenter.Subscribe(this, "showBtn", (object obj, string ShowBtn) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    backBtn.BackBtn = true;
+                });
+
+            });
             string mee = Constant.FormatAmount;
             string nee = mee.Split(new char[] { ',','.'}).First();
             Font.SystemFontOfSize(20);
@@ -55,7 +64,7 @@ namespace PurpleGold.Views
             //await active.TranslateTo(+90, 0, 0, Easing.BounceIn);
             assetStack.IsVisible = true;
             historyStack.IsVisible = false;
-            await assetStack.ScrollToAsync(histView, ScrollToPosition.End, true);
+            await historyStack.ScrollToAsync(histView, ScrollToPosition.End, true);
             await assetStack.ScaleYTo(1, 600, Easing.Linear);
         }
 

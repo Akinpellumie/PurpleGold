@@ -13,12 +13,14 @@ namespace PurpleGold.Views.Templates
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HistoryViewTemplate : ContentView
     {
-        AssetViewModel assetViewModel;
+        //AssetViewModel assetViewModel;
+        InvestViewModel investViewModel;
         public HistoryViewTemplate()
         {
-            assetViewModel = new AssetViewModel(Navigation);
+            //assetViewModel = new AssetViewModel(Navigation);
+            investViewModel = new InvestViewModel(Navigation);
             InitializeComponent();
-            BindingContext = assetViewModel;
+            this.BindingContext = investViewModel;
         }
     }
 }

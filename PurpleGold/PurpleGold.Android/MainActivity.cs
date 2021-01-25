@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Xamarin.Forms;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -21,7 +21,7 @@ namespace PurpleGold.Droid
             base.OnCreate(savedInstanceState);
 
             Rg.Plugins.Popup.Popup.Init(this);
-            Xamarin.Forms.Forms.SetFlags(new string[] { "SwipeView_Experimental", "CollectionView_Experimental" });
+            Forms.SetFlags(new string[] { "SwipeView_Experimental", "CollectionView_Experimental", "Shapes_Experimental" });
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             CachedImageRenderer.Init(true);

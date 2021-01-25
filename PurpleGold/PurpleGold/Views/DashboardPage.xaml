@@ -1,26 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
-             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin" xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" xmlns:Template="clr-namespace:PurpleGold.Views.Templates"
+             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin" xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" xmlns:Template="clr-namespace:PurpleGold.Views.Templates" xmlns:behaviour="clr-namespace:PurpleGold.Behaviors"
              x:Class="PurpleGold.Views.DashboardPage"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="True"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{StaticResource PageBgColor}">
     <ContentPage.Content>
         <Grid>
 
-            <Grid Padding="40,50,40,10"
+            <Grid Padding="40,50,40,0"
                   HorizontalOptions="FillAndExpand"
                   VerticalOptions="FillAndExpand">
-                <Label
+                <!--<Label
                     x:Name="title"
                     Text="PurpleGold"
                     TextColor="{StaticResource PurpleColor}"
                     FontSize="20"
                     Margin="0,0,0,30"
                     FontFamily="{StaticResource FontBold}"
-                    VerticalOptions="Start"/>
+                    VerticalOptions="Start"/>-->
 
-                <ScrollView Margin="0,30,0,40" VerticalScrollBarVisibility="Never">
+                <ScrollView VerticalScrollBarVisibility="Never">
                     <StackLayout Spacing="0" Margin="0,10,0,15">
                         <Grid RowSpacing="20">
                             <Grid.RowDefinitions>
@@ -44,7 +46,7 @@
                                         VerticalOptions="FillAndExpand" 
                                         OffsetAngle="180"
                                         Grid.Column="0"
-                                        Padding="15"
+                                        Padding="10"
                                         CornerRadius="10"
                                         HeightRequest="200"
                                         BackgroundGradientStartPoint="0.51, 0.15" 
@@ -64,38 +66,43 @@
                                                 <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
 
-                                            <Grid HorizontalOptions="FillAndExpand"
-                                                  Grid.Row="0">
+                                            <StackLayout Grid.Row="0">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
 
-                                                <Grid HorizontalOptions="Start">
                                                     <ff1:SvgCachedImage
-                                                        Source="chip.svg"
-                                                        HorizontalOptions="Center"
+                                                            Grid.Column="0"
+                                                        Source="chip.png"
+                                                        HorizontalOptions="Start"
                                                         VerticalOptions="Center"
-                                                        WidthRequest="26"
-                                                        HeightRequest="22"/>
-                                                </Grid>
+                                                        WidthRequest="20"
+                                                        HeightRequest="15"/>
 
-                                                <Grid HorizontalOptions="End">
-                                                    <circle:CircleImage x:Name="usrIcon" Margin="0,0,0,0"
-                                                        Source="picture" Aspect="AspectFit"  BorderColor="White"  
+                                                    <Grid HorizontalOptions="End" Grid.Column="1">
+                                                        <circle:CircleImage x:Name="usrIcon" Margin="0,0,0,0"
+                                                                            Aspect="AspectFill"  BorderColor="White"  
                                                         HorizontalOptions="Center" BorderThickness="3" HeightRequest="30" 
                                                         WidthRequest="30" VerticalOptions="Center"/>
 
-                                                <pv:PancakeView
+                                                        <pv:PancakeView
                                                     BackgroundColor="Red"
                                                     HeightRequest="8" WidthRequest="8"
                                                     CornerRadius="5" HorizontalOptions="End"
                                                     VerticalOptions="Center" Margin="2,-17,0,0"/>
+                                                    </Grid>
                                                 </Grid>
-                                            </Grid>
+
+                                            </StackLayout>
 
                                             <StackLayout Grid.Row="1"
                                                          Margin="0,10,0,0"
                                                          Orientation="Vertical">
                                                 <Label
                                                     x:Name="myName"
-                                                    Text="Akinyemi Ogungbaro"
+                                                    Text=""
                                                     TextColor="White"
                                                     FontSize="8"
                                                     FontFamily="{StaticResource FontRegular}"
@@ -103,7 +110,7 @@
                                                 
                                                 <Label
                                                     x:Name="myAcct"
-                                                    Text="9246813075"
+                                                    Text="XXXXXXXXXX"
                                                     TextColor="White"
                                                     FontSize="8"
                                                     FontFamily="{StaticResource FontBold}"
@@ -113,21 +120,38 @@
                                             <StackLayout Grid.Row="2"
                                                          Margin="0,25,0,0"
                                                          Orientation="Vertical">
-                                                <Label
-                                                    x:Name="acct"
-                                                    Text="Balance"
-                                                    TextColor="White"
-                                                    FontSize="8"
-                                                    FontFamily="{StaticResource FontRegular}"
-                                                    VerticalOptions="Center"/>
-                                                
-                                                <Label
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid Grid.Row="0"
+                                                          HorizontalOptions="FillAndExpand">
+                                                        <Label
+                                                            x:Name="showClose"
+                                                            Text="Show Balance"
+                                                            Margin="0,0,0,5"
+                                                            TextColor="White"
+                                                            HorizontalOptions="StartAndExpand"
+                                                            FontSize="{StaticResource FontSize8}"
+                                                            FontFamily="{StaticResource FontBold}"
+                                                            VerticalOptions="Center">
+                                                            <Label.GestureRecognizers>
+                                                                <TapGestureRecognizer Tapped="ShowCloseTapped"
+                                                                                      NumberOfTapsRequired="1"/>
+                                                            </Label.GestureRecognizers>
+                                                        </Label>
+                                                    </Grid>
+
+                                                    <Label
                                                     x:Name="acctBal"
-                                                    Text="N 205,937.06"
+                                                    Text="N XXX,XXX.XX"
+                                                        Grid.Row="1"
                                                     TextColor="White"
-                                                    FontSize="16"
+                                                    FontSize="{StaticResource FontSize14}"
                                                     FontFamily="{StaticResource FontBold}"
                                                     VerticalOptions="Center"/>
+                                                </Grid>
                                             </StackLayout>
 
                                             <Grid Grid.Row="3"
@@ -140,7 +164,7 @@
                                                     HeightRequest="30"
                                                     Clicked="WithdrawBtn_Clicked"
                                                     FontFamily="{StaticResource FontRegular}"
-                                                    FontSize="10"
+                                                    FontSize="{StaticResource FontSize8}"
                                                     CornerRadius="5"
                                                     TextTransform="None"
                                                     WidthRequest="70"/>
@@ -184,7 +208,7 @@
                                                     BackgroundColor="{StaticResource AltColor}"
                                                     HeightRequest="30"
                                                     FontFamily="{StaticResource FontRegular}"
-                                                    FontSize="10"
+                                                    FontSize="{StaticResource FontSize8}"
                                                     CornerRadius="5"
                                                     TextTransform="None"
                                                     WidthRequest="70"/>
@@ -216,7 +240,7 @@
                                                     BackgroundColor="{StaticResource AltColor}"
                                                     HeightRequest="30"
                                                     FontFamily="{StaticResource FontRegular}"
-                                                    FontSize="10"
+                                                    FontSize="{StaticResource FontSize8}"
                                                     CornerRadius="5"
                                                     TextTransform="None"
                                                     WidthRequest="70"/>
@@ -250,7 +274,7 @@
                                             Padding="15">
                                             <Grid>
                                                 <ff1:SvgCachedImage  
-                                                    Source="invest.svg"
+                                                    Source="inves.svg"
                                                     HorizontalOptions="Center"
                                                     VerticalOptions="Center"
                                                     Aspect="AspectFit"
@@ -262,10 +286,10 @@
                                                     TextColor="White"
                                                     Clicked="InvestBtn_Clicked"
                                                     VerticalOptions="End"
-                                                    BackgroundColor="{StaticResource AltColor}"
+                                                    BackgroundColor="#A83CA8"
                                                     HeightRequest="30"
                                                     FontFamily="{StaticResource FontRegular}"
-                                                    FontSize="10"
+                                                    FontSize="{StaticResource FontSize8}"
                                                     CornerRadius="5"
                                                     TextTransform="None"
                                                     WidthRequest="70"/>
@@ -285,12 +309,24 @@
                                             Padding="15">
                                             <Grid>
                                                 <ff1:SvgCachedImage 
-                                                    Source="transfer.svg"
+                                                    Source="send.svg"
                                                     HorizontalOptions="Center"
                                                     VerticalOptions="Center"
                                                     Aspect="AspectFit"
                                                     Margin="0,10,0,50"
+                                                    x:Name="transIcon"
+                                                    IsVisible="True"
                                                     HeightRequest="150"/>
+
+                                                <Label Text="Coming Soon!!!"
+                                                       LineBreakMode="WordWrap"
+                                                       FontSize="{StaticResource FontSize20}"
+                                                       FontFamily="{StaticResource FontBold}"
+                                                       IsVisible="False"
+                                                       TextColor="{StaticResource WhiteColor}"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="Center"
+                                                       x:Name="TransLbl"/>
 
                                                 <Button
                                                     Text="Transfer"
@@ -298,8 +334,9 @@
                                                     VerticalOptions="End"
                                                     BackgroundColor="#FF825F"
                                                     HeightRequest="30"
+                                                    Clicked="TransferBtn_Clicked"
                                                     FontFamily="{StaticResource FontRegular}"
-                                                    FontSize="10"
+                                                    FontSize="{StaticResource FontSize8}"
                                                     CornerRadius="5"
                                                     TextTransform="None"
                                                     WidthRequest="70"/>
@@ -324,7 +361,7 @@
                                               VerticalOptions="FillAndExpand">
 
                                         <ff1:SvgCachedImage 
-                                                    Source="ladyJepg.jpg"
+                                                    Source="ladyJpeg.jpg"
                                                     HorizontalOptions="FillAndExpand"
                                                     VerticalOptions="FillAndExpand"
                                                     Aspect="AspectFill"
@@ -359,42 +396,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <!--#region firstColumn-->
-
                                     <StackLayout Grid.Column="0">
-                                        <pv:PancakeView
-                                            HeightRequest="120"
-                                            BackgroundColor="{StaticResource SecondPurpleColor}"
-                                            CornerRadius="10"
-                                            HorizontalOptions="FillAndExpand"
-                                            VerticalOptions="FillAndExpand"
-                                            Padding="15">
-                                            <Grid>
-                                                <ff1:SvgCachedImage 
-                                                    Source="transfer.svg"
-                                                    HorizontalOptions="Center"
-                                                    VerticalOptions="Center"
-                                                    Aspect="AspectFit"
-                                                    Margin="0,10,0,50"
-                                                    HeightRequest="150"/>
-
-                                                <Button
-                                                    Text="Discovery"
-                                                    TextColor="White"
-                                                    VerticalOptions="End"
-                                                    BackgroundColor="{StaticResource AltColor}"
-                                                    HeightRequest="30"
-                                                    FontFamily="{StaticResource FontRegular}"
-                                                    FontSize="10"
-                                                    CornerRadius="5"
-                                                    TextTransform="None"
-                                                    WidthRequest="70"/>
-                                            </Grid>
-                                        </pv:PancakeView>
-                                    </StackLayout>
-                                    <!--#endregion-->
-
-                                    <!--#region secondColumn-->
-                                    <StackLayout Grid.Column="1">
                                         <pv:PancakeView
                                             HeightRequest="120"
                                             BackgroundColor="#2CA718"
@@ -404,17 +406,30 @@
                                             Padding="15">
                                             <Grid>
                                                 <ff1:SvgCachedImage 
-                                                    Source="swapAlt.svg"
+                                                    Source="transfor.svg"
                                                     HorizontalOptions="Center"
                                                     VerticalOptions="Center"
                                                     Aspect="AspectFit"
                                                     Margin="0,10,0,50"
+                                                    x:Name="swapIcon"
+                                                    IsVisible="True"
                                                     HeightRequest="150"/>
 
+                                                <Label Text="Coming Soon!!!"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="StartAndExpand"                                                      
+                                                       TextColor="{StaticResource WhiteColor}"
+                                                       LineBreakMode="WordWrap"
+                                                       FontSize="{StaticResource FontSize20}"
+                                                       FontFamily="{StaticResource FontBold}"
+                                                       IsVisible="False"
+                                                       x:Name="swapLbl"/>
+                                                
                                                 <Button
                                                     Text="Swap"
                                                     TextColor="White"
                                                     VerticalOptions="End"
+                                                    Clicked="SwapBtn_Clicked"
                                                     BackgroundColor="#69DD56"
                                                     HeightRequest="30"
                                                     FontFamily="{StaticResource FontRegular}"
@@ -427,6 +442,41 @@
                                     </StackLayout>
                                     <!--#endregion-->
 
+                                    <!--#region secondColumn-->
+
+                                    <StackLayout Grid.Column="1">
+                                        <pv:PancakeView
+                                            HeightRequest="120"
+                                            BackgroundColor="#8E4DE5"
+                                            CornerRadius="10"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="FillAndExpand"
+                                            Padding="15">
+                                            <Grid>
+                                                <ff1:SvgCachedImage 
+                                                    Source="faq.svg"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="Center"
+                                                    Aspect="AspectFit"
+                                                    Margin="0,10,0,50"
+                                                    HeightRequest="150"/>
+
+                                                <Button
+                                                    Text="FAQ"
+                                                    TextColor="White"
+                                                    VerticalOptions="End"
+                                                    Clicked="FaqBtn_Clicked"
+                                                    BackgroundColor="#A778E7"
+                                                    HeightRequest="30"
+                                                    FontFamily="{StaticResource FontRegular}"
+                                                    FontSize="10"
+                                                    CornerRadius="5"
+                                                    TextTransform="None"
+                                                    WidthRequest="70"/>
+                                            </Grid>
+                                        </pv:PancakeView>
+                                    </StackLayout>
+                                    <!--#endregion-->
                                 </Grid>
                             </StackLayout>
                             <!--#endregion-->
@@ -436,10 +486,10 @@
             </Grid>
 
     <!--#region Bottom NavBar-->
-                <Grid VerticalOptions="End"
+                <!--<Grid VerticalOptions="End"
                       HorizontalOptions="FillAndExpand">
-                    <Template:BottomNavTemplate />
-                </Grid>
+                    <behaviour:BottomTabView />
+                </Grid>-->
     <!--#endregion-->
         </Grid>
     </ContentPage.Content>

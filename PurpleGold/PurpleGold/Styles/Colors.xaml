@@ -12,6 +12,7 @@
     <Color x:Key="YellowColor">#EFBB17</Color>
     <Color x:Key="TextColor">#000000</Color>
     <Color x:Key="SubTextColor">#939393</Color>
+    <Color x:Key="LineColor">#C4C4C4</Color>
     <Color x:Key="PurpleColor">#9E079E</Color>
     <Color x:Key="LightPurpleColor">#CC97CC</Color>
     <Color x:Key="SecondPurpleColor">#6F34BF</Color>

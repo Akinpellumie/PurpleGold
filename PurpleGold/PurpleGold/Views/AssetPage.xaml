@@ -3,19 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:nav="clr-namespace:PurpleGold.Behaviors" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:Template="clr-namespace:PurpleGold.Views.Templates"
              x:Class="PurpleGold.Views.AssetPage"
              NavigationPage.HasNavigationBar="False"
+             Shell.TabBarIsVisible="True"
+             Shell.NavBarIsVisible="False"
              BackgroundColor="{StaticResource PageBgColor}">
+    
+
     <ContentPage.Content>
-        <StackLayout>
-            <Grid Padding="40,50,40,10"
+        <Grid HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand">
+            <Grid Padding="30,20,30,0"
                   HorizontalOptions="FillAndExpand"
                   VerticalOptions="FillAndExpand">
-                <nav:BackButtonView />
+                <nav:BackButtonView x:Name="backBtn" />
 
-                <StackLayout Spacing="25" 
-                                 Margin="0,50,0,0" 
+                <StackLayout Spacing="15" 
+                                 Margin="0,15,0,0" 
                                  Orientation="Vertical">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                    </Grid>
+                    <Label
+                        x:Name="sub"
+                        Grid.Row="0"
+                        Text="Asset"
+                        TextColor="{StaticResource TextColor}"
+                        FontSize="{StaticResource FontSize20}"
+                        Margin="0,5,0,5"
+                        FontFamily="{StaticResource FontBold}"
+                        VerticalOptions="Start"/>
 
-                    <StackLayout Margin="0,0,0,10">
+                    <StackLayout Margin="0,0,0,10"
+                                 HeightRequest="50"
+                                 Grid.Row="1">
                         <pv:PancakeView BackgroundColor="White"
                                             HorizontalOptions="Center"
                                         WidthRequest="180"
@@ -72,7 +95,8 @@
 
                     </StackLayout>
 
-                    <StackLayout Margin="0,10,0,0">
+                    <StackLayout Margin="0,5,0,0"
+                                 Grid.Row="2">
                         
                     <ScrollView Orientation="Horizontal"  x:Name="assetStack" IsVisible="True">
                         <Template:AssetViewTemplate x:Name="assetView"/>
@@ -84,6 +108,13 @@
                     </StackLayout>
                 </StackLayout>
             </Grid>
-        </StackLayout>
+
+            <!--#region Bottom NavBar-->
+            <!--<Grid VerticalOptions="End"
+                      HorizontalOptions="FillAndExpand">
+                <nav:BottomTabView />
+            </Grid>-->
+            <!--#endregion-->
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
