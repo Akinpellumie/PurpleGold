@@ -9,7 +9,7 @@
                  CloseWhenBackgroundIsClicked="False"
                  xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
                  xmlns:viewmodels="clr-namespace:PurpleGold.ViewModels" xmlns:behavior="clr-namespace:PurpleGold.Behaviors" xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-                 x:Class="PurpleGold.PopUps.Loader">
+                 x:Class="PurpleGold.PopUps.SuccessPopUp">
 
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation DurationIn="100"
@@ -27,25 +27,42 @@
     <pv:PancakeView Padding="10,40,10,10"
                  BackgroundColor="White"
                     CornerRadius="5"
-                 HorizontalOptions="Center"
+                 HorizontalOptions="Fill"
                     Margin="20,0,20,0"
                  VerticalOptions="Center">
         <pv:PancakeView.Shadow>
             <pv:DropShadow Color="#000000" Offset="10,10"/>
         </pv:PancakeView.Shadow>
-        <StackLayout VerticalOptions="Center"
-                     HorizontalOptions="Center">
-            <ActivityIndicator 
-                Grid.RowSpan="2"
-                IsVisible="True"
-                IsRunning="True"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"/>
+        <Grid>
+            <StackLayout VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="Fill">
+                <ff1:SvgCachedImage
+                Source="thumbs.svg"
+                Grid.Column="1"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                HeightRequest="60"/>
 
-            <Label Text="Please Wait..."
+                <Label Text="Success!!!"
+                       x:Name="successLbl"
+                   HorizontalOptions="Center"
                    FontSize="{StaticResource FontSize14}"
                    FontFamily="{StaticResource FontRegular}"
                    TextColor="{StaticResource TextColor}"/>
-        </StackLayout>
+
+
+                <Label Text="Cancel"
+                   HorizontalOptions="End"
+                       Margin="0,20,10,10"
+                   FontSize="{StaticResource FontSize16}"
+                   FontFamily="{StaticResource FontBold}"
+                   TextColor="{StaticResource PurpleColor}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                          NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </Grid>
     </pv:PancakeView>
 </pages:PopupPage>

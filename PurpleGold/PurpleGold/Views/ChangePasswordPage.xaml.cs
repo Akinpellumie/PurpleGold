@@ -52,8 +52,8 @@ namespace PurpleGold.Views
         {
             try
             {
-                BtnLbl.IsVisible = false;
-                Load.IsVisible = true;
+                notClicked.IsVisible = false;
+                clicked.IsVisible = true;
                 usrPass.IsReadOnly = true;
                 newPass.IsReadOnly = true;
                 usrVerPass.IsReadOnly = true;
@@ -70,6 +70,7 @@ namespace PurpleGold.Views
                 client.Timeout = -1;
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("Authorization", Settings.Token);
+                request.AddHeader("appId", Settings.AppId);
                 request.AddParameter("application/json", json, ParameterType.RequestBody);
                 IRestResponse response = await client.ExecuteAsync(request);
                 Console.WriteLine(response.Content);
@@ -82,12 +83,14 @@ namespace PurpleGold.Views
                 {
                     changePassStack.IsVisible = false;
                     SuccessStack.IsVisible = true;
+                    await Task.Delay(500);
+                    SignOutClicked();
 
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
-                    BtnLbl.IsVisible = true;
-                    Load.IsVisible = false;
+                    notClicked.IsVisible = true;
+                    clicked.IsVisible = false;
                     errorMsg.IsVisible = true;
                     errorLabel.Text = msg;
                     usrPass.IsReadOnly = false;
@@ -96,8 +99,8 @@ namespace PurpleGold.Views
                 }
                 else
                 {
-                    BtnLbl.IsVisible = true;
-                    Load.IsVisible = false;
+                    notClicked.IsVisible = true;
+                    clicked.IsVisible = false;
                     errorMsg.IsVisible = true;
                     errorLabel.Text = msg;
                     usrPass.IsReadOnly = false;
@@ -115,7 +118,7 @@ namespace PurpleGold.Views
         {
             return true;
         }
-        public void SignOutClicked(object sender, EventArgs e)
+        public void SignOutClicked()
         {
             try
             {

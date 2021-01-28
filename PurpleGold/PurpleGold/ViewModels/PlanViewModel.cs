@@ -71,7 +71,7 @@ namespace PurpleGold.ViewModels
             set
             {
                 isBusy = value;
-                OnPropertyChanged(nameof(isBusy));
+                OnPropertyChanged(nameof(IsBusy));
             }
         }
 

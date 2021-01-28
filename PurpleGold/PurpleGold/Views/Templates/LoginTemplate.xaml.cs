@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,8 +25,8 @@ namespace PurpleGold.Views.Templates
                     errorMsg.IsVisible = true;
                     usrEmail.IsReadOnly = false;
                     usrPass.IsReadOnly = false;
-                    BtnLbl.IsVisible = true;
-                    load.IsVisible = false;
+                    idleBtn.IsVisible = true;
+                    loadingBtn.IsVisible = false;
                     errorLabel.Text = "Invalid Credentials, please try again!";
                 });
             });
@@ -50,14 +50,24 @@ namespace PurpleGold.Views.Templates
 
             });
             
+            MessagingCenter.Subscribe(this, "FirstTime", (object obj, string firstTimer) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    errorMsg.IsVisible = true;
+                    errorLabel.Text = "No Registered Credentials. Login with Email and Password to register Credentials";
+                });
+
+            });
+            
             MessagingCenter.Subscribe(this, "loginStart", (object obj, string beginLogin) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     usrEmail.IsReadOnly = true;
                     usrPass.IsReadOnly = true;
-                    BtnLbl.IsVisible = false;
-                    load.IsVisible = true;
+                    idleBtn.IsVisible = false;
+                    loadingBtn.IsVisible = true;
                     errorMsg.IsVisible = false;
                 });
 
@@ -73,8 +83,8 @@ namespace PurpleGold.Views.Templates
             }
             else
             {
-                BtnLbl.IsVisible = false;
-                load.IsVisible = true;
+                idleBtn.IsVisible = false;
+                loadingBtn.IsVisible = true;
                 await Task.Delay(300);
                 await this.FadeTo(1, 250, Easing.SinInOut);
                 AppShell fpm = new AppShell();
@@ -92,6 +102,17 @@ namespace PurpleGold.Views.Templates
         {
             base.OnApplyTemplate();
             await this.FadeTo(1, 250, Easing.SinInOut);
+            try
+            {
+                var password = await SecureStorage.GetAsync("password");
+                usrPass.Text = password;
+                var email = await SecureStorage.GetAsync("email");
+                usrEmail.Text = email;
+            }
+            catch (Exception)
+            {
+                // Possible that device doesn't support secure storage on device.
+            }
         }
 
         private void usrPass_TextChanged(object sender, TextChangedEventArgs e)

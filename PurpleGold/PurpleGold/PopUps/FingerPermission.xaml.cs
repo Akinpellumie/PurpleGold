@@ -11,19 +11,11 @@ using Xamarin.Forms.Xaml;
 namespace PurpleGold.PopUps
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FailPopUp
+    public partial class FingerPermission
     {
-        public FailPopUp()
+        public FingerPermission()
         {
             InitializeComponent();
-            MessagingCenter.Subscribe(this, "error", (object obj, string msg) =>
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    failLbl.Text = msg;
-                });
-
-            });
         }
 
         public async void TapGestureRecognizer_Tapped(object sender, EventArgs e)

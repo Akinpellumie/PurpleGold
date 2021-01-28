@@ -9,8 +9,7 @@
                  CloseWhenBackgroundIsClicked="False"
                  xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
                  x:Class="PurpleGold.PopUps.PlanPopUp"
-                 BackgroundColor="#80000000"
-                 Padding="40,0,40,0">
+                 BackgroundColor="#80000000">
 
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation DurationIn="200"
@@ -18,24 +17,22 @@
                                    EasingIn="SinOut"
                                    EasingOut="SinIn"
                                    HasBackgroundAnimation="True"
-                                   PositionIn="Bottom"
-                                   PositionOut="Bottom"
+                                   PositionIn="Center"
+                                   PositionOut="Center"
                                    ScaleIn="1.2"
                                    ScaleOut="0.8" />
     </pages:PopupPage.Animation>
 
     <!--  You can use any elements here which are extended from Xamarin.Forms.View  -->
-    <pv:PancakeView Padding="0,25,0,15"
-                CornerRadius="0,0,0,0"
+    <pv:PancakeView Padding="10,40,10,10"
                  BackgroundColor="White"
-                    VerticalOptions="Center"
-                    Margin="0,40,0,10"
-                    HorizontalOptions="Center"
-                    WidthRequest="350">
-        <pv:PancakeView.Shadow>
-            <pv:DropShadow Color="#60000000" Offset="10,10"/>
-        </pv:PancakeView.Shadow>
-        <Grid>
+                    CornerRadius="5"
+                    Margin="30,0,30,0"
+                 VerticalOptions="Center">
+        <!--<pv:PancakeView.Shadow>
+            <pv:DropShadow Color="#000000" Offset="10,10"/>
+        </pv:PancakeView.Shadow>-->
+        <StackLayout VerticalOptions="Center" Spacing="10">
             <ActivityIndicator 
                 Grid.RowSpan="2"
                 IsVisible="{Binding IsBusy}"
@@ -43,7 +40,7 @@
                 HorizontalOptions="Center"
                 VerticalOptions="Start"/>
 
-            <ScrollView VerticalOptions="Fill" Margin="0,0,0,20">
+            <ScrollView VerticalOptions="CenterAndExpand" VerticalScrollBarVisibility="Never">
                 <StackLayout BindableLayout.ItemsSource="{Binding PlanModelList}"
                              x:Name="planList"
                              Orientation="Vertical"
@@ -114,6 +111,6 @@
                      CornerRadius="5"
                     HeightRequest="1"
                     HorizontalOptions="Center"/>
-        </Grid>
+        </StackLayout>
     </pv:PancakeView>
 </pages:PopupPage>

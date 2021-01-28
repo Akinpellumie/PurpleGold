@@ -25,6 +25,7 @@ namespace PurpleGold.Views.Templates
     {
         string securityQuestion;
         string securityQuestionId;
+        string AccountCreated;
         public SignUpTemplate()
         {
             InitializeComponent();
@@ -92,7 +93,7 @@ namespace PurpleGold.Views.Templates
 
             });
 
-            MessagingCenter.Subscribe(this, "FillAllFields", (object obj, string required) =>
+            MessagingCenter.Subscribe(this, "FillAll", (object obj, string req) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -108,7 +109,8 @@ namespace PurpleGold.Views.Templates
                 {
                     usrEmail.IsReadOnly = true;
                     usrRef.IsReadOnly = true;
-                    usrFullname.IsReadOnly = true;
+                    usrFirstname.IsReadOnly = true;
+                    usrLastname.IsReadOnly = true;
                     usrPhone.IsReadOnly = true;
                     FirstContBtnLbl.IsVisible = false;
                     FirstLoad.IsVisible = true;
@@ -326,10 +328,26 @@ namespace PurpleGold.Views.Templates
             FirstViewErrorMsg.IsVisible = false;
         }
 
-        private void usrFullname_TextChanged(object sender, TextChangedEventArgs e)
+        private void usrFirstname_TextChanged(object sender, TextChangedEventArgs e)
         {
             FirstViewErrorMsg.IsVisible = false;
         }
+        
+        private void usrLastname_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            FirstViewErrorMsg.IsVisible = false;
+        }
+
+        private void usrVerPass_Unfocused(object sender, FocusEventArgs e)
+        {
+            verPswdMsg.IsVisible = false;
+        }
+
+        private void usrPass_Unfocused(object sender, FocusEventArgs e)
+        {
+            pswdMsg.IsVisible = false;
+        }
+
 
         public async void VerifyOtpClicked(object sender, EventArgs e)
         {
@@ -435,33 +453,10 @@ namespace PurpleGold.Views.Templates
 
                 if (response.IsSuccessful)
                 {
-                    var bal = personProfile.personData.wallet[0].balance;
-                    Settings.balance = bal;
-                    MessagingCenter.Send<object, string>(this, "balance", bal);
-
-                    //GetUserBalance();
-                    Settings.PersonProfile = personProfile;
-
-                    MessagingCenter.Send(this, "SuccessLogin");
-
-                    Settings.Token = personProfile.personData.token;
-                    Settings.Id = personProfile.personData.id;
-                    Settings.UserId = personProfile.personData.id;
-                    Settings.Lastname = personProfile.personData.lastname;
-                    Settings.Firstname = personProfile.personData.firstname;
-                    Settings.Email = personProfile.personData.email;
-                    Settings.ReferralCode = personProfile.personData.referralCode;
-                    Settings.PhoneNumber = personProfile.personData.phoneNumber;
-                    Settings.ImageUrl = personProfile.personData.imageUrl;
-                    Settings.Title = personProfile.personData.title;
-                    Settings.BankName = personProfile.personData.bank;
-                    Settings.AccountNumber = personProfile.personData.accountNumber;
-                    Settings.AccountName = personProfile.personData.accountName;
-                    Settings.State = personProfile.personData.state;
-                    Settings.Address = personProfile.personData.houseOfResidence;
-
-                    Application.Current.MainPage = new AppShell();
-                    await Shell.Current.GoToAsync("//main");
+                    //AccountCreated = "Your account has been created successfully!!!";
+                    await PopupNavigation.Instance.PushAsync(new SuccessPopUp());
+                    Application.Current.MainPage = new NavigationPage(new LoginSignUpPage());
+                    //MessagingCenter.Send<object, string>(this, "accountCreated", AccountCreated);
                 }
                 else if(response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
@@ -510,12 +505,13 @@ namespace PurpleGold.Views.Templates
 
                 var response = await client.PostAsync(Constant.ResendOtpUrl, result);
 
+                OTPResponse otpRes = JsonConvert.DeserializeObject<OTPResponse>(result.ReadAsStringAsync().Result);
+                var msg = otpRes.message;
+
                 if (response.IsSuccessStatusCode)
                 {
                     resend.IsVisible = true;
                     resendOtp.IsVisible = false;
-                    OTPResponse otpRes = JsonConvert.DeserializeObject<OTPResponse>(result.ReadAsStringAsync().Result);
-                    var msg = otpRes.message;
                     //RegisterInvestor newUser = JsonConvert.DeserializeObject<RegisterInvestor>(result.Content.ReadAsStringAsync().Result);
                     //var msg = newUser.message;
                     //Settings.UserId = newUser.createUserData.id;
@@ -525,7 +521,7 @@ namespace PurpleGold.Views.Templates
                 else
                 {
                     secondViewErrorMsg.IsVisible = true;
-                    secondErrorLabel.Text = "Error sending OTP. please click resend OTP to try again!";
+                    secondErrorLabel.Text =  msg + "please click resend OTP to try again!";
                     SecondLoad.IsVisible = false;
                     ScndContBtnLbl.IsVisible = true;
                 }

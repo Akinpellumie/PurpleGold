@@ -20,7 +20,7 @@
                         HorizontalOptions="CenterAndExpand"/>
                 </Grid>
                 
-                <Grid IsVisible="{Binding IsVisible}"
+                <Grid IsVisible="{Binding IsVisibleA}"
                              VerticalOptions="CenterAndExpand"
                              HorizontalOptions="CenterAndExpand">
                     <ff1:SvgCachedImage
@@ -121,10 +121,11 @@
                                                          VerticalOptions="Fill"
                                                          HorizontalOptions="Fill">
                                                 <ff1:SvgCachedImage
-                                                    Source="progbar.png"
+                                                    Source="chart.gif"
                                                     Grid.Column="1"
                                                     HorizontalOptions="Fill"
                                                     VerticalOptions="Fill"
+                                                    WidthRequest="100"
                                                     HeightRequest="50"/>
                                             </StackLayout>
                                         </Grid>

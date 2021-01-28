@@ -147,6 +147,30 @@
                                 </Grid>
                             </pv:PancakeView>
                             <!--#endregion-->
+                            
+                            <!--#region warning-->
+                                <StackLayout Orientation="Horizontal"
+                                     IsVisible="False"
+                                     Margin="15,0,0,0"
+                                     Spacing="5" x:Name="AmterrorMsg">
+                                    <ff1:SvgCachedImage
+                                    Source="alert.png"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    Aspect="AspectFit"
+                                    HeightRequest="20"/>
+
+                                    <Label
+                                        Text="Invalid Credentials"
+                                        TextColor="Red"
+                                        x:Name="AmterrorLabel"
+                                        LineBreakMode="WordWrap"
+                                        FontFamily="{StaticResource FontRegular}"
+                                        FontSize="{StaticResource FontSize12}"
+                                        HorizontalOptions="StartAndExpand"
+                                        VerticalOptions="Center"/>
+                                </StackLayout>
+                                <!--#endregion-->
 
                             <!--#region invest interest-->
                             <pv:PancakeView Margin="0,10,0,30" 
@@ -291,10 +315,33 @@
 
                             <!--#region save button and terms-->
 
-                            <StackLayout Margin="0,10,0,15" Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal"
+                                     IsVisible="False"
+                                     Margin="15,0,0,0"
+                                     Spacing="5" x:Name="errorMsg">
+                                    <ff1:SvgCachedImage
+                                    Source="alert.png"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    Aspect="AspectFit"
+                                    HeightRequest="20"/>
+
+                                    <Label
+                                        Text="Invalid Credentials"
+                                        TextColor="Red"
+                                        x:Name="errorLabel"
+                                        LineBreakMode="WordWrap"
+                                        FontFamily="{StaticResource FontRegular}"
+                                        FontSize="{StaticResource FontSize12}"
+                                        HorizontalOptions="StartAndExpand"
+                                        VerticalOptions="Center"/>
+                                </StackLayout>
+                            
+                                <StackLayout Margin="0,10,0,15" Orientation="Vertical">
 
                                 <StackLayout Orientation="Horizontal">
                                     <CheckBox BackgroundColor="Transparent"
+                                              x:Name="check"
                                       Color="{StaticResource PurpleColor}"
                                       IsChecked="False"/>
 
@@ -333,14 +380,16 @@
                               VerticalOptions="Center"
                               IsVisible="False">
                             <Button
-                                Margin="0,3,0,0"
+                                Margin="0,3,0,5"
                                 Text="Download MOU"
+                                Grid.Row="0"
                                 TextColor="White"
                                 BackgroundColor="{StaticResource PurpleColor}"
                                 HeightRequest="45"
+                                VerticalOptions="Center"
                                 Clicked="DownLoadMouClicked"
                                 FontFamily="{StaticResource FontBold}"
-                                FontSize="{StaticResource FontSize16}"
+                                FontSize="{StaticResource FontSize14}"
                                 HorizontalOptions="Fill"
                                 CornerRadius="5"
                                 TextTransform="None"/>
@@ -348,7 +397,8 @@
                             <Label TextColor="{StaticResource TextColor}"
                                    Text="A copy of this Memorandum of Understanding has been sent to your email"
                                    LineBreakMode="WordWrap"
-                                   VerticalOptions="End"
+                                   Grid.Row="1"
+                                   VerticalOptions="Center"
                                    Margin="0,10,0,0"
                                    FontSize="{StaticResource FontSize12}"
                                    FontFamily="{StaticResource FontRegular}"

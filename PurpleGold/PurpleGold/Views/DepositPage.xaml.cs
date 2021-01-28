@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PurpleGold.PopUps;
+using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,7 @@ namespace PurpleGold.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DepositPage : ContentPage
     {
+        string successMsg;
         public DepositPage()
         {
             InitializeComponent();
@@ -29,8 +32,10 @@ namespace PurpleGold.Views
         {
             try
             {
+                successMsg = "Account Number Copied";
                 await Clipboard.SetTextAsync(acctnum.Text);
-                await DisplayAlert("Yippee!","Account Number Copied","Ok");
+                MessagingCenter.Send<object, string>(this, "done", successMsg);
+                await PopupNavigation.Instance.PushAsync(new SuccessPopUp());
             }
             catch (Exception)
             {

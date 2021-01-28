@@ -133,6 +133,8 @@ namespace PurpleGold.Views
 
         public void Input_TextChanged(object sender, TextChangedEventArgs e)
         {
+            AmterrorMsg.IsVisible = false;
+            errorMsg.IsVisible = false;
             if (!string.IsNullOrEmpty(((Entry)sender).Text))
             {
                 try
@@ -261,76 +263,117 @@ namespace PurpleGold.Views
         #region create investment
         public async void CreateInvestment_Clicked(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(amount.Text))
+            {
+                AmterrorMsg.IsVisible = true;
+                AmterrorLabel.Text = "Kindly fill all entries to  coninue!";
+                return;
+            }
             try
             {
-                await PopupNavigation.Instance.PushAsync(new Loader());
-
-                CreateInvestment invest = new CreateInvestment()
-                {
-                    planId = planId,
-                    roi = "20",
-                };
                 string pt = double.Parse(amount.Text.Replace
-                   ("N", CultureInfo.CurrentUICulture.NumberFormat.CurrencySymbol),
-                   NumberStyles.Currency).ToString();
-                invest.amount = pt;
-                if (MyPlan.StartsWith("Gela"))
-                {
-                    invest.duration = "1";
-                }
-                else if (MyPlan.StartsWith("Hon"))
-                {
-                    invest.duration = "3";
-                }
-                else if (MyPlan.StartsWith("Mid"))
-                {
-                    invest.duration = "6";
-                }
-                String url = Constant.InvestUrl;
+                    ("N", CultureInfo.CurrentUICulture.NumberFormat.CurrencySymbol),
+                    NumberStyles.Currency).ToString();
+                double amt = double.Parse(pt);
 
-
-                var json = JsonConvert.SerializeObject(invest);
-
-                var client = new RestClient(url);
-                client.Timeout = -1;
-                var request = new RestRequest(Method.POST);
-                request.AddHeader("appId", Settings.AppId);
-                request.AddHeader("Authorization", Settings.Token);
-                request.AddHeader("Content-Type", "application/json");
-                request.AddParameter("application/json", json, ParameterType.RequestBody);
-                IRestResponse response = await client.ExecuteAsync(request);
-                Console.WriteLine(response.Content);
-                var res = response.Content;
-
-                Invest investRes = JsonConvert.DeserializeObject<Invest>(res);
-                var msg = investRes.message;
-                var stats = investRes.status;
-                mouUrl = investRes.Investments[0].MouUrl;
-
-                if (response.IsSuccessful)
+                double relAmt = 25000;
+                if (amt < relAmt)
                 {
-                    await PopupNavigation.Instance.PopAsync(true);
-                    await DisplayAlert("Success!!!","Invest Created successfully. Click OK to go to Dashboard","Ok");
-                    mainView.IsVisible = false;
-                    MouView.IsVisible = true;
-                    //Settings.UserId = newUser.createUserData.id;
-                    //AppShell fpm = new AppShell();
-                    //Application.Current.MainPage = fpm;
+                    AmterrorMsg.IsVisible = true;
+                    AmterrorLabel.Text = "Investment requires a minimum of N25,000.00";
+                    return;
                 }
-                else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                if(check.IsChecked != true)
                 {
-                    await PopupNavigation.Instance.PopAsync(true);
-                    await DisplayAlert("Success!!!", msg, "Ok");
+                    errorMsg.IsVisible = true;
+                    errorLabel.Text = "Kindly agree to Terms and Condition to continue!";
+                    return;
                 }
-                else if(stats.Contains("500"))
+                else if (string.IsNullOrEmpty(amount.Text) || string.IsNullOrEmpty(interest.Text) || string.IsNullOrEmpty(MyPlan))
                 {
-                    await PopupNavigation.Instance.PopAsync(true);
-                    await DisplayAlert("Server error!!!", msg + ". Please try again later", "Ok");
+                    errorMsg.IsVisible = true;
+                    errorLabel.Text = "Kindly fill all entries to  coninue!";
+                    return;
                 }
                 else
                 {
-                    await PopupNavigation.Instance.PopAsync(true);
-                    await DisplayAlert("Server error!!!", msg + ". Please try again later", "Ok");
+                    try
+                    {
+
+                        await PopupNavigation.Instance.PushAsync(new Loader());
+
+                        CreateInvestment invest = new CreateInvestment()
+                        {
+                            planId = planId,
+                            roi = "20",
+                            amount = pt
+                        };
+                        if (MyPlan.StartsWith("Gela"))
+                        {
+                            invest.duration = "1";
+                        }
+                        else if (MyPlan.StartsWith("Hon"))
+                        {
+                            invest.duration = "3";
+                        }
+                        else if (MyPlan.StartsWith("Mid"))
+                        {
+                            invest.duration = "6";
+                        }
+                        String url = Constant.InvestUrl;
+
+
+                        var json = JsonConvert.SerializeObject(invest);
+
+                        var client = new RestClient(url);
+                        client.Timeout = -1;
+                        var request = new RestRequest(Method.POST);
+                        request.AddHeader("appId", Settings.AppId);
+                        request.AddHeader("Authorization", Settings.Token);
+                        request.AddHeader("Content-Type", "application/json");
+                        request.AddParameter("application/json", json, ParameterType.RequestBody);
+                        IRestResponse response = await client.ExecuteAsync(request);
+                        Console.WriteLine(response.Content);
+                        var res = response.Content;
+
+                        Invest investRes = JsonConvert.DeserializeObject<Invest>(res);
+                        var msg = investRes.message;
+                        var stats = investRes.status;
+                        mouUrl = investRes.Investments[0].MouUrl;
+
+                        if (response.IsSuccessful)
+                        {
+                            await PopupNavigation.Instance.PopAsync(true);
+                            await PopupNavigation.Instance.PushAsync(new SuccessPopUp());
+                            mainView.IsVisible = false;
+                            MouView.IsVisible = true;
+                            //Settings.UserId = newUser.createUserData.id;
+                            //AppShell fpm = new AppShell();
+                            //Application.Current.MainPage = fpm;
+                        }
+                        else if (response.StatusCode == HttpStatusCode.BadRequest)
+                        {
+                            await PopupNavigation.Instance.PopAsync(true);
+                            MessagingCenter.Send<object, string>(this, "error", msg);
+                            await PopupNavigation.Instance.PushAsync(new FailPopUp());
+                        }
+                        else if (stats.Contains("500"))
+                        {
+                            await PopupNavigation.Instance.PopAsync(true);
+                            MessagingCenter.Send<object, string>(this, "error", msg);
+                            await PopupNavigation.Instance.PushAsync(new FailPopUp());
+                        }
+                        else
+                        {
+                            await PopupNavigation.Instance.PopAsync(true);
+                            MessagingCenter.Send<object, string>(this, "error", msg);
+                            await PopupNavigation.Instance.PushAsync(new FailPopUp());
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        return;
+                    }
                 }
             }
             catch (Exception)

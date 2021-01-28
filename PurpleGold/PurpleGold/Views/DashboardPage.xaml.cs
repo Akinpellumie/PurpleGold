@@ -108,6 +108,7 @@ namespace PurpleGold.Views
         {
             base.OnAppearing();
             await this.FadeTo(1, 250, Easing.SinInOut);
+            CheckBalance();
         }
 
         protected override async void OnDisappearing()

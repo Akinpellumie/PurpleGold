@@ -15,6 +15,14 @@ namespace PurpleGold.Views
         public LoginSignUpPage()
         {
             InitializeComponent();
+            MessagingCenter.Subscribe(this, "accountCreated", (object obj, string AccountCreated) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    SuccessCall();
+                });
+
+            });
             MessagingCenter.Subscribe(this, "showPass", (object obj, string forgotPassClicked) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
@@ -28,6 +36,22 @@ namespace PurpleGold.Views
             });
         }
 
+        public async void SuccessCall()
+        {
+            if (login.Text.Contains("Back to Login"))
+            {
+                login.Text = "Login";
+            }
+            LogActive.IsVisible = true;
+            login.TextColor = Color.FromHex("9E079E");
+            signup.TextColor = Color.FromHex("CC97CC");
+            active.IsVisible = false;
+            await first.ScaleTo(1, 250, Easing.BounceIn);
+            loginStack.IsVisible = true;
+            forgotPassStack.IsVisible = false;
+            signUpStack.IsVisible = false;
+            await loginStack.FadeTo(1, 250, Easing.SinInOut);
+        }
        
         private async void LoginStack_Tapped(object sender, EventArgs e)
         {

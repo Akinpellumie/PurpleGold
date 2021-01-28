@@ -107,8 +107,7 @@
                                                 <Label  x:Name="opnAmt"
                                         TextColor="{StaticResource PurpleColor}" 
                                         Text="{Binding Amount}"  
-                                        FontSize="{StaticResource FontSize16}"
-                                        FontAttributes="Bold"
+                                        FontSize="{StaticResource FontSize14}"
                                         VerticalOptions="Center"
                                         FontFamily="{StaticResource FontBold}"/>
                                             </StackLayout>
@@ -126,8 +125,7 @@
                                                 <Label  x:Name="clsAmt"
                                         TextColor="{StaticResource PurpleColor}" 
                                         Text="{Binding TotalBalance}" 
-                                        FontSize="{StaticResource FontSize16}"
-                                        FontAttributes="Bold"
+                                        FontSize="{StaticResource FontSize14}"
                                         VerticalOptions="Center"
                                         FontFamily="{StaticResource FontBold}"/>
                                             </StackLayout>

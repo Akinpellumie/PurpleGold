@@ -73,7 +73,7 @@ namespace PurpleGold.Helpers
         {
             get
             {
-                return Domainurl + "/investor/reset_password";
+                return Domainurl + "/reset_password";
             }
         }
         

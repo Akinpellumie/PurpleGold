@@ -101,8 +101,8 @@ namespace PurpleGold.ViewModels
         {
             if (Email == null || FullName == null || PhoneNumber == null )
             {
-                var required = "Input fields empty.";
-                MessagingCenter.Send<object, string>(this, "FillAllFields", required);
+                var req = "Input fields empty.";
+                MessagingCenter.Send<object, string>(this, "FillAll", req);
             }
             else
             {
@@ -112,14 +112,16 @@ namespace PurpleGold.ViewModels
                 var registerData = new CreateUser()
                 {
                     email = Email.Trim(),
-                    referralCode = RefCode
+                    referralCode = RefCode,
+                    firstname = Firstname,
+                    lastname = Lastname
                 };
-                string fullName = FullName;
-                var names = fullName.Split(' ');
-                string firstName = names[0];
-                string lastName = names[1];
-                registerData.firstname = firstName;
-                registerData.lastname = lastName;
+                //string fullName = FullName;
+                //var names = fullName.Split(' ');
+                //string firstName = names[0];
+                //string lastName = names[1];
+                //registerData.firstname = firstName;
+                //registerData.lastname = lastName;
                 if (PhoneNumber.Length == 11)
                 {
                     var cut = PhoneNumber.Substring(1);

@@ -7,9 +7,9 @@
              xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                  CloseWhenBackgroundIsClicked="False"
-                 xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
-                 xmlns:viewmodels="clr-namespace:PurpleGold.ViewModels" xmlns:behavior="clr-namespace:PurpleGold.Behaviors" xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-                 x:Class="PurpleGold.PopUps.FailPopUp">
+                 xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                 xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                 x:Class="PurpleGold.PopUps.FingerPrintPopUp">
 
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation DurationIn="100"
@@ -24,7 +24,7 @@
     </pages:PopupPage.Animation>
 
     <!--  You can use any elements here which are extended from Xamarin.Forms.View  -->
-    <pv:PancakeView Padding="10,40,10,10"
+    <pv:PancakeView Padding="10,10,10,10"
                  BackgroundColor="White"
                     CornerRadius="5"
                  HorizontalOptions="Fill"
@@ -36,19 +36,36 @@
         <Grid>
             <StackLayout VerticalOptions="CenterAndExpand"
                      HorizontalOptions="Center">
-                <ff1:SvgCachedImage
-                Source="cancel.svg"
-                Grid.Column="1"
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand"
-                HeightRequest="60"/>
+                <Label Text="Authentication Required"
+                       x:Name="auth"
+                   HorizontalOptions="Start"
+                   FontSize="{StaticResource FontSize16}"
+                   FontFamily="{StaticResource FontBold}"
+                   TextColor="{StaticResource TextColor}"/>
 
-                <Label Text="Failed!!!"
-                       x:Name="failLbl"
+                <ff1:SvgCachedImage
+                    Source="fingerprint.svg"
+                    x:Name="img"
+                    Margin="0,20,0,10"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Aspect="AspectFit"
+                    HeightRequest="60"/>
+
+                <Label Text="Touch Sensor"
+                       x:Name="sensor"
                    HorizontalOptions="Center"
                    FontSize="{StaticResource FontSize14}"
                    FontFamily="{StaticResource FontRegular}"
                    TextColor="{StaticResource TextColor}"/>
+
+                <Label Text=""
+                       x:Name="result"
+                       Margin="0,15,0,0"
+                       IsVisible="False"
+                   HorizontalOptions="Center"
+                   FontSize="{StaticResource FontSize14}"
+                   FontFamily="{StaticResource FontRegular}"/>
 
 
                 <Label Text="Cancel"

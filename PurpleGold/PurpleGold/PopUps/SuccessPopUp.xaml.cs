@@ -11,16 +11,16 @@ using Xamarin.Forms.Xaml;
 namespace PurpleGold.PopUps
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FailPopUp
+    public partial class SuccessPopUp
     {
-        public FailPopUp()
+        public SuccessPopUp()
         {
             InitializeComponent();
-            MessagingCenter.Subscribe(this, "error", (object obj, string msg) =>
+            MessagingCenter.Subscribe(this, "done", (object obj, string successMsg) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    failLbl.Text = msg;
+                    successLbl.Text = successMsg;
                 });
 
             });

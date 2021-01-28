@@ -31,7 +31,9 @@ namespace PurpleGold.ViewModels
                 OnPropertyChanged(nameof(IsBusy));
             }
         }
-        
+
+        Invest userAssets;
+
         private bool isVisible;
         public bool IsVisible
         {
@@ -40,6 +42,17 @@ namespace PurpleGold.ViewModels
             {
                 isVisible = value;
                 OnPropertyChanged(nameof(IsVisible));
+            }
+        }
+        
+        private bool isVisibleA;
+        public bool IsVisibleA
+        {
+            get => isVisibleA;
+            set
+            {
+                isVisibleA = value;
+                OnPropertyChanged(nameof(IsVisibleA));
             }
         }
 
@@ -105,6 +118,8 @@ namespace PurpleGold.ViewModels
             get { return password; }
             set { SetProperty(ref password, value); }
         }
+        int max;
+        int timer;
 
         public InvestViewModel(INavigation navigation)
         {
@@ -112,7 +127,15 @@ namespace PurpleGold.ViewModels
             LoadInvestment();
             CompletedInvestment();
                 InvestCommand = new Command(() => OnInvest_Clicked());
-            //SignUpCommand = new Command(() => OnSignUpClicked());
+            //Device.StartTimer(new TimeSpan(0, 0, 120), () =>
+            //{
+            //    // do something every 120 seconds
+            //    Device.BeginInvokeOnMainThread(() =>
+            //    {
+            //        max = Invest userAssets
+            //    });
+            //    return true; // runs again, or false to stop
+            //});
         }
 
 
@@ -177,22 +200,64 @@ namespace PurpleGold.ViewModels
                 Console.WriteLine(response.Content);
                 IsBusy = false;
 
-                Invest userAssets = JsonConvert.DeserializeObject<Invest>(res);
+                userAssets = JsonConvert.DeserializeObject<Invest>(res);
                 var sorted = userAssets.Investments;
                 //getTrans = userTransactions
                 var assets = new ObservableCollection<Investment>(sorted);
+
                 if (assets.Count == 0)
                 {
-                    IsVisible = true;
+                    IsVisibleA = true;
                 }
                 else
                 {
-                    IsVisible = false;
+                    IsVisibleA = false;
                 }
                 InvestmentData = assets;
                 IsBusy = false;
                 Settings.InvestmentList = assets;
-              
+                //foreach (var amt in userAssets.Investments)
+                //{
+                //    string days;
+
+                //    DateTime end = DateTime.Parse(amt.endDate.Replace("[UTC]", ""));
+                //    DateTime start = DateTime.Parse(amt.startDate.Replace("[UTC]", ""));
+                //    TimeSpan timeSpan = end.Subtract(start);
+                //    days = timeSpan.Days.ToString();
+
+
+                //    string kems = ;
+                //    double min;
+                //    double max;
+                //    double dys;
+                //    dys = double.Parse(days);
+                //    double calc = dys * 1440;
+                //    min = double.Parse(amount);
+                //    max = double.Parse(amt.totalReturn);
+                //    double costpermin = max / calc;
+                //    if (dys > 0)
+                //    {
+                //        Device.StartTimer(new TimeSpan(0, 0, 60), () =>
+                //        {
+                //            // do something every 60 seconds
+                //            Device.BeginInvokeOnMainThread(() =>
+                //            {
+                //                double pel = min + costpermin++;
+                //                string polo = pel.ToString();
+                //                string Bal = Math.Round(Convert.ToDouble(polo), 2).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-us")).Replace("$", "N");
+
+                //                Bal = kems;
+                //                var kms = kems;
+                //                var updAmt = Bal;
+                //                MessagingCenter.Send<object, string>(this, "timer", updAmt);
+                //            });
+                //            return true; // runs again, or false to stop
+                //        });
+                //    }
+                //    InvestmentData = assets;
+                //    IsBusy = false;
+                //    Settings.InvestmentList = assets;
+                //}
             }
             catch (Exception)
             {
@@ -204,13 +269,13 @@ namespace PurpleGold.ViewModels
         {
             IsBusy = true;
            
-            var url = Constant.GetInvestmentUrl + Settings.UserId + "?status = COMPLETED";
+            var url = Constant.GetInvestmentUrl + Settings.UserId + "?status=COMPLETED";
             var client = new RestClient(url);
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
             request.AddHeader("appId", Settings.AppId);
             request.AddHeader("Authorization", Settings.Token);
-            request.AddParameter("text/plain", "", ParameterType.RequestBody);
+            request.AddParameter("application/json", "", ParameterType.RequestBody);
             IRestResponse response = await client.ExecuteAsync(request);
             var res = response.Content;
             Console.WriteLine(response.Content);

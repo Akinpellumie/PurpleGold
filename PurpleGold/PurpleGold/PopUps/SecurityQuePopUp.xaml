@@ -9,9 +9,7 @@
                  CloseWhenBackgroundIsClicked="True"
                  xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                  x:Class="PurpleGold.PopUps.SecurityQuePopUp"
-                 HeightRequest="350"
-                 BackgroundColor="Transparent"
-                 Padding="30,0,30,0">
+                 BackgroundColor="#89ffffff">
 
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation DurationIn="200"
@@ -19,18 +17,18 @@
                                    EasingIn="SinOut"
                                    EasingOut="SinIn"
                                    HasBackgroundAnimation="True"
-                                   PositionIn="Bottom"
+                                   PositionIn="Center"
                                    PositionOut="Center"
-                                   ScaleIn="1.2"
-                                   ScaleOut="0.8" />
+                                   ScaleIn="1.5"
+                                   ScaleOut="0.9" />
     </pages:PopupPage.Animation>
 
     <!--  You can use any elements here which are extended from Xamarin.Forms.View  -->
     <pv:PancakeView Padding="0,25,0,15"
                 CornerRadius="10,0,0,10"
                  BackgroundColor="White"
-                    VerticalOptions="End"
-                    Margin="0,0,0,45"
+                    VerticalOptions="Center"
+                    Margin="30,0,30,0"
                     HorizontalOptions="Center"
                     HeightRequest="300"
                     WidthRequest="350">

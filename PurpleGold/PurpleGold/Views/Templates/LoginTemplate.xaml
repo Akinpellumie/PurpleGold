@@ -115,39 +115,61 @@
                         Text="Invalid Credentials"
                         TextColor="Red"
                         x:Name="errorLabel"
+                        LineBreakMode="WordWrap"
                         FontFamily="{StaticResource FontRegular}"
                         FontSize="{StaticResource FontSize12}"
                         HorizontalOptions="StartAndExpand"
                         VerticalOptions="Center"/>
                 </StackLayout>
 
+                <!--#region login button-->
+                <!--#region idle btn-->
                 <pv:PancakeView BackgroundColor="{StaticResource PurpleColor}"
                                 HeightRequest="50"
+                                IsVisible="True"
+                                x:Name="idleBtn"
                                 HorizontalOptions="Fill"
                                 CornerRadius="5"
                                 Margin="0,30,0,0">
                     <Grid HorizontalOptions="Center">
-                        <Label Text="Log in"
+                            <Label Text="Log in"
                            FontSize="{StaticResource FontSize20}"
                            FontFamily="{StaticResource FontRegular}"
                            TextColor="White"
                                VerticalOptions="Center"
-                               IsVisible="True"
-                           x:Name="BtnLbl"/>
-                        
-                        <ff:CachedImage 
-                            Source="loading.gif"
-                            x:Name="load"
-                            IsVisible="False"
-                            HeightRequest="30"
-                            WidthRequest="30"
-                            HorizontalOptions="Center"/>
-                    </Grid>
+                               IsVisible="True"/>
+                        </Grid>
                     <pv:PancakeView.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding LoginCommand}"
                                               NumberOfTapsRequired="1"/>
                     </pv:PancakeView.GestureRecognizers>
                 </pv:PancakeView>
+                <!--#endregion-->
+                
+                <!--#region loaderButton-->
+                <pv:PancakeView BackgroundColor="{StaticResource PurpleColor}"
+                                HeightRequest="50"
+                                IsVisible="False"
+                                x:Name="loadingBtn"
+                                HorizontalOptions="Fill"
+                                CornerRadius="5"
+                                Margin="0,30,0,0">
+                    <Grid HorizontalOptions="Center">
+                        
+                        <ff:CachedImage 
+                            Source="loading.gif"
+                            HeightRequest="30"
+                            WidthRequest="30"
+                            HorizontalOptions="Center"/>
+                    </Grid>
+                    <pv:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer
+                                              NumberOfTapsRequired="1"/>
+                    </pv:PancakeView.GestureRecognizers>
+                </pv:PancakeView>
+                <!--#endregion-->
+                <!--#endregion-->
+                
                 <!--<Button
                                 Margin="0,30,0,0"
                                 Text="Log in"
@@ -179,15 +201,20 @@
             <StackLayout Orientation="Vertical"
                          Margin="0,20,0,0"
                          HorizontalOptions="Center">
-                <ff1:SvgCachedImage
+                    <ff1:SvgCachedImage
                     Source="fingerprint.svg"
                     Margin="0,0,0,10"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
                     Aspect="AspectFit"
-                    HeightRequest="40"/>
+                    HeightRequest="40">
+                        <ff1:SvgCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FingerPrintCommand}"
+                                              NumberOfTapsRequired="1"/>
+                        </ff1:SvgCachedImage.GestureRecognizers>
+                    </ff1:SvgCachedImage>
 
-                <Label
+                    <Label
                     Text="Login with Fingerprint"
                     TextColor="{StaticResource FrameBorderColor}"
                     FontFamily="{StaticResource FontRegular}"

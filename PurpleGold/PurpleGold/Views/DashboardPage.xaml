@@ -82,10 +82,25 @@
                                                         HeightRequest="15"/>
 
                                                     <Grid HorizontalOptions="End" Grid.Column="1">
-                                                        <circle:CircleImage x:Name="usrIcon" Margin="0,0,0,0"
+                                                        <pv:PancakeView BackgroundColor="Transparent"
+                                                                        HeightRequest="30"
+                                                                        WidthRequest="30"
+                                                                        CornerRadius="20">
+                                                            <pv:PancakeView.Border>
+                                                                <pv:Border Color="{StaticResource WhiteColor}" Thickness="5"/>
+                                                            </pv:PancakeView.Border>
+                                                                <ff1:SvgCachedImage
+                                                                     x:Name="usrIcon"
+                                                                    HorizontalOptions="CenterAndExpand"
+                                                                    VerticalOptions="CenterAndExpand"
+                                                                    HeightRequest="30"
+                                                                    WidthRequest="30"
+                                                                    Aspect="AspectFill"/>
+                                                        </pv:PancakeView>
+                                                        <!--<circle:CircleImage x:Name="usrIcon" Margin="0,0,0,0"
                                                                             Aspect="AspectFill"  BorderColor="White"  
                                                         HorizontalOptions="Center" BorderThickness="3" HeightRequest="30" 
-                                                        WidthRequest="30" VerticalOptions="Center"/>
+                                                        WidthRequest="30" VerticalOptions="Center"/>-->
 
                                                         <pv:PancakeView
                                                     BackgroundColor="Red"

@@ -80,7 +80,7 @@
                                         VerticalOptions="Center"/>
 
                                             <Label
-                                        Text="PurpleGold Team"
+                                        Text="THE PURPLEGOLD COMPANY"
                                         LineBreakMode="TailTruncation"
                                         TextColor="{StaticResource TextColor}"
                                         FontFamily="{StaticResource FontBold}"
@@ -135,7 +135,7 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <Label
-                                                Text="1828304958"
+                                                Text="1023445698"
                                                     x:Name="acctnum"
                                                 Grid.Column="0"
                                                 TextColor="{StaticResource PurpleColor}"
@@ -145,7 +145,7 @@
                                                 VerticalOptions="Center"/>
 
                                                 <Label
-                                                Text="Providus Bank"
+                                                Text="UBA"
                                                 Grid.Column="1"
                                                 TextColor="{StaticResource PurpleColor}"
                                                 FontFamily="{StaticResource FontBold}"
