@@ -2,6 +2,9 @@
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Xamarin.Forms.Xaml;
 
 namespace PurpleGold
@@ -26,6 +29,10 @@ namespace PurpleGold
 
         protected override void OnStart()
         {
+            AppCenter.Start("android=ba867121-4dc6-4e23-a6cc-40fc792b11ad;" +
+                  "uwp={Your UWP App secret here};" +
+                  "ios={Your iOS App secret here}",
+                  typeof(Analytics), typeof(Crashes));
         }
 
         protected override void OnSleep()
