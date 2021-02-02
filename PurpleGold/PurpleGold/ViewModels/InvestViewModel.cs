@@ -127,15 +127,7 @@ namespace PurpleGold.ViewModels
             LoadInvestment();
             CompletedInvestment();
                 InvestCommand = new Command(() => OnInvest_Clicked());
-            //Device.StartTimer(new TimeSpan(0, 0, 120), () =>
-            //{
-            //    // do something every 120 seconds
-            //    Device.BeginInvokeOnMainThread(() =>
-            //    {
-            //        max = Invest userAssets
-            //    });
-            //    return true; // runs again, or false to stop
-            //});
+            
         }
 
 
@@ -213,7 +205,17 @@ namespace PurpleGold.ViewModels
                 {
                     IsVisibleA = false;
                 }
-                InvestmentData = assets;
+
+                int i = 0;
+                foreach (var label in userAssets.Investments)
+                {
+                    int cty = i;
+                    int ntx = ++i;
+                    string cntx = ntx.ToString();
+                    string newLbl = "PORTFOLIO " + cntx;
+                    label.AssetName = newLbl;
+                }
+                    InvestmentData = assets;
                 IsBusy = false;
                 Settings.InvestmentList = assets;
                 //foreach (var amt in userAssets.Investments)

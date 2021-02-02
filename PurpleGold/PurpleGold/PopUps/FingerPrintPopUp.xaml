@@ -44,7 +44,7 @@
                    TextColor="{StaticResource TextColor}"/>
 
                 <ff1:SvgCachedImage
-                    Source="fingerprint.svg"
+                    Source="fingerSuccess.svg"
                     x:Name="img"
                     Margin="0,20,0,10"
                     HorizontalOptions="Center"
@@ -52,12 +52,12 @@
                     Aspect="AspectFit"
                     HeightRequest="60"/>
 
-                <Label Text="Touch Sensor"
+                <Label Text="Verification Successful"
                        x:Name="sensor"
                    HorizontalOptions="Center"
                    FontSize="{StaticResource FontSize14}"
                    FontFamily="{StaticResource FontRegular}"
-                   TextColor="{StaticResource TextColor}"/>
+                   TextColor="#0DD88F"/>
 
                 <Label Text=""
                        x:Name="result"

@@ -8,7 +8,7 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid>
-            <Grid Padding="40,30,40,0"
+            <Grid Padding="30,30,30,0"
                   HorizontalOptions="FillAndExpand"
                   VerticalOptions="FillAndExpand">
                 <nav:BackButtonView x:Name="backBtn" />
@@ -32,21 +32,16 @@
                                 <Label LineBreakMode="WordWrap">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="Please do not fund your"
+                                            <Span Text="Dear customer, please find The PurpleGold Company Account details below. Kindly note that all funds must be sent to The PurpleGold Company Accout only, while proof of payment should be sent to "
                                                   TextColor="Black"
                                                   FontFamily="{StaticResource FontRegular}"
                                                   FontSize="{StaticResource FontSize12}"
                                                   LineHeight="1"/>
-                                            <Span Text=" PurpleGold"
+                                            <Span Text=" payment@thepurplegoldcompany.com"
                                                   TextColor="Black"
                                                    FontFamily="{StaticResource FontBold}"
                                                    FontSize="{StaticResource FontSize12}"
                                                    LineHeight="1" />
-                                            <Span Text=" Wallet from a bank account or debit card that is not in your name"
-                                                  TextColor="Black"
-                                                  FontFamily="{StaticResource FontRegular}"
-                                                  FontSize="{StaticResource FontSize12}"
-                                                  LineHeight="1" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
@@ -162,7 +157,7 @@
 
                             <StackLayout Margin="0,0,0,40">
                                 <Label
-                            Text="This account number is unique to your PurpleGold account"
+                            Text="This account number is unique to PurpleGold Company"
                             LineBreakMode="WordWrap"
                             TextColor="{StaticResource PurpleColor}"
                             FontFamily="{StaticResource FontRegular}"

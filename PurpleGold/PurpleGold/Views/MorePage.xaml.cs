@@ -19,6 +19,16 @@ namespace PurpleGold.Views
             InitializeComponent();
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () => {
+                Application.Current.MainPage = new AppShell();
+                await Shell.Current.GoToAsync("//main");
+                //if (result) await this.Navigation.PopAsync(); // or anything else
+            });
+
+            return true;
+        }
         public async void OnAccount_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new KYCPage());

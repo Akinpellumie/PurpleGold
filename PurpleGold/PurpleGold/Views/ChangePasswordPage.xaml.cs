@@ -78,6 +78,7 @@ namespace PurpleGold.Views
 
                 RootChangePassword withdrawRes = JsonConvert.DeserializeObject<RootChangePassword>(res);
                 var msg = withdrawRes.message;
+                var stat = withdrawRes.status;
 
                 if (response.IsSuccessful)
                 {
@@ -87,7 +88,7 @@ namespace PurpleGold.Views
                     SignOutClicked();
 
                 }
-                else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                else if (stat.Contains("400"))
                 {
                     notClicked.IsVisible = true;
                     clicked.IsVisible = false;
@@ -108,8 +109,16 @@ namespace PurpleGold.Views
                     usrVerPass.IsReadOnly = false;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                var exe = ex.Message.ToString();
+                notClicked.IsVisible = true;
+                clicked.IsVisible = false;
+                errorMsg.IsVisible = true;
+                errorLabel.Text = exe;
+                usrPass.IsReadOnly = false;
+                newPass.IsReadOnly = false;
+                usrVerPass.IsReadOnly = false;
                 return;
             }
         }

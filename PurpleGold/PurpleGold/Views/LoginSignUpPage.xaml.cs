@@ -15,6 +15,14 @@ namespace PurpleGold.Views
         public LoginSignUpPage()
         {
             InitializeComponent();
+            if(Settings.FirstTime == true)
+            {
+                CallSignUp();
+            }
+            else
+            {
+                Settings.FirstTime = false;
+            }
             MessagingCenter.Subscribe(this, "accountCreated", (object obj, string AccountCreated) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
@@ -69,6 +77,20 @@ namespace PurpleGold.Views
             signUpStack.IsVisible = false;
             await loginStack.FadeTo(1, 250, Easing.SinInOut);
         }
+
+        public async void CallSignUp()
+        {
+            LogActive.IsVisible = false;
+            login.TextColor = Color.FromHex("CC97CC");
+            signup.TextColor = Color.FromHex("9E079E");
+            active.IsVisible = true;
+            await second.ScaleTo(1, 250, Easing.BounceIn);
+            signUpStack.IsVisible = true;
+            forgotPassStack.IsVisible = false;
+            loginStack.IsVisible = false;
+            await loginStack.FadeTo(1, 250, Easing.SinInOut);
+        }
+
 
         private async void SignUpStack_Tapped(object sender, EventArgs e)
         {

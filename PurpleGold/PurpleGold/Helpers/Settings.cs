@@ -7,6 +7,10 @@ namespace PurpleGold
     public static class Settings
     {
         public static string Firstname { get; set; }
+        public static bool FirstTime { get; set; }
+        public static string Days { get; set; }
+        public static bool UserCreated { get; set; } = false;
+        public static string CurrentAmount { get; set; }
         public static string balance { get; set; }
         public static string Balance
         {

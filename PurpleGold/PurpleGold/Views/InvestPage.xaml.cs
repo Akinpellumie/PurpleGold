@@ -275,6 +275,18 @@ namespace PurpleGold.Views
                     ("N", CultureInfo.CurrentUICulture.NumberFormat.CurrencySymbol),
                     NumberStyles.Currency).ToString();
                 double amt = double.Parse(pt);
+                
+                string pet = double.Parse(Settings.balance.Replace
+                    ("N", CultureInfo.CurrentUICulture.NumberFormat.CurrencySymbol),
+                    NumberStyles.Currency).ToString();
+                double pell = double.Parse(pet);
+
+                if (amt > pell)
+                {
+                    AmterrorMsg.IsVisible = true;
+                    AmterrorLabel.Text = "Insufficient Balance!!!";
+                    return;
+                }
 
                 double relAmt = 25000;
                 if (amt < relAmt)
@@ -386,6 +398,17 @@ namespace PurpleGold.Views
         public void DownLoadMouClicked(object sender, EventArgs e)
         {
             PdfClickHandler();
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () => {
+                Application.Current.MainPage = new AppShell();
+                await Shell.Current.GoToAsync("//main");
+                //if (result) await this.Navigation.PopAsync(); // or anything else
+            });
+
+            return true;
         }
     }
 }

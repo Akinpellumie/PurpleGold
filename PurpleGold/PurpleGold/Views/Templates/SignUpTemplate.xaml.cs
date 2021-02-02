@@ -85,7 +85,29 @@ namespace PurpleGold.Views.Templates
                     FirstViewErrorMsg.IsVisible = true;
                     FirstErrorLabel.Text = msg;
                     FirstLoad.IsVisible = false;
+                    FirstContBtnLbl.IsVisible = true;
                     FirstErrorLabel.IsVisible = true;
+                    FirstView.IsVisible = true;
+                    SecondView.IsVisible = false;
+                    ThirdView.IsVisible = false;
+                    usrEmail.IsReadOnly = false;
+                    usrRef.IsReadOnly = false;
+                    usrFirstname.IsReadOnly = false;
+                    usrLastname.IsReadOnly = false;
+                    usrPhone.IsReadOnly = false;
+                });
+
+            });
+            
+            MessagingCenter.Subscribe(this, "errorrr", (object obj, string msgg) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    FirstViewErrorMsg.IsVisible = true;
+                    FirstErrorLabel.Text = msgg;
+                    FirstLoad.IsVisible = false;
+                    FirstErrorLabel.IsVisible = true;
+                    FirstContBtnLbl.IsVisible = true;
                     FirstView.IsVisible = true;
                     SecondView.IsVisible = false;
                     ThirdView.IsVisible = false;
@@ -450,6 +472,7 @@ namespace PurpleGold.Views.Templates
 
                 Person personProfile = JsonConvert.DeserializeObject<Person>(res);
                 var msg = personProfile.message;
+                var stat = personProfile.status;
 
                 if (response.IsSuccessful)
                 {
@@ -458,7 +481,7 @@ namespace PurpleGold.Views.Templates
                     Application.Current.MainPage = new NavigationPage(new LoginSignUpPage());
                     //MessagingCenter.Send<object, string>(this, "accountCreated", AccountCreated);
                 }
-                else if(response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                else if(stat.Contains("400"))
                 {
                     thirdViewErrorMsg.IsVisible = true;
                     thirdErrorLabel.IsVisible = true;

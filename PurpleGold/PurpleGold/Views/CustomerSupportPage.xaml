@@ -31,13 +31,15 @@
 
             <Label Text="+234 701 974 4429"
                    Margin="0,30,0,0" 
+                   x:Name="phone"
                    FontSize="{StaticResource FontSize12}"
                    FontFamily="{StaticResource FontRegular}"
                    TextColor="{StaticResource TextColor}"
                 HorizontalOptions="StartAndExpand" />
 
-            <Label Text="customersupport@Purplegoldcompany.com"
+                    <Label Text="support@thepurplegoldcompany.com"
                    Margin="0,30,0,0" 
+                           x:Name="email"
                    FontSize="{StaticResource FontSize12}"
                    FontFamily="{StaticResource FontRegular}"
                    TextColor="{StaticResource TextColor}"
@@ -86,6 +88,10 @@
                                TextColor="{StaticResource WhiteColor}"
                                HorizontalOptions="StartAndExpand" />
                     </Grid>
+                    <pv:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="PlacePhoneCall"
+                                                NumberOfTapsRequired="1"/>
+                    </pv:PancakeView.GestureRecognizers>
                 </pv:PancakeView>
                 <!--#endregion-->
                 
@@ -120,7 +126,11 @@
                                TextColor="{StaticResource WhiteColor}"
                                HorizontalOptions="StartAndExpand" />
                     </Grid>
-                </pv:PancakeView>
+                            <pv:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SendEmail"
+                                                NumberOfTapsRequired="1"/>
+                            </pv:PancakeView.GestureRecognizers>
+                 </pv:PancakeView>
                 <!--#endregion-->
             </StackLayout>
 

@@ -95,6 +95,7 @@ namespace PurpleGold.Views
             {
                 try
                 {
+                    errorMsg.IsVisible = false;
                     var t = double.Parse(((Entry)sender).Text.Replace("N", CultureInfo.CurrentUICulture.NumberFormat.CurrencySymbol), NumberStyles.Currency).ToString("C", CultureInfo.GetCultureInfo("en-us")).Replace("$", "N");
                     ((Entry)sender).Text = t;
                     ((Entry)sender).CursorPosition = t.Length - 3;
@@ -161,33 +162,45 @@ namespace PurpleGold.Views
                     Console.WriteLine(response.Content);
                     var res = response.Content;
 
-                    RootWallet withdrawRes = JsonConvert.DeserializeObject<RootWallet>(res);
+                WithdrawRoot withdrawRes = JsonConvert.DeserializeObject<WithdrawRoot>(res);
                     var msg = withdrawRes.message;
+                    var stat = withdrawRes.status;
 
-                    if (response.IsSuccessful)
+                    while (!string.IsNullOrEmpty(res))
                     {
-                        await PopupNavigation.Instance.PopAsync(true);
-                        Amount.Text = "";
-                        pswd.Text = "";
-                        await DisplayAlert("Success!!!", "Withdrawal request sent successfully!", "Ok");
+                        if (response.IsSuccessful)
+                        {
+                            await PopupNavigation.Instance.PopAsync(true);
+                            Amount.Text = "";
+                            pswd.Text = "";
+                            await PopupNavigation.Instance.PushAsync(new SuccessPopUp());
+                            break;
+                        }
+                        else if(response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                        {
+                            await PopupNavigation.Instance.PopAsync(true);
+                            MessagingCenter.Send<object, string>(this, "error", msg);
+                            await PopupNavigation.Instance.PushAsync(new FailPopUp());
+                            break;
+                        }
+                        else if (!response.IsSuccessful)
+                        {
+                            await PopupNavigation.Instance.PopAsync(true);
+                            MessagingCenter.Send<object, string>(this, "error", msg);
+                            await PopupNavigation.Instance.PushAsync(new FailPopUp());
+                            break;
+                        }
                         
-                    }
-                    else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-                    {
-                        await PopupNavigation.Instance.PopAsync(true);
-                        await DisplayAlert("Success!!!", msg, "Ok");
-                    }
-                    else
-                    {
-                        await PopupNavigation.Instance.PopAsync(true);
-                        
-                        await DisplayAlert("Server error!!!", msg, "Ok");
                     }
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    return;
+                var exe = ex.Message.ToString();
+                await PopupNavigation.Instance.PopAsync(true);
+                MessagingCenter.Send<object, string>(this, "error", exe);
+                await PopupNavigation.Instance.PushAsync(new FailPopUp());
+                return;
                 }
             }
         }

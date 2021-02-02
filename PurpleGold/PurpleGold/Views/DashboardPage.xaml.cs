@@ -2,6 +2,8 @@
 using PurpleGold.Helpers;
 using PurpleGold.Models;
 using PurpleGold.ViewModels;
+using PurpleGold.PopUps;
+using Rg.Plugins.Popup.Services;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -117,7 +119,16 @@ namespace PurpleGold.Views
             await this.FadeTo(1, 250, Easing.SinInOut);
         }
 
-        
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () => {
+                await PopupNavigation.Instance.PushAsync(new ExitAppPopUp());
+                //if (result) await this.Navigation.PopAsync(); // or anything else
+            });
+
+            return true;
+        }
+
         public async void TransferBtn_Clicked(object sender, EventArgs e)
         {
             transIcon.IsVisible = false;

@@ -3,6 +3,7 @@ using PurpleGold.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace PurpleGold.Models
@@ -45,51 +46,50 @@ namespace PurpleGold.Models
         public string Status { get; set; }
 
         public string totalReturn { get; set; }
+        public string AssetName { get; set; }
+
+        public string totalBalance;
         public string TotalBalance
         {
             get
             {
-                string kems = "loading...";
-                double min;
-                double max;
-                double dys;
-                dys = double.Parse(days);
-                double calc = dys * 1440;
-                min = double.Parse(amount);
-                max = double.Parse(totalReturn);
-                double costpermin = max / calc;
-                if (dys>0)
-                {
-                    Device.StartTimer(new TimeSpan(0, 0, 60), () =>
-                    {
-                        // do something every 60 seconds
-                        Device.BeginInvokeOnMainThread(() =>
-                        {
-                            double pel = min + costpermin++;
-                            string polo = pel.ToString();
-                            string Bal = Math.Round(Convert.ToDouble(polo), 2).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-us")).Replace("$", "N");
-
-                            kems = Bal;
-                            var updAmt = Bal;
-                            MessagingCenter.Send<object, string>(this, "timer", updAmt);
-                        });
-                        return true; // runs again, or false to stop
-                    });
-                    return kems;
-                }
-                else
-                {
-                    string meeBal = Math.Round(Convert.ToDouble(this.totalReturn), 2).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-us")).Replace("$", "N");
-                    return meeBal;
-                }
+                string meeBal = Math.Round(Convert.ToDouble(this.totalReturn), 2).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-us")).Replace("$", "N");
+                return meeBal;
             }
-
             set
             {
                 TotalBalance = value;
                 OnPropertyChanged(nameof(TotalBalance));
             }
         }
+
+        //public string TotalBalance 
+        //{
+        //    get 
+        //    {
+        //        string meeBal = Math.Round(Convert.ToDouble(this.totalReturn), 2).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-us")).Replace("$", "N");
+        //        return meeBal;
+        //    }
+        //    set 
+        //    { 
+        //        TotalBalance = value;
+        //        OnPropertyChanged(nameof(TotalBalance));
+        //    }
+        //}
+
+        //public string TotalBal
+        //{
+        //    get
+        //    {
+        //        string kems = "loading...";
+        //        return kems;
+        //    }
+
+        //    set
+        //    {
+        //        TotalBal = value;
+        //    }
+        //}
 
         public string startDate { get; set; }
 
@@ -154,8 +154,11 @@ namespace PurpleGold.Models
             {
                 DateTime end = DateTime.Parse(this.endDate.Replace("[UTC]", ""));
                 DateTime start = DateTime.Parse(this.startDate.Replace("[UTC]", ""));
-                TimeSpan timeSpan = end.Subtract(start);
-                days = timeSpan.Days.ToString();
+                DateTime today = DateTime.Today;
+                TimeSpan remaining = end - DateTime.Now;
+                var diffe = remaining.Days;
+                days = diffe.ToString();
+                Settings.Days = days;
                 string rem = days + " DAYS REMAINING";
                 return rem;
 

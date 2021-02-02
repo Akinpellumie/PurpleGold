@@ -43,6 +43,8 @@ namespace PurpleGold.Services
 
                     RegisterInvestor newUser = JsonConvert.DeserializeObject<RegisterInvestor>(res);
                     var msg = newUser.message;
+                    var stat = newUser.status;
+                    var vex = newUser.createUserData.id;
 
                     if (response.IsSuccessful)
                     {
@@ -50,11 +52,11 @@ namespace PurpleGold.Services
                         MessagingCenter.Send(this, "SuccessRegister");
                         Response = true;
                         Settings.UserId = newUser.createUserData.id;
-
+                        Settings.UserCreated = true;
                         //AppShell fpm = new AppShell();
                         //Application.Current.MainPage = fpm;
                     }
-                    else if(response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                   else if(stat.Contains("400"))
                     {
                         MessagingCenter.Send<object, string>(this, "error", msg);
                         Response = false;
@@ -69,6 +71,8 @@ namespace PurpleGold.Services
             }
             catch (Exception)
             {
+                var msgg = "Server error!!! Please try again later.";
+                MessagingCenter.Send<object, string>(this, "errorrr", msgg);
                 return false;
             }
 

@@ -77,6 +77,13 @@ namespace PurpleGold.ViewModels
             set { SetProperty(ref password, value); }
         }
         
+        public DateTime dob;
+        public DateTime DOB
+        {
+            get { return dob; }
+            set { SetProperty(ref dob, value); }
+        }
+        
         public string secQue;
         public string SecQuestion
         {
@@ -99,7 +106,7 @@ namespace PurpleGold.ViewModels
 
         public void OnContinue_Clicked()
         {
-            if (Email == null || FullName == null || PhoneNumber == null )
+            if (Email == null || Firstname == null || Lastname == null || PhoneNumber == null )
             {
                 var req = "Input fields empty.";
                 MessagingCenter.Send<object, string>(this, "FillAll", req);
@@ -113,9 +120,13 @@ namespace PurpleGold.ViewModels
                 {
                     email = Email.Trim(),
                     referralCode = RefCode,
-                    firstname = Firstname,
-                    lastname = Lastname
+                    firstname = Firstname.Trim(),
+                    lastname = Lastname.Trim(),
                 };
+                //var slm = DOB.ToString();
+                //DateTime date = DateTime.Parse(slm.Replace("[UTC]", ""));
+                string newDate = DOB.ToLocalTime().ToString("yyyy-MM-dd");
+                registerData.dob = newDate;
                 //string fullName = FullName;
                 //var names = fullName.Split(' ');
                 //string firstName = names[0];

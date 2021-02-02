@@ -55,6 +55,7 @@ namespace PurpleGold.Models
     {
         public string email { get; set; }
         public string password { get; set; }
+        public string dob { get; set; }
         public string phoneNumber { get; set; }
         public string firstname { get; set; }
         public string lastname { get; set; }
@@ -102,6 +103,7 @@ namespace PurpleGold.Models
     public class Person
     {
         public string message { get; set; }
+        public string status { get; set; }
 
         [JsonProperty("data")]
         public PersonData personData { get; set; }

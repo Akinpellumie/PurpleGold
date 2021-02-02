@@ -106,6 +106,44 @@
 
                             <pv:PancakeView BackgroundColor="Transparent"
                                                 Margin="0,0,0,10"
+                                                x:Name="dobFrame"
+                                                CornerRadius="5"
+                                                HorizontalOptions="Fill"
+                                                HeightRequest="45">
+                                <pv:PancakeView.Border>
+                                    <pv:Border Thickness="1" Color="{StaticResource FrameBorderColor}" />
+                                </pv:PancakeView.Border>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <ff1:SvgCachedImage
+                                            Source="birthday.svg"
+                                            Grid.Column="0"
+                                            Margin="10,0,0,0"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            Aspect="AspectFit"
+                                            HeightRequest="20"/>
+                                    <Controls:CustomDatePicker  x:Name="usrDob"
+                                                                Date="{Binding DOB, Mode=TwoWay}"
+                                                                Grid.Column="1" 
+                                                                PlaceholderColor="{StaticResource PlaceholderColor}"
+                                                                Placeholder="Select DOB"
+                                                                Format="d"
+                                                                MinimumDate="01/01/1970"
+                                                                MaximumDate="12/31/2003"
+                                                                BackgroundColor="Transparent"
+                                                                TextColor="{StaticResource TextColor}"
+                                                                FontSize="{StaticResource FontSize12}"
+                                                                Margin="10,0,0,0"
+                                                                FontFamily="{StaticResource FontRegular}"/>
+                                </Grid>
+                            </pv:PancakeView>
+
+                            <pv:PancakeView BackgroundColor="Transparent"
+                                                Margin="0,0,0,10"
                                                 x:Name="mailFrame"
                                                 CornerRadius="5"
                                                 HorizontalOptions="Fill"
@@ -143,6 +181,7 @@
                                     </Controls:CustomEntry>
                                 </Grid>
                             </pv:PancakeView>
+                            
 
                             <pv:PancakeView BackgroundColor="Transparent"
                                                 Margin="0,0,0,10"
@@ -170,7 +209,7 @@
                                                                Grid.Column="1" 
                                                                PlaceholderColor="{StaticResource FrameBorderColor}" 
                                                                TextColor="{StaticResource TextColor}" 
-                                                               Placeholder="Phone Number (e.g 08090807060)"
+                                                               Placeholder="Phone Number (e.g 08000000000)"
                                                        MaxLength="11"
                                                        Text="{Binding PhoneNumber, Mode=TwoWay}" 
                                                                FontSize="{StaticResource FontSize12}"

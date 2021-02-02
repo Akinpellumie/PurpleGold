@@ -35,6 +35,9 @@
     <Compile Update="Views\KYCPage.xaml.cs">
       <DependentUpon>KYCPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\GetStartedPage.xaml.cs">
+      <DependentUpon>GetStartedPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -52,6 +55,12 @@
     </EmbeddedResource>
     <EmbeddedResource Update="PopUps\BankPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PopUps\DepositPopUp.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PopUps\ExitAppPopUp.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="PopUps\FailPopUp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -119,7 +128,10 @@
     <EmbeddedResource Update="Views\PrivacyPolicyPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\SplashScreenPage.xaml">
+    <EmbeddedResource Update="Views\GetStartedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SplashScreen.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\AltBottomNavTemplate.xaml">

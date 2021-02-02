@@ -24,6 +24,7 @@ namespace PurpleGold.Views.Templates
             investViewModel = new InvestViewModel(Navigation);
             InitializeComponent();
             BindingContext = investViewModel;
+           
         }
 
         //public string FormatAmount

@@ -97,11 +97,29 @@ namespace PurpleGold.ViewModels
         public LoginViewModel()
         {
             //CheckBalance();
+            Permission();
             LoginCommand = new Command(() => OnLoginBtn_Clicked());
             SignUpCommand = new Command(() => OnSignUpClicked());
             FingerPrintCommand = new Command(() => FingerPrint_Clicked());
         }
 
+        public async void Permission()
+        {
+            try
+            {
+                await Permissions.RequestAsync<Permissions.Camera>();
+                await Permissions.RequestAsync<Permissions.StorageRead>();
+                await Permissions.RequestAsync<Permissions.StorageWrite>();
+                await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+                await Permissions.RequestAsync<Permissions.LocationAlways>();
+                await Permissions.RequestAsync<Permissions.NetworkState>();
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
+        }
         public void FingerPrint_Clicked()
         {
             FingerPrint = true;
@@ -116,7 +134,7 @@ namespace PurpleGold.ViewModels
                 return;
             }
 
-            var request = new AuthenticationRequestConfiguration("Prove you have fingers!", "Because without it you can't have access");
+            var request = new AuthenticationRequestConfiguration("Biometric Login", "Please tap your fingerprint sensor to continue");
             var result = await CrossFingerprint.Current.AuthenticateAsync(request);
             if (result.Authenticated)
             {

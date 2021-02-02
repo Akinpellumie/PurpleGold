@@ -94,5 +94,16 @@ namespace PurpleGold.Views
             base.OnDisappearing();
             await this.FadeTo(1, 550, Easing.SinInOut);
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () => {
+                Application.Current.MainPage = new AppShell();
+                await Shell.Current.GoToAsync("//main");
+                //if (result) await this.Navigation.PopAsync(); // or anything else
+            });
+
+            return true;
+        }
     }
 }

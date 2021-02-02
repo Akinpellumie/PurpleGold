@@ -66,6 +66,7 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controls\CustomDatePickerRenderer.cs" />
     <Compile Include="Controls\OTPCustomEntryRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
@@ -419,5 +420,11 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Increment_loader.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\birthday.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\appLogo.svg" />
   </ItemGroup>
 </Project>

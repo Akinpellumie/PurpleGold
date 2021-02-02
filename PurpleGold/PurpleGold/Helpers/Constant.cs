@@ -20,10 +20,19 @@ namespace PurpleGold.Helpers
         {
             get
             {
-                return "https://purplegold.netlify.app/mobile-faq.html";
+                return "https://thepurplegoldcompany.com/mobile-faq";
             }
         }
-        
+
+        public static ImageSource pexelsUrl
+        {
+            get
+            {
+                Uri source = new Uri("https://images.pexels.com/photos/5423730/pexels-photo-5423730.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+                return source;
+            }
+        }
+
         public static string LoginUrl
         {
             get

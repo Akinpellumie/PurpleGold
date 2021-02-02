@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,20 +8,19 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PurpleGold
+namespace PurpleGold.PopUps
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AppShell : Shell
+    public partial class DepositPopUp
     {
-        public AppShell()
+        public DepositPopUp()
         {
             InitializeComponent();
         }
 
-        protected override async void OnAppearing()
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            base.OnAppearing();
-            await this.FadeTo(1, 250, Easing.SinInOut);
+            await PopupNavigation.Instance.PopAsync(true);
         }
     }
 }

@@ -9,7 +9,8 @@
                  CloseWhenBackgroundIsClicked="False"
                  xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
                  xmlns:viewmodels="clr-namespace:PurpleGold.ViewModels" xmlns:behavior="clr-namespace:PurpleGold.Behaviors" xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-                 x:Class="PurpleGold.PopUps.Loader">
+                 x:Class="PurpleGold.PopUps.ExitAppPopUp"
+                 BackgroundColor="#88ffffff">
 
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation DurationIn="100"
@@ -27,7 +28,7 @@
     <pv:PancakeView Padding="10,40,10,10"
                  BackgroundColor="White"
                     CornerRadius="5"
-                 HorizontalOptions="Fill"
+                 HorizontalOptions="Center"
                     Margin="20,0,20,0"
                  VerticalOptions="Center">
         <pv:PancakeView.Shadow>
@@ -35,17 +36,44 @@
         </pv:PancakeView.Shadow>
         <StackLayout VerticalOptions="Center"
                      HorizontalOptions="Center">
-            <ActivityIndicator 
-                Grid.RowSpan="2"
-                IsVisible="True"
-                IsRunning="True"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"/>
+            <Label Text="Are you sure you"
+                   FontSize="{StaticResource FontSize24}"
+                   FontFamily="{StaticResource FontBold}"
+                   HorizontalOptions="Center"
+                   TextColor="{StaticResource PurpleColor}"/>
 
-            <Label Text="Please Wait..."
-                   FontSize="{StaticResource FontSize14}"
-                   FontFamily="{StaticResource FontRegular}"
-                   TextColor="{StaticResource TextColor}"/>
+            <Label Text="want to Exit the App?"
+                   FontSize="{StaticResource FontSize24}"
+                   FontFamily="{StaticResource FontBold}"
+                   HorizontalOptions="Center"
+                   TextColor="{StaticResource PurpleColor}"/>
+
+            <StackLayout Margin="0,10,0,0">
+                <Grid ColumnSpacing="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Text="Sure"
+                            TextColor="{StaticResource WhiteColor}"
+                            FontFamily="{StaticResource FontBold}"
+                            
+                            BackgroundColor="{StaticResource PurpleColor}"
+                            Grid.Column="0"
+                            Clicked="ExitAppClicked"
+                            HeightRequest="45"/>
+
+                    <Button Text="Cancel"
+                            Clicked="CancelClicked"
+                            Grid.Column="1"
+                            TextColor="{StaticResource WhiteColor}"
+                            BackgroundColor="{StaticResource SecondPurpleColor}"
+                            HeightRequest="45"/>
+
+
+                </Grid>
+            </StackLayout>
         </StackLayout>
     </pv:PancakeView>
 </pages:PopupPage>

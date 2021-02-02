@@ -2,6 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" xmlns:htmlLabel="clr-namespace:LabelHtml.Forms.Plugin.Abstractions;assembly=HtmlLabel.Forms.Plugin"
              x:Class="PurpleGold.Views.Templates.AssetViewTemplate"
+             xmlns:local="clr-namespace:PurpleGold.Helpers"
              x:Name="AssetDetails">
   <ContentView.Content>
         <ScrollView Orientation="Vertical" 
@@ -73,7 +74,7 @@
                                             <Label  x:Name="port"
                                         Grid.Column="0" 
                                         TextColor="{StaticResource GreenColor}" 
-                                        Text="PORTFOLIO1" 
+                                        Text="{Binding AssetName}" 
                                         FontSize="{StaticResource FontSize8}"
                                         VerticalOptions="Center"
                                         FontFamily="{StaticResource FontBold}"/>

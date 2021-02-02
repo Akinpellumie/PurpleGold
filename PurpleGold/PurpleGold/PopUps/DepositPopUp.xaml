@@ -9,7 +9,7 @@
                  CloseWhenBackgroundIsClicked="False"
                  xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
                  xmlns:viewmodels="clr-namespace:PurpleGold.ViewModels" xmlns:behavior="clr-namespace:PurpleGold.Behaviors" xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-                 x:Class="PurpleGold.PopUps.FailPopUp">
+                 x:Class="PurpleGold.PopUps.DepositPopUp">
 
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation DurationIn="100"
@@ -35,18 +35,58 @@
         </pv:PancakeView.Shadow>
         <Grid>
             <StackLayout VerticalOptions="CenterAndExpand"
-                     HorizontalOptions="FillAndExpand">
+                     HorizontalOptions="Fill">
                 <ff1:SvgCachedImage
-                Source="cancel.svg"
+                Source="thumbs.svg"
                 Grid.Column="1"
                 HorizontalOptions="CenterAndExpand"
                 VerticalOptions="CenterAndExpand"
                 HeightRequest="60"/>
 
-                <Label Text="Failed!!!"
-                       x:Name="failLbl"
+                <Label Text="Account Number Copied to Clipboard!!!"
                    HorizontalOptions="Center"
                    FontSize="{StaticResource FontSize14}"
+                   FontFamily="{StaticResource FontRegular}"
+                   TextColor="{StaticResource TextColor}"/>
+
+               
+                <Label LineBreakMode="WordWrap">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="After payment process to forward the following details: "
+                                                  TextColor="{StaticResource BlackColor}"
+                                                  FontFamily="{StaticResource FontRegular}"
+                                                  FontSize="{StaticResource FontSize12}"
+                                                  LineHeight="1"/>
+                            <Span Text="Name, Account name, Email address, and payment receipt"
+                                                  TextColor="{StaticResource BlackColor}"
+                                                   FontFamily="{StaticResource FontBold}"
+                                                   FontSize="{StaticResource FontSize12}"
+                                                   LineHeight="1" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                
+                <Label LineBreakMode="WordWrap">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="To "
+                                                  TextColor="{StaticResource BlackColor}"
+                                                  FontFamily="{StaticResource FontRegular}"
+                                                  FontSize="{StaticResource FontSize12}"
+                                                  LineHeight="1"/>
+                            <Span Text="payment@thepurplegoldcompany.com"
+                                                  TextColor="{StaticResource BlackColor}"
+                                                   FontFamily="{StaticResource FontBold}"
+                                                   FontSize="{StaticResource FontSize12}"
+                                                   LineHeight="1" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label Text="Your payment will be credited immediately to your wallet after by our customer care."
+                   HorizontalOptions="Center"
+                   FontSize="{StaticResource FontSize12}"
                    FontFamily="{StaticResource FontRegular}"
                    TextColor="{StaticResource TextColor}"/>
 
