@@ -136,14 +136,14 @@
                                                 <Grid>
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="*"/>
                                                     </Grid.RowDefinitions>
                                                     <Grid Grid.Row="0"
                                                           HorizontalOptions="FillAndExpand">
                                                         <Label
                                                             x:Name="showClose"
                                                             Text="Show Balance"
-                                                            Margin="0,0,0,5"
+                                                            Margin="0,0,0,3"
                                                             TextColor="White"
                                                             HorizontalOptions="StartAndExpand"
                                                             FontSize="{StaticResource FontSize8}"
@@ -161,6 +161,7 @@
                                                     Text="N XXX,XXX.XX"
                                                         Grid.Row="1"
                                                     TextColor="White"
+                                                        LineBreakMode="TailTruncation"
                                                     FontSize="{StaticResource FontSize14}"
                                                     FontFamily="{StaticResource FontBold}"
                                                     VerticalOptions="Center"/>
