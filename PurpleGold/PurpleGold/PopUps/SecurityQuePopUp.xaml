@@ -55,14 +55,15 @@
                                 <ViewCell>
                                     <StackLayout>
                                         <Label Text="{Binding Question}" 
-                                           VerticalOptions="Center"
+                                           VerticalOptions="CenterAndExpand"
+                                               LineBreakMode="WordWrap"
                                            HorizontalOptions="StartAndExpand"
-                                           Margin="25,0,25,0"
+                                           Margin="20,0,20,10"
                                            TextColor="{StaticResource TextColor}"
                                            FontFamily="{StaticResource FontRegular}" 
                                            FontSize="{StaticResource FontSize12}"/>
                                         <BoxView Color="{StaticResource SubTextColor}"
-                                                 Margin="0,13,0,0"
+                                                 Margin="0,5,0,0"
                                                  BackgroundColor="{StaticResource SubTextColor}"
                                                  HeightRequest="0.1"
                                                  HorizontalOptions="Fill"/>

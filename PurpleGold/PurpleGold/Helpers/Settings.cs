@@ -49,6 +49,7 @@ namespace PurpleGold
         public static string ImageUrl { get; set; }
 
         public static Person PersonProfile { get; set; }
+        public static GetInvestor CurrentInvestor { get; set; }
         public static string AppId
         {
             get
@@ -58,6 +59,7 @@ namespace PurpleGold
         }
 
         public static ObservableCollection<MyPlan> PlanList { get; set; }
+        public static ObservableCollection<AllBanks> BankList { get; set; }
         public static ObservableCollection<Investment> InvestmentList { get; set; }
     }
 

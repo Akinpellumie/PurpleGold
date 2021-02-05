@@ -44,4 +44,38 @@ namespace PurpleGold.Models
         public string BankCode { get; set; }
     }
     #endregion
+
+
+    #region Paystack BankList API
+    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
+    public class AllBanks
+    {
+        [JsonProperty("name")]
+        public string BankName { get; set; }
+        public string slug { get; set; }
+
+        [JsonProperty("code")]
+        public string BankCode { get; set; }
+        public string longcode { get; set; }
+        public string gateway { get; set; }
+        public string pay_with_bank { get; set; }
+        public string active { get; set; }
+        public string is_deleted { get; set; }
+        public string country { get; set; }
+        public string currency { get; set; }
+        public string type { get; set; }
+        public string id { get; set; }
+        public string createdAt { get; set; }
+        public string updatedAt { get; set; }
+    }
+
+    public class BankRoot
+    {
+        public string status { get; set; }
+        public string message { get; set; }
+        public List<AllBanks> data { get; set; }
+    }
+
+
+    #endregion
 }

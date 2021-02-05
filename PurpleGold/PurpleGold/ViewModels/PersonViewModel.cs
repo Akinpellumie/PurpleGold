@@ -1,5 +1,8 @@
-﻿using PurpleGold.Models;
+﻿using Newtonsoft.Json;
+using PurpleGold.Helpers;
+using PurpleGold.Models;
 using PurpleGold.ViewModel;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,6 +19,7 @@ namespace PurpleGold.ViewModels
 
             Navigation = navigation;
             GetTitle();
+            //GetUserById();
             //PickerCommand = new Command<Gender>(async (model) => await ExecutePickerCommand(model));
         }
 
@@ -32,6 +36,18 @@ namespace PurpleGold.ViewModels
             {
                 titleModelList = value;
                 OnPropertyChanged(nameof(TitleModelList));
+
+            }
+        }
+        
+        private ObservableCollection<PersonData> personData;
+        public ObservableCollection<PersonData> PersonData
+        {
+            get => personData;
+            set
+            {
+                personData = value;
+                OnPropertyChanged(nameof(PersonData));
 
             }
         }

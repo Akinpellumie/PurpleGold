@@ -52,61 +52,71 @@ namespace PurpleGold.Views
         {
             try
             {
-                notClicked.IsVisible = false;
-                clicked.IsVisible = true;
-                usrPass.IsReadOnly = true;
-                newPass.IsReadOnly = true;
-                usrVerPass.IsReadOnly = true;
-                ChangePassword change = new ChangePassword()
+                if (string.IsNullOrEmpty(usrPass.Text) || string.IsNullOrEmpty(usrVerPass.Text) || string.IsNullOrEmpty(newPass.Text))
                 {
-                    oldPassword = usrPass.Text,
-                    newPassword = newPass.Text
-                };
-
-                string url = Constant.ResetPasswordUrl;
-
-                var json = JsonConvert.SerializeObject(change);
-                var client = new RestClient(url);
-                client.Timeout = -1;
-                var request = new RestRequest(Method.POST);
-                request.AddHeader("Authorization", Settings.Token);
-                request.AddHeader("appId", Settings.AppId);
-                request.AddParameter("application/json", json, ParameterType.RequestBody);
-                IRestResponse response = await client.ExecuteAsync(request);
-                Console.WriteLine(response.Content);
-                var res = response.Content;
-
-                RootChangePassword withdrawRes = JsonConvert.DeserializeObject<RootChangePassword>(res);
-                var msg = withdrawRes.message;
-                var stat = withdrawRes.status;
-
-                if (response.IsSuccessful)
-                {
-                    changePassStack.IsVisible = false;
-                    SuccessStack.IsVisible = true;
-                    await Task.Delay(500);
-                    SignOutClicked();
-
-                }
-                else if (stat.Contains("400"))
-                {
-                    notClicked.IsVisible = true;
-                    clicked.IsVisible = false;
                     errorMsg.IsVisible = true;
-                    errorLabel.Text = msg;
-                    usrPass.IsReadOnly = false;
-                    newPass.IsReadOnly = false;
-                    usrVerPass.IsReadOnly = false;
+                    errorLabel.Text = "Kindly fill all inputs";
+                    return;
                 }
-                else
+                else if (string.IsNullOrEmpty(usrPass.Text) && string.IsNullOrEmpty(usrVerPass.Text) && string.IsNullOrEmpty(newPass.Text))
                 {
-                    notClicked.IsVisible = true;
-                    clicked.IsVisible = false;
-                    errorMsg.IsVisible = true;
-                    errorLabel.Text = msg;
-                    usrPass.IsReadOnly = false;
-                    newPass.IsReadOnly = false;
-                    usrVerPass.IsReadOnly = false;
+
+                    notClicked.IsVisible = false;
+                    clicked.IsVisible = true;
+                    usrPass.IsReadOnly = true;
+                    newPass.IsReadOnly = true;
+                    usrVerPass.IsReadOnly = true;
+                    ChangePassword change = new ChangePassword()
+                    {
+                        oldPassword = usrPass.Text,
+                        newPassword = newPass.Text
+                    };
+
+                    string url = Constant.ResetPasswordUrl;
+
+                    var json = JsonConvert.SerializeObject(change);
+                    var client = new RestClient(url);
+                    client.Timeout = -1;
+                    var request = new RestRequest(Method.POST);
+                    request.AddHeader("Authorization", Settings.Token);
+                    request.AddHeader("appId", Settings.AppId);
+                    request.AddParameter("application/json", json, ParameterType.RequestBody);
+                    IRestResponse response = await client.ExecuteAsync(request);
+                    Console.WriteLine(response.Content);
+                    var res = response.Content;
+
+                    RootChangePassword withdrawRes = JsonConvert.DeserializeObject<RootChangePassword>(res);
+                    var msg = withdrawRes.message;
+                    var stat = withdrawRes.status;
+
+                    if (response.IsSuccessful)
+                    {
+                        changePassStack.IsVisible = false;
+                        SuccessStack.IsVisible = true;
+                        await Task.Delay(500);
+                        SignOutClicked();
+
+                    }
+                    else if (stat.Contains("400"))
+                    {
+                        notClicked.IsVisible = true;
+                        clicked.IsVisible = false;
+                        errorMsg.IsVisible = true;
+                        errorLabel.Text = msg;
+                        usrPass.IsReadOnly = false;
+                        newPass.IsReadOnly = false;
+                        usrVerPass.IsReadOnly = false;
+                    }
+                    else
+                    {
+                        notClicked.IsVisible = true;
+                        clicked.IsVisible = false;
+                        errorMsg.IsVisible = true;
+                        errorLabel.Text = msg;
+                        usrPass.IsReadOnly = false;
+                        newPass.IsReadOnly = false;
+                        usrVerPass.IsReadOnly = false;
+                    }
                 }
             }
             catch (Exception ex)

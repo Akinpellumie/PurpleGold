@@ -13,6 +13,7 @@ namespace PurpleGold.Helpers
             get
             {
                 return "https://purple-gold.herokuapp.com";
+                //return "http://localhost:3000";
             }
         }
         public static string FormatAmount = "N52,000.00";
@@ -71,6 +72,14 @@ namespace PurpleGold.Helpers
             }
         }
         
+        public static string AllBanksUrl
+        {
+            get
+            {
+                return Domainurl + "/banks";
+            }
+        }
+        
         public static string ForgotUrl
         {
             get
@@ -113,6 +122,14 @@ namespace PurpleGold.Helpers
             get
             {
                 return Domainurl + "/investor/invest";
+            }
+        }
+        
+        public static string GetInvestorByIdUrl
+        {
+            get
+            {
+                return Domainurl + "/investor/investors/";
             }
         }
         

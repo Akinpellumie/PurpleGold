@@ -111,6 +111,11 @@ namespace PurpleGold.Views.Templates
                     FirstView.IsVisible = true;
                     SecondView.IsVisible = false;
                     ThirdView.IsVisible = false;
+                    usrEmail.IsReadOnly = false;
+                    usrRef.IsReadOnly = false;
+                    usrFirstname.IsReadOnly = false;
+                    usrLastname.IsReadOnly = false;
+                    usrPhone.IsReadOnly = false;
                 });
 
             });
@@ -470,34 +475,41 @@ namespace PurpleGold.Views.Templates
                 Console.WriteLine(response.Content);
                 var res = response.Content;
 
-                Person personProfile = JsonConvert.DeserializeObject<Person>(res);
+                RegisterRoot personProfile = JsonConvert.DeserializeObject<RegisterRoot>(res);
                 var msg = personProfile.message;
                 var stat = personProfile.status;
 
-                if (response.IsSuccessful)
+                while (!string.IsNullOrEmpty(res))
                 {
-                    //AccountCreated = "Your account has been created successfully!!!";
-                    await PopupNavigation.Instance.PushAsync(new SuccessPopUp());
-                    Application.Current.MainPage = new NavigationPage(new LoginSignUpPage());
-                    //MessagingCenter.Send<object, string>(this, "accountCreated", AccountCreated);
-                }
-                else if(stat.Contains("400"))
-                {
-                    thirdViewErrorMsg.IsVisible = true;
-                    thirdErrorLabel.IsVisible = true;
-                    thirdErrorLabel.Text = "Network Error! Please Try again later";
-                    ThirdLoad.IsVisible = false;
-                    ThirdContBtnLbl.IsVisible = true;
-                    backArr.IsVisible = true;
-                }
-                else
-                {
-                    thirdViewErrorMsg.IsVisible = true;
-                    thirdErrorLabel.IsVisible = true;
-                    thirdErrorLabel.Text = "Server Unavailable! Please Try again later!!!";
-                    ThirdLoad.IsVisible = false;
-                    ThirdContBtnLbl.IsVisible = true;
-                    backArr.IsVisible = true;
+                    if (response.IsSuccessful)
+                    {
+                        //AccountCreated = "Your account has been created successfully!!!";
+                        await PopupNavigation.Instance.PushAsync(new SuccessPopUp());
+                        Application.Current.MainPage = new NavigationPage(new LoginSignUpPage());
+                        break;
+                        //MessagingCenter.Send<object, string>(this, "accountCreated", AccountCreated);
+                    }
+                    else if (stat.Contains("400"))
+                    {
+                        thirdViewErrorMsg.IsVisible = true;
+                        thirdErrorLabel.IsVisible = true;
+                        thirdErrorLabel.Text = "Network Error! Please Try again later";
+                        ThirdLoad.IsVisible = false;
+                        ThirdContBtnLbl.IsVisible = true;
+                        backArr.IsVisible = true;
+                        break;
+                    }
+                    else if (!response.IsSuccessful)
+                    {
+                        thirdViewErrorMsg.IsVisible = true;
+                        thirdErrorLabel.IsVisible = true;
+                        thirdErrorLabel.Text = "Server Unavailable! Please Try again later!!!";
+                        ThirdLoad.IsVisible = false;
+                        ThirdContBtnLbl.IsVisible = true;
+                        backArr.IsVisible = true;
+                        break;
+                    }
+
                 }
 
             }

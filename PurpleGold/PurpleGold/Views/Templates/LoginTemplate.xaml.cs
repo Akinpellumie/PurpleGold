@@ -98,6 +98,22 @@ namespace PurpleGold.Views.Templates
             MessagingCenter.Send<object, string>(this, "showPass", forgotPassClicked);
         }
 
+        protected async override void OnChildAdded(Element child)
+        {
+            base.OnChildAdded(child);
+            await this.FadeTo(1, 250, Easing.SinInOut);
+            try
+            {
+                var password = await SecureStorage.GetAsync("password");
+                //usrPass.Text = password;
+                var email = await SecureStorage.GetAsync("email");
+                usrEmail.Text = email;
+            }
+            catch (Exception)
+            {
+                // Possible that device doesn't support secure storage on device.
+            }
+        }
         protected async override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -105,7 +121,7 @@ namespace PurpleGold.Views.Templates
             try
             {
                 var password = await SecureStorage.GetAsync("password");
-                usrPass.Text = password;
+                //usrPass.Text = password;
                 var email = await SecureStorage.GetAsync("email");
                 usrEmail.Text = email;
             }

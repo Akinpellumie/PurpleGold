@@ -41,6 +41,7 @@
                 IsVisible="{Binding IsBusy}"
                 IsRunning="{Binding IsBusy}"
                 HorizontalOptions="Center"
+                Color="{StaticResource PurpleColor}"
                 VerticalOptions="Center"/>
             
             <Grid Margin="0,5,0,0">
@@ -91,8 +92,8 @@
                 </StackLayout>
 
                 <StackLayout Grid.Row="2" VerticalOptions="End" HorizontalOptions="End" Margin="5,5,10,5">
-                    <Button Text="Cancel" TextColor="{StaticResource YellowColor}" BackgroundColor="Transparent" FontAttributes="Bold"
-                           FontSize="15" Command="{Binding ClosePopCommand}" FontFamily="{StaticResource FontRegular}"/>
+                    <Button Text="Cancel" TextColor="{StaticResource PurpleColor}" BackgroundColor="Transparent" FontAttributes="Bold"
+                           FontSize="15" Command="{Binding ClosePopCommand}" FontFamily="{StaticResource FontBold}"/>
                 </StackLayout>
             </Grid>
          </StackLayout>

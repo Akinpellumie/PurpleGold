@@ -610,10 +610,54 @@
                           IsVisible="False">
                 <StackLayout>
 
-                    <StackLayout Orientation="Horizontal"
-                                         Margin="20,0,0,0">
+                        <!--#region  Go Back-->
+                        <!--<StackLayout Orientation="Horizontal" 
+                                         x:Name="backArr"
+                                         Margin="0,10,0,20"
+                                         Spacing="15"
+                                         IsVisible="True">
+                            <ff1:SvgCachedImage
+                                    Source="back.svg"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    Aspect="AspectFit"
+                                    WidthRequest="20"
+                                    HeightRequest="16">
+                                <ff1:SvgCachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="BackBtn_Clicked"
+                                              NumberOfTapsRequired="1"/>
+                                </ff1:SvgCachedImage.GestureRecognizers>
+                            </ff1:SvgCachedImage>
 
-                        <Label LineBreakMode="WordWrap" VerticalOptions="Center">
+                            <Label Text="Go Back"
+                                       FontSize="{StaticResource FontSize16}"
+                                       TextColor="{StaticResource TextColor}"
+                                       FontFamily="{StaticResource FontBold}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="Center"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="BackBtn_Clicked"
+                                                          NumberOfTapsRequired="1"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>-->
+                        <!--#endregion-->
+                    
+                        <Grid HorizontalOptions="FillAndExpand">
+
+                            <ff1:SvgCachedImage x:Name="backArr"
+                                    Source="back.svg"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"
+                                    Aspect="AspectFit"
+                                    WidthRequest="20"
+                                    HeightRequest="16">
+                                <ff1:SvgCachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="BackBtn_Clicked"
+                                              NumberOfTapsRequired="1"/>
+                                </ff1:SvgCachedImage.GestureRecognizers>
+                            </ff1:SvgCachedImage>
+                            
+                            <Label LineBreakMode="WordWrap" VerticalOptions="Center" HorizontalOptions="Center">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="You are " TextColor="{StaticResource TextColor}" FontFamily="{StaticResource FontRegular}"
@@ -623,7 +667,7 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                    </StackLayout>
+                    </Grid>
 
                         <StackLayout x:Name="ThirdEntryField"
                                          Margin="0,40,0,0"
@@ -880,38 +924,6 @@
                                 </pv:PancakeView.GestureRecognizers>
                             </pv:PancakeView>
                             <!--#region -->
-
-                            <!--#region  Go Back-->
-                            <StackLayout Orientation="Horizontal" 
-                                         x:Name="backArr"
-                                         Margin="0,30,0,0"
-                                         Spacing="15"
-                                         IsVisible="True">
-                                <ff1:SvgCachedImage
-                                    Source="back.svg"
-                                    HorizontalOptions="Center"
-                                    VerticalOptions="Center"
-                                    Aspect="AspectFit"
-                                    WidthRequest="20"
-                                    HeightRequest="16">
-                                    <ff1:SvgCachedImage.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="BackBtn_Clicked"
-                                              NumberOfTapsRequired="1"/>
-                                    </ff1:SvgCachedImage.GestureRecognizers>
-                                </ff1:SvgCachedImage>
-
-                                <Label Text="Go Back"
-                                       FontSize="{StaticResource FontSize16}"
-                                       TextColor="{StaticResource TextColor}"
-                                       FontFamily="{StaticResource FontBold}"
-                                       HorizontalOptions="StartAndExpand"
-                                       VerticalOptions="Center"/>
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="BackBtn_Clicked"
-                                                          NumberOfTapsRequired="1"/>
-                                </StackLayout.GestureRecognizers>
-                            </StackLayout>
-                            <!--#endregion-->
                            
 
                         </StackLayout>

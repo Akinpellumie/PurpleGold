@@ -75,19 +75,36 @@
                                             LineBreakMode="WordWrap"
                                             VerticalOptions="End"/>
 
-                                        <Button
+                                        <!--<Button
                                             Margin="0,20,0,0"
                                             Text="Skip"
                                             TextColor="White"
                                             BackgroundColor="{StaticResource PurpleColor}"
-                                            HeightRequest="30"
+                                            HeightRequest="35"
                                             FontFamily="{StaticResource FontRegular}"
-                                            FontSize="{StaticResource FontSize8}"
+                                            FontSize="{StaticResource FontSize10}"
                                             Clicked="Skip_Clicked"
                                             HorizontalOptions="Center"
                                             CornerRadius="5"
                                             TextTransform="None"
-                                            WidthRequest="70"/>
+                                            WidthRequest="70"/>-->
+                                        <pv:PancakeView BackgroundColor="{StaticResource PurpleColor}"
+                                                        Padding="0,6"
+                                                        Margin="0,20,0,0"
+                                                        HorizontalOptions="Center"
+                                                        CornerRadius="5"
+                                                        WidthRequest="70">
+                                            <Label Text="Skip"
+                                                   FontFamily="{StaticResource FontRegular}"
+                                                   FontSize="{StaticResource FontSize12}"
+                                                   TextColor="{StaticResource WhiteColor}"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"/>
+                                            <pv:PancakeView.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="Skip_Clicked"
+                                                                      NumberOfTapsRequired="1"/>
+                                            </pv:PancakeView.GestureRecognizers>
+                                        </pv:PancakeView>
                                     </StackLayout>
 
                                 </Grid>

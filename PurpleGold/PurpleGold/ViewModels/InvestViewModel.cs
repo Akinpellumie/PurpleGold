@@ -180,7 +180,8 @@ namespace PurpleGold.ViewModels
             {
                 IsBusy = true;
 
-                var url = Constant.GetInvestmentUrl + Settings.UserId;
+                //var url = Constant.GetInvestmentUrl + Settings.UserId;
+                var url = Constant.GetInvestmentUrl + Settings.UserId + "?status=ACTIVE";
                 var client = new RestClient(url);
                 client.Timeout = -1;
                 var request = new RestRequest(Method.GET);

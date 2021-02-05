@@ -298,16 +298,19 @@ UpdateMemberClicked()
                 {
                     
                     await PopupNavigation.Instance.PopAsync(true);
-                    await DisplayAlert("Success!", "Profile Updated", "Ok");
-
-
+                    await PopupNavigation.Instance.PushAsync(new SuccessPopUp());
+                    //Settings.BankName = bankName.Text;
+                    //Settings.AccountNumber = usracctno.Text;
+                    //Settings.AccountName = usracctname.Text;
+                    GetUserById();
                 }
                 else
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                     {
                         await PopupNavigation.Instance.PopAsync(true);
-                        await DisplayAlert("Oops!", "Server Unavailable! please try again later.", "Ok");
+                        MessagingCenter.Send<object, string>(this, "error", err);
+                        await PopupNavigation.Instance.PushAsync(new FailPopUp());
 
                     }
                     else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
@@ -375,5 +378,44 @@ UpdateMemberClicked()
             }
          }
 
-     }
+        public void GetUserById()
+        {
+            try
+            {
+                string url = Constant.GetInvestorByIdUrl + Settings.UserId;
+                var client = new RestClient(url);
+                client.Timeout = -1;
+                var request = new RestRequest(Method.GET);
+                request.AddHeader("appid", Settings.AppId);
+                request.AddHeader("Authorization", Settings.Token);
+                IRestResponse response = client.Execute(request);
+                var res = response.Content;
+                Console.WriteLine(response.Content);
+                //IsBusy = false;
+
+                GetInvestor person = JsonConvert.DeserializeObject<GetInvestor>(res);
+                Settings.CurrentInvestor = person;
+                var currentUser = person.data[0];
+
+                Settings.Id = currentUser.id;
+                Settings.UserId = currentUser.bank;
+                Settings.Lastname = currentUser.lastname;
+                Settings.Firstname = currentUser.firstname;
+                Settings.Email = currentUser.email;
+                Settings.ReferralCode = currentUser.referralCode;
+                Settings.PhoneNumber = currentUser.phoneNumber;
+                Settings.ImageUrl = currentUser.imageUrl;
+                Settings.Title = currentUser.title;
+                Settings.AccountNumber = currentUser.accountNumber;
+                Settings.AccountName = currentUser.accountName;
+                Settings.State = currentUser.state;
+                Settings.Address = currentUser.houseOfResidence;
+
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+    }
 }

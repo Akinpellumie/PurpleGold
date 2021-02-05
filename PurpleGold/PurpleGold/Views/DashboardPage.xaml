@@ -337,7 +337,8 @@
                                                        FontFamily="{StaticResource FontBold}"
                                                        IsVisible="False"
                                                        TextColor="{StaticResource WhiteColor}"
-                                                       HorizontalOptions="Center"
+                                                       HorizontalOptions="CenterAndExpand"
+                                                       HorizontalTextAlignment="Center"
                                                        VerticalOptions="Center"
                                                        x:Name="TransLbl"/>
 
@@ -429,8 +430,9 @@
                                                     HeightRequest="150"/>
 
                                                 <Label Text="Coming Soon!!!"
-                                                       HorizontalOptions="Center"
-                                                       VerticalOptions="StartAndExpand"                                                      
+                                                       HorizontalOptions="CenterAndExpand"
+                                                       HorizontalTextAlignment="Center"
+                                                       VerticalOptions="Center"                                                      
                                                        TextColor="{StaticResource WhiteColor}"
                                                        LineBreakMode="WordWrap"
                                                        FontSize="{StaticResource FontSize20}"

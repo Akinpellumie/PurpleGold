@@ -29,9 +29,10 @@ namespace PurpleGold.Models
         public string accountName { get; set; }
         public string accountNumber { get; set; }
         public string bank { get; set; }
-        public int isActive { get; set; }
+        public string isActive { get; set; }
         public string createdAt { get; set; }
         public string updatedAt { get; set; }
+        public string lastLogin { get; set; }
         public string phoneNumber2 { get; set; }
         public string postalCode { get; set; }
         public string nameOfNextOfKin { get; set; }
@@ -39,11 +40,20 @@ namespace PurpleGold.Models
         public string marketerReason { get; set; }
         public string isMarketerVerified { get; set; }
         public string addressOfNextOfKin { get; set; }
+        public string dob { get; set; }
 
         public string token { get; set; }
         public List<UserRole> userRoles { get; set; }
         public List<Wallet> wallet { get; set; }
     }
+
+    public class GetInvestor
+    {
+        public string status { get; set; }
+        public string message { get; set; }
+        public List<PersonData> data { get; set; }
+    }
+
 
     public class LoginUser
     {

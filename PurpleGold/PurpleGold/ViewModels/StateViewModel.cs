@@ -117,6 +117,24 @@ namespace PurpleGold.ViewModels
             stateList.Add(new State { StateName = "Imo", StateCode = "023" });
             stateList.Add(new State { StateName = "Jigawa", StateCode = "023" });
             stateList.Add(new State { StateName = "Kaduna", StateCode = "023" });
+            stateList.Add(new State { StateName = "Kano", StateCode = "023" });
+            stateList.Add(new State { StateName = "Katsina", StateCode = "023" });
+            stateList.Add(new State { StateName = "Kebbi", StateCode = "023" });
+            stateList.Add(new State { StateName = "Kogi", StateCode = "023" });
+            stateList.Add(new State { StateName = "Kwara", StateCode = "023" });
+            stateList.Add(new State { StateName = "Lagos", StateCode = "023" });
+            stateList.Add(new State { StateName = "Nasarawa", StateCode = "023" });
+            stateList.Add(new State { StateName = "Ogun", StateCode = "023" });
+            stateList.Add(new State { StateName = "Ondo", StateCode = "023" });
+            stateList.Add(new State { StateName = "Osun", StateCode = "023" });
+            stateList.Add(new State { StateName = "Oyo", StateCode = "023" });
+            stateList.Add(new State { StateName = "Plateau", StateCode = "023" });
+            stateList.Add(new State { StateName = "Rivers", StateCode = "023" });
+            stateList.Add(new State { StateName = "Sokoto", StateCode = "023" });
+            stateList.Add(new State { StateName = "Taraba", StateCode = "023" });
+            stateList.Add(new State { StateName = "Yobe", StateCode = "023" });
+            stateList.Add(new State { StateName = "Zamfara", StateCode = "023" });
+            stateList.Add(new State { StateName = "FCT (Abuja)", StateCode = "023" });
             StateList = stateList;
 
         }

@@ -133,8 +133,7 @@ namespace PurpleGold.Views
         {
             transIcon.IsVisible = false;
             TransLbl.IsVisible = true;
-            await TransLbl.FadeTo(0, 2000, Easing.BounceOut);
-            await Task.Delay(2000);
+            await Task.Delay(1000);
             TransLbl.IsVisible = false;
             transIcon.IsVisible = true;
 
@@ -144,8 +143,7 @@ namespace PurpleGold.Views
         {
             swapIcon.IsVisible = false;
             swapLbl.IsVisible = true;
-            await swapLbl.FadeTo(0, 2000, Easing.BounceOut);
-            await Task.Delay(2000);
+            await Task.Delay(1000);
             swapLbl.IsVisible = false;
             swapIcon.IsVisible = true;
 

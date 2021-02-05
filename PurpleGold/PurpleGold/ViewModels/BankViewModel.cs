@@ -1,6 +1,8 @@
-﻿using PurpleGold.Helpers;
+﻿using Newtonsoft.Json;
+using PurpleGold.Helpers;
 using PurpleGold.Models;
 using PurpleGold.ViewModel;
+using RestSharp;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.ObjectModel;
@@ -76,8 +78,8 @@ namespace PurpleGold.ViewModels
             }
         }
 
-        private ObservableCollection<DummyBank> searchData;
-        public ObservableCollection<DummyBank> SearchData
+        private ObservableCollection<AllBanks> searchData;
+        public ObservableCollection<AllBanks> SearchData
         {
             get => searchData;
             set
@@ -87,8 +89,8 @@ namespace PurpleGold.ViewModels
 
             }
         }
-        private ObservableCollection<DummyBank> bankData;
-        public ObservableCollection<DummyBank> BankData
+        private ObservableCollection<AllBanks> bankData;
+        public ObservableCollection<AllBanks> BankData
         {
             get => bankData;
             set
@@ -107,10 +109,10 @@ namespace PurpleGold.ViewModels
         public BankViewModel()
         {
             //LoadBanks();
-            GetDummyBanks();
+            GetAllBanks();
             SearchCommand = new Command<TextChangedEventArgs>(textChanged => SearchBar_TextChanged(textChanged));
             ClosePopCommand = new Command(async () => await ClosePop_Clicked());
-            SelectedCommand = new Command<DummyBank>(async (model) => await ExecutePickerCommand(model));
+            SelectedCommand = new Command<AllBanks>(async (model) => await ExecutePickerCommand(model));
             //BankName = Settings.BankName;
             //BankCode = Settings.BankCode;
         }
@@ -136,24 +138,56 @@ namespace PurpleGold.ViewModels
 
         //}
 
-        public void GetDummyBanks()
+        public void GetAllBanks()
         {
-            bankData = new ObservableCollection<DummyBank>();
-            bankData.Add(new DummyBank { BankName = "First Bank Plc", BankCode="023" });
-            bankData.Add(new DummyBank { BankName = "Access Bank Plc", BankCode="024" });
-            bankData.Add(new DummyBank { BankName = "GT Bank Plc", BankCode="025" });
-            bankData.Add(new DummyBank { BankName = "EcoBank Plc", BankCode="026" });
-            bankData.Add(new DummyBank { BankName = "Sterling Bank Plc", BankCode="027" });
-            bankData.Add(new DummyBank { BankName = "Stanbic IBTC Bank", BankCode="028" });
-            bankData.Add(new DummyBank { BankName = "AstraPolaris Bank Plc", BankCode="029" });
-            bankData.Add(new DummyBank { BankName = "MTN Y'ello Bank", BankCode="034" });
-            bankData.Add(new DummyBank { BankName = "Layi MFB Plc", BankCode="039" });
-            bankData.Add(new DummyBank { BankName = "Keystone Bank Plc", BankCode="036" });
-            bankData.Add(new DummyBank { BankName = "Heritage Bank Plc", BankCode="037" });
-            bankData.Add(new DummyBank { BankName = "Zenith Bank Plc", BankCode="047" });
-            bankData.Add(new DummyBank { BankName = "Wema Bank Plc", BankCode="017" });
-            BankData = bankData;
+            try
+            {
+                if (Settings.BankList == null)
+                {
+                    IsBusy = true;
 
+                    string url = Constant.AllBanksUrl;
+                    var client = new RestClient(url);
+                    client.Timeout = -1;
+                    var request = new RestRequest(Method.GET);
+                    request.AddHeader("appId", "PGINVESTOR");
+                    request.AddParameter("text/plain", "", ParameterType.RequestBody);
+                    IRestResponse response = client.Execute(request);
+                    var res = response.Content;
+                    Console.WriteLine(response.Content);
+
+                    IsBusy = false;
+
+                    BankRoot allbanks = JsonConvert.DeserializeObject<BankRoot>(res);
+                    while (!string.IsNullOrEmpty(res))
+                    {
+                        if (response.IsSuccessful)
+                        {
+                            var sorted = allbanks.data;
+                            var banks = new ObservableCollection<AllBanks>(sorted);
+
+                            BankData = banks;
+                            Settings.BankList = banks;
+                            IsBusy = false;
+                            break;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+
+                }
+                else
+                {
+                    BankData = new ObservableCollection<AllBanks>(Settings.BankList);
+                    SearchData = BankData;
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
         #endregion
 
@@ -175,7 +209,7 @@ namespace PurpleGold.ViewModels
 
             else
             {
-                SearchData = (ObservableCollection<DummyBank>)BankData.Where(x => x.BankName.Contains(textChanged.NewTextValue, StringComparison.OrdinalIgnoreCase));
+                SearchData = (ObservableCollection<AllBanks>)BankData.Where(x => x.BankName.Contains(textChanged.NewTextValue, StringComparison.OrdinalIgnoreCase));
             }
         }
 
@@ -183,7 +217,7 @@ namespace PurpleGold.ViewModels
 
         #region Messaging
 
-        private async Task ExecutePickerCommand([Optional] DummyBank model)
+        private async Task ExecutePickerCommand([Optional] AllBanks model)
         {
 
             var selectedBank = model;
