@@ -138,7 +138,7 @@ namespace PurpleGold.ViewModels
 
         //}
 
-        public void GetAllBanks()
+        public async void GetAllBanks()
         {
             try
             {
@@ -152,7 +152,7 @@ namespace PurpleGold.ViewModels
                     var request = new RestRequest(Method.GET);
                     request.AddHeader("appId", "PGINVESTOR");
                     request.AddParameter("text/plain", "", ParameterType.RequestBody);
-                    IRestResponse response = client.Execute(request);
+                    IRestResponse response = await client.ExecuteAsync(request);
                     var res = response.Content;
                     Console.WriteLine(response.Content);
 

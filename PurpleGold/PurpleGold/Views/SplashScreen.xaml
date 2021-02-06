@@ -14,7 +14,7 @@
                     Aspect="AspectFit"/>
 
             <ff1:SvgCachedImage
-                    Source="official.png"
+                    Source="appLogo.png"
                 x:Name="logo"
                     HorizontalOptions="CenterAndExpand"
                     VerticalOptions="Center"

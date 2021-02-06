@@ -49,7 +49,7 @@ namespace PurpleGold.PopUps
         public async void SelectedBank_Tapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null) return;
-            var selectedBank = e.Item as DummyBank;
+            var selectedBank = e.Item as AllBanks;
             BankName = selectedBank.BankName;
             BankCode = selectedBank.BankCode;
             MessagingCenter.Send<object, string>(this, "bankName", BankName);

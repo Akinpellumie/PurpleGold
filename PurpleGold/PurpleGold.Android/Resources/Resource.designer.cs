@@ -19017,61 +19017,64 @@ namespace PurpleGold.Droid
 			public const int purple = 2131231018;
 			
 			// aapt resource value: 0x7F08012B
-			public const int purpleLogo = 2131231019;
+			public const int purpleIcon = 2131231019;
 			
 			// aapt resource value: 0x7F08012C
-			public const int right = 2131231020;
+			public const int purpleLogo = 2131231020;
 			
 			// aapt resource value: 0x7F08012D
-			public const int rocket = 2131231021;
+			public const int right = 2131231021;
 			
 			// aapt resource value: 0x7F08012E
-			public const int search = 2131231022;
+			public const int rocket = 2131231022;
 			
 			// aapt resource value: 0x7F08012F
-			public const int security = 2131231023;
+			public const int search = 2131231023;
 			
 			// aapt resource value: 0x7F080130
-			public const int send = 2131231024;
+			public const int security = 2131231024;
 			
 			// aapt resource value: 0x7F080131
-			public const int star = 2131231025;
+			public const int send = 2131231025;
 			
 			// aapt resource value: 0x7F080132
-			public const int swap = 2131231026;
+			public const int star = 2131231026;
 			
 			// aapt resource value: 0x7F080133
-			public const int swapAlt = 2131231027;
+			public const int swap = 2131231027;
 			
 			// aapt resource value: 0x7F080134
-			public const int thumbs = 2131231028;
+			public const int swapAlt = 2131231028;
 			
 			// aapt resource value: 0x7F080135
-			public const int tooltip_frame_dark = 2131231029;
+			public const int thumbs = 2131231029;
 			
 			// aapt resource value: 0x7F080136
-			public const int tooltip_frame_light = 2131231030;
+			public const int tooltip_frame_dark = 2131231030;
 			
 			// aapt resource value: 0x7F080137
-			public const int tran = 2131231031;
+			public const int tooltip_frame_light = 2131231031;
 			
 			// aapt resource value: 0x7F080138
-			public const int trans = 2131231032;
+			public const int tran = 2131231032;
 			
 			// aapt resource value: 0x7F080139
-			public const int transfer = 2131231033;
+			public const int trans = 2131231033;
 			
 			// aapt resource value: 0x7F08013A
-			public const int transfor = 2131231034;
+			public const int transfer = 2131231034;
 			
 			// aapt resource value: 0x7F08013B
-			public const int undrawPro = 2131231035;
+			public const int transfor = 2131231035;
 			
 			// aapt resource value: 0x7F08013C
-			public const int wallet = 2131231036;
+			public const int undrawPro = 2131231036;
 			
 			// aapt resource value: 0x7F08013D
-			public const int whatsapp = 2131231037;
+			public const int wallet = 2131231037;
+			
+			// aapt resource value: 0x7F08013E
+			public const int whatsapp = 2131231038;
 			
 			static Drawable()
 			{
@@ -20223,6 +20226,9 @@ namespace PurpleGold.Droid
 			
 			// aapt resource value: 0x7F0D0002
 			public const int launcher_foreground = 2131558402;
+			
+			// aapt resource value: 0x7F0D0003
+			public const int myIcon = 2131558403;
 			
 			static Mipmap()
 			{

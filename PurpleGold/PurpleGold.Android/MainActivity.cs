@@ -11,7 +11,7 @@ using Plugin.Fingerprint;
 
 namespace PurpleGold.Droid
 {
-    [Activity(Label = "PurpleVest", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
+    [Activity(Label = "PurpleVest", Icon = "@mipmap/myIcon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -23,7 +23,7 @@ namespace PurpleGold.Droid
             base.OnCreate(savedInstanceState);
 
             Rg.Plugins.Popup.Popup.Init(this);
-            Forms.SetFlags(new string[] { "SwipeView_Experimental", "CollectionView_Experimental", "Shapes_Experimental" });
+            Forms.SetFlags(new string[] { "SwipeView_Experimental", "CollectionView_Experimental", "Shapes_Experimental", "CarouselView_Experimental" });
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             CachedImageRenderer.Init(true);

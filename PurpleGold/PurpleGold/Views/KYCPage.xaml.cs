@@ -30,12 +30,14 @@ namespace PurpleGold.Views
         FileBytesItem bfitem;
         private string fileName;
         string UserImage;
+        bool myResponse;
 
         public KYCPage()
         {
             personViewModel = new PersonViewModel(Navigation);
             InitializeComponent();
             UpdateMe();
+            ProgressBarUpdate();
             this.BindingContext = personViewModel;
             
             MessagingCenter.Subscribe(this, "bankName", (object obj, string selectedBank) =>
@@ -89,6 +91,8 @@ namespace PurpleGold.Views
         {
             base.OnAppearing();
             await this.FadeTo(1, 250, Easing.SinInOut);
+            UpdateMe();
+            ProgressBarUpdate();
         }
 
         protected override async void OnDisappearing()
@@ -97,6 +101,20 @@ namespace PurpleGold.Views
             await this.FadeTo(1, 250, Easing.SinInOut);
         }
 
+
+        public void ProgressBarUpdate()
+        {
+            if(!string.IsNullOrEmpty(usraddr.Text) && !string.IsNullOrEmpty(usracctname.Text) && !bankName.Text.StartsWith("Bank") && !string.IsNullOrEmpty(usracctno.Text) && !string.IsNullOrEmpty(Settings.ImageUrl) && !string.IsNullOrEmpty(Settings.State) && !string.IsNullOrEmpty(Settings.Title))
+            {
+                updateProgBar.WidthRequest = 125;
+                proUpd.Text = "Profile Completed";
+            }
+            else
+            {
+                updateProgBar.WidthRequest = 90;
+                proUpd.Text = "Profile Completed";
+            }
+        }
         public void UpdateMe()
         {
             if (string.IsNullOrEmpty(Settings.BankName))
@@ -136,7 +154,7 @@ namespace PurpleGold.Views
             
             if (string.IsNullOrEmpty(Settings.State))
             {
-                state.Text = "";
+                state.Text = "State of Residence";
             }
             else
             {
@@ -296,13 +314,12 @@ UpdateMemberClicked()
 
                 if (response.IsSuccessful)
                 {
-                    
+                    await GetUserById();
                     await PopupNavigation.Instance.PopAsync(true);
                     await PopupNavigation.Instance.PushAsync(new SuccessPopUp());
                     //Settings.BankName = bankName.Text;
                     //Settings.AccountNumber = usracctno.Text;
                     //Settings.AccountName = usracctname.Text;
-                    GetUserById();
                 }
                 else
                 {
@@ -378,43 +395,48 @@ UpdateMemberClicked()
             }
          }
 
-        public void GetUserById()
+        public async Task<bool> GetUserById()
         {
+            myResponse = false;
             try
             {
-                string url = Constant.GetInvestorByIdUrl + Settings.UserId;
-                var client = new RestClient(url);
-                client.Timeout = -1;
-                var request = new RestRequest(Method.GET);
-                request.AddHeader("appid", Settings.AppId);
-                request.AddHeader("Authorization", Settings.Token);
-                IRestResponse response = client.Execute(request);
-                var res = response.Content;
-                Console.WriteLine(response.Content);
-                //IsBusy = false;
+                await Task.Run(async () =>
+                {
+                    string url = Constant.GetInvestorByIdUrl + Settings.UserId;
+                    var client = new RestClient(url);
+                    client.Timeout = -1;
+                    var request = new RestRequest(Method.GET);
+                    request.AddHeader("appid", Settings.AppId);
+                    request.AddHeader("Authorization", Settings.Token);
+                    IRestResponse response = await client.ExecuteAsync(request);
+                    var res = response.Content;
+                    Console.WriteLine(response.Content);
+                    //IsBusy = false;
 
-                GetInvestor person = JsonConvert.DeserializeObject<GetInvestor>(res);
-                Settings.CurrentInvestor = person;
-                var currentUser = person.data[0];
+                    GetInvestor person = JsonConvert.DeserializeObject<GetInvestor>(res);
+                    Settings.CurrentInvestor = person;
+                    var currentUser = person.data[0];
 
-                Settings.Id = currentUser.id;
-                Settings.UserId = currentUser.bank;
-                Settings.Lastname = currentUser.lastname;
-                Settings.Firstname = currentUser.firstname;
-                Settings.Email = currentUser.email;
-                Settings.ReferralCode = currentUser.referralCode;
-                Settings.PhoneNumber = currentUser.phoneNumber;
-                Settings.ImageUrl = currentUser.imageUrl;
-                Settings.Title = currentUser.title;
-                Settings.AccountNumber = currentUser.accountNumber;
-                Settings.AccountName = currentUser.accountName;
-                Settings.State = currentUser.state;
-                Settings.Address = currentUser.houseOfResidence;
-
+                    Settings.Id = currentUser.id;
+                    Settings.UserId = currentUser.bank;
+                    Settings.Lastname = currentUser.lastname;
+                    Settings.Firstname = currentUser.firstname;
+                    Settings.Email = currentUser.email;
+                    Settings.ReferralCode = currentUser.referralCode;
+                    Settings.PhoneNumber = currentUser.phoneNumber;
+                    Settings.ImageUrl = currentUser.imageUrl;
+                    Settings.Title = currentUser.title;
+                    Settings.AccountNumber = currentUser.accountNumber;
+                    Settings.AccountName = currentUser.accountName;
+                    Settings.State = currentUser.state;
+                    Settings.Address = currentUser.houseOfResidence;
+                    myResponse = true;
+                });
+                return myResponse;
             }
             catch (Exception)
             {
-                return;
+                return false;
             }
         }
     }

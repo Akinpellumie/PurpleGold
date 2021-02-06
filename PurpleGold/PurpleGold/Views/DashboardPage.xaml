@@ -170,7 +170,22 @@
 
                                             <Grid Grid.Row="3"
                                                   VerticalOptions="End">
-                                                <Button
+                                                <pv:PancakeView BackgroundColor="{StaticResource AltColor}"
+                                                        Padding="0,8"
+                                                        HorizontalOptions="Fill"
+                                                        CornerRadius="5">
+                                                    <Label Text="Withdraw"
+                                                   FontFamily="{StaticResource FontRegular}"
+                                                   FontSize="{StaticResource FontSize12}"
+                                                   TextColor="{StaticResource WhiteColor}"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"/>
+                                                    <pv:PancakeView.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="WithdrawBtn_Clicked"
+                                                                      NumberOfTapsRequired="1"/>
+                                                    </pv:PancakeView.GestureRecognizers>
+                                                </pv:PancakeView>
+                                                <!--<Button
                                                     Text="Withdraw"
                                                     TextColor="White"
                                                     BackgroundColor="{StaticResource AltColor}"
@@ -180,7 +195,7 @@
                                                     FontSize="{StaticResource FontSize8}"
                                                     CornerRadius="5"
                                                     TextTransform="None"
-                                                    WidthRequest="70"/>
+                                                    WidthRequest="70"/>-->
                                             </Grid>
                                         </Grid>
                                     </pv:PancakeView>
@@ -213,7 +228,23 @@
                                                     Margin="0,0,0,50"
                                                     HeightRequest="150"/>
 
-                                                <Button
+                                                <pv:PancakeView BackgroundColor="{StaticResource AltColor}"
+                                                        Padding="0,8"
+                                                        HorizontalOptions="Fill"
+                                                                VerticalOptions="End"
+                                                        CornerRadius="5">
+                                                    <Label Text="Deposit"
+                                                   FontFamily="{StaticResource FontRegular}"
+                                                   FontSize="{StaticResource FontSize12}"
+                                                   TextColor="{StaticResource WhiteColor}"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"/>
+                                                    <pv:PancakeView.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="DepositBtn_Clicked"
+                                                                      NumberOfTapsRequired="1"/>
+                                                    </pv:PancakeView.GestureRecognizers>
+                                                </pv:PancakeView>
+                                                <!--<Button
                                                     Text="Deposit"
                                                     TextColor="White"
                                                     Clicked="DepositBtn_Clicked"
@@ -224,7 +255,7 @@
                                                     FontSize="{StaticResource FontSize8}"
                                                     CornerRadius="5"
                                                     TextTransform="None"
-                                                    WidthRequest="70"/>
+                                                    WidthRequest="70"/>-->
                                             </Grid>
                                         </pv:PancakeView>
                                         
@@ -245,7 +276,24 @@
                                                     Margin="0,0,0,50"
                                                     HeightRequest="150"/>
 
-                                                <Button
+                                                <pv:PancakeView BackgroundColor="{StaticResource AltColor}"
+                                                        Padding="0,8"
+                                                        HorizontalOptions="Fill"
+                                                                VerticalOptions="End"
+                                                        CornerRadius="5">
+                                                    <Label Text="Asset"
+                                                   FontFamily="{StaticResource FontRegular}"
+                                                   FontSize="{StaticResource FontSize12}"
+                                                   TextColor="{StaticResource WhiteColor}"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"/>
+                                                    <pv:PancakeView.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="AssetBtn_Clicked"
+                                                                      NumberOfTapsRequired="1"/>
+                                                    </pv:PancakeView.GestureRecognizers>
+                                                </pv:PancakeView>
+                                                
+                                                <!--<Button
                                                     Text="Asset"
                                                     TextColor="White"
                                                     Clicked="AssetBtn_Clicked"
@@ -256,7 +304,7 @@
                                                     FontSize="{StaticResource FontSize8}"
                                                     CornerRadius="5"
                                                     TextTransform="None"
-                                                    WidthRequest="70"/>
+                                                    WidthRequest="70"/>-->
                                             </Grid>
                                         </pv:PancakeView>
                                         
@@ -294,7 +342,24 @@
                                                     Margin="0,10,0,50"
                                                     HeightRequest="150"/>
 
-                                                <Button
+
+                                                <pv:PancakeView BackgroundColor="#A83CA8"
+                                                        Padding="0,8"
+                                                        HorizontalOptions="Fill"
+                                                                VerticalOptions="End"
+                                                        CornerRadius="5">
+                                                    <Label Text="Invest"
+                                                   FontFamily="{StaticResource FontRegular}"
+                                                   FontSize="{StaticResource FontSize12}"
+                                                   TextColor="{StaticResource WhiteColor}"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"/>
+                                                    <pv:PancakeView.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="InvestBtn_Clicked"
+                                                                      NumberOfTapsRequired="1"/>
+                                                    </pv:PancakeView.GestureRecognizers>
+                                                </pv:PancakeView>
+                                                <!--<Button
                                                     Text="Invest"
                                                     TextColor="White"
                                                     Clicked="InvestBtn_Clicked"
@@ -305,7 +370,7 @@
                                                     FontSize="{StaticResource FontSize8}"
                                                     CornerRadius="5"
                                                     TextTransform="None"
-                                                    WidthRequest="70"/>
+                                                    WidthRequest="70"/>-->
                                             </Grid>
                                         </pv:PancakeView>
                                     </StackLayout>
@@ -342,7 +407,23 @@
                                                        VerticalOptions="Center"
                                                        x:Name="TransLbl"/>
 
-                                                <Button
+                                                <pv:PancakeView BackgroundColor="#FF825F"
+                                                        Padding="0,8"
+                                                        HorizontalOptions="Fill"
+                                                                VerticalOptions="End"
+                                                        CornerRadius="5">
+                                                    <Label Text="Transfer"
+                                                   FontFamily="{StaticResource FontRegular}"
+                                                   FontSize="{StaticResource FontSize12}"
+                                                   TextColor="{StaticResource WhiteColor}"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"/>
+                                                    <pv:PancakeView.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TransferBtn_Clicked"
+                                                                      NumberOfTapsRequired="1"/>
+                                                    </pv:PancakeView.GestureRecognizers>
+                                                </pv:PancakeView>
+                                                <!--<Button
                                                     Text="Transfer"
                                                     TextColor="White"
                                                     VerticalOptions="End"
@@ -353,7 +434,7 @@
                                                     FontSize="{StaticResource FontSize8}"
                                                     CornerRadius="5"
                                                     TextTransform="None"
-                                                    WidthRequest="70"/>
+                                                    WidthRequest="70"/>-->
                                             </Grid>
                                         </pv:PancakeView>
                                     </StackLayout>
@@ -439,8 +520,25 @@
                                                        FontFamily="{StaticResource FontBold}"
                                                        IsVisible="False"
                                                        x:Name="swapLbl"/>
+
+                                                <pv:PancakeView BackgroundColor="#69DD56"
+                                                        Padding="0,8"
+                                                        HorizontalOptions="Fill"
+                                                                VerticalOptions="End"
+                                                        CornerRadius="5">
+                                                    <Label Text="Swap"
+                                                   FontFamily="{StaticResource FontRegular}"
+                                                   FontSize="{StaticResource FontSize12}"
+                                                   TextColor="{StaticResource WhiteColor}"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"/>
+                                                    <pv:PancakeView.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="SwapBtn_Clicked"
+                                                                      NumberOfTapsRequired="1"/>
+                                                    </pv:PancakeView.GestureRecognizers>
+                                                </pv:PancakeView>
                                                 
-                                                <Button
+                                                <!--<Button
                                                     Text="Swap"
                                                     TextColor="White"
                                                     VerticalOptions="End"
@@ -451,7 +549,7 @@
                                                     FontSize="{StaticResource FontSize8}"
                                                     CornerRadius="5"
                                                     TextTransform="None"
-                                                    WidthRequest="70"/>
+                                                    WidthRequest="70"/>-->
                                             </Grid>
                                         </pv:PancakeView>
                                     </StackLayout>
@@ -476,7 +574,23 @@
                                                     Margin="0,10,0,50"
                                                     HeightRequest="150"/>
 
-                                                <Button
+                                                <pv:PancakeView BackgroundColor="#A778E7"
+                                                        Padding="0,8"
+                                                        HorizontalOptions="Fill"
+                                                                VerticalOptions="End"
+                                                        CornerRadius="5">
+                                                    <Label Text="FAQ"
+                                                   FontFamily="{StaticResource FontRegular}"
+                                                   FontSize="{StaticResource FontSize12}"
+                                                   TextColor="{StaticResource WhiteColor}"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"/>
+                                                    <pv:PancakeView.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="FaqBtn_Clicked"
+                                                                      NumberOfTapsRequired="1"/>
+                                                    </pv:PancakeView.GestureRecognizers>
+                                                </pv:PancakeView>
+                                                <!--<Button
                                                     Text="FAQ"
                                                     TextColor="White"
                                                     VerticalOptions="End"
@@ -487,7 +601,7 @@
                                                     FontSize="{StaticResource FontSize8}"
                                                     CornerRadius="5"
                                                     TextTransform="None"
-                                                    WidthRequest="70"/>
+                                                    WidthRequest="70"/>-->
                                             </Grid>
                                         </pv:PancakeView>
                                     </StackLayout>

@@ -31,7 +31,7 @@ namespace PurpleGold
         {
             AppCenter.Start("android=ba867121-4dc6-4e23-a6cc-40fc792b11ad;" +
                   "uwp={Your UWP App secret here};" +
-                  "ios={Your iOS App secret here}",
+                  "ios=bb671908-0277-4c8b-b1ab-e59b2909f2cb",
                   typeof(Analytics), typeof(Crashes));
         }
 
