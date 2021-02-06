@@ -15,7 +15,7 @@ namespace PurpleGold.Views
         public LoginSignUpPage()
         {
             InitializeComponent();
-            if(Settings.FirstTime == true)
+            if (Settings.FirstTime == true)
             {
                 CallSignUp();
             }
@@ -27,6 +27,7 @@ namespace PurpleGold.Views
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
+
                     SuccessCall();
                 });
 
@@ -105,16 +106,5 @@ namespace PurpleGold.Views
             await loginStack.FadeTo(1, 250, Easing.SinInOut);
         }
 
-        private async void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
-        {
-            LogActive.IsVisible = false;
-            login.TextColor = Color.FromHex("CC97CC");
-            signup.TextColor = Color.FromHex("9E079E");
-            active.IsVisible = true;
-            await second.ScaleTo(1, 250, Easing.BounceIn);
-            signUpStack.IsVisible = true;
-            loginStack.IsVisible = false;
-            await loginStack.FadeTo(1, 250, Easing.SinInOut);
-        }
     }
 }

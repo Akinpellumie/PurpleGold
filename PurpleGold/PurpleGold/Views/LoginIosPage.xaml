@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:Controls="clr-namespace:PurpleGold.Controls" xmlns:ff1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" xmlns:Template="clr-namespace:PurpleGold.Views.Templates"
-             x:Class="PurpleGold.Views.LoginSignUpPage"
+             x:Class="PurpleGold.Views.LoginIosPage"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White">
     <ContentPage.Content>
@@ -49,10 +49,10 @@
                                     VerticalOptions="End"
                                     Color="{StaticResource PurpleColor}"/>
 
-                                <Grid.GestureRecognizers>
+                                <!--<Grid.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="LoginStack_Tapped"
                                                           NumberOfTapsRequired="1"/>
-                                </Grid.GestureRecognizers>
+                                </Grid.GestureRecognizers>-->
                             </Grid>
 
                             <Grid
@@ -78,10 +78,10 @@
                                     IsVisible="False"
                                     Color="{StaticResource PurpleColor}"/>
 
-                                <Grid.GestureRecognizers>
+                                <!--<Grid.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="SignUpStack_Tapped"
                                                           NumberOfTapsRequired="1"/>
-                                </Grid.GestureRecognizers>
+                                </Grid.GestureRecognizers>-->
                             </Grid>
                         </Grid>
                     </pv:PancakeView>
@@ -93,13 +93,13 @@
                         <Template:LoginTemplate />
                     </StackLayout>
 
-                    <StackLayout x:Name="forgotPassStack" IsVisible="False">
+                    <!--<StackLayout x:Name="forgotPassStack" IsVisible="False">
                         <Template:ForgotPassTemplate />
                     </StackLayout>
 
                     <StackLayout x:Name="signUpStack" IsVisible="False">
                         <Template:SignUpTemplate />
-                    </StackLayout>
+                    </StackLayout>-->
                 </StackLayout>
             </Grid>
         </StackLayout>

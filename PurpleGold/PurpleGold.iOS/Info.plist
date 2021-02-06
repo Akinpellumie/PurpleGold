@@ -40,5 +40,11 @@
 	<string>Need your face to unlock secrets!</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+  <key>UIAppFonts</key>
+  <array>
+    <string>BwModelicaCyrillicDEMOBold.ttf</string>
+    <string>BwModelicaCyrillicDEMOMedium.ttf</string>
+    <string>BwModelicaCyrillicDEMORegular.ttf</string>
+  </array>
 </dict>
 </plist>

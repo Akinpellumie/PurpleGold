@@ -14,6 +14,7 @@ namespace PurpleGold
         public App()
         {
             InitializeComponent();
+            //MainPage = new LoginIosPage();
             VersionTracking.Track();
             if (VersionTracking.IsFirstLaunchEver == true)
             {

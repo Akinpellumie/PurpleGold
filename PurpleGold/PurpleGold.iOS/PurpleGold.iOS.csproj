@@ -73,7 +73,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Controls\BorderlessEntryRenderer.cs" />
-    <Compile Include="Controls\CustomEditorRenderer.cs" />
     <Compile Include="Controls\CustomEntryRenderer.cs" />
     <Compile Include="Controls\CustomPickerRenderer.cs" />
     <Compile Include="Controls\CustomSearchRenderer.cs" />
@@ -153,7 +152,7 @@
       <Version>106.11.7</Version>
     </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
-      <Version>2.0.0.9</Version>
+      <Version>2.0.0.10</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.HtmlLabel">
       <Version>5.0.0</Version>
@@ -173,8 +172,8 @@
     <PackageReference Include="Xamarin.FFImageLoading.Transformations">
       <Version>2.4.11.982</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="Xamarin.Forms.PancakeView">
       <Version>2.3.0.759</Version>
     </PackageReference>
@@ -304,10 +303,10 @@
     <BundleResource Include="Resources\honor.svg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\eye.png" />
+    <BundleResource Include="Resources\HidePass.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\eyeOff.png" />
+    <BundleResource Include="Resources\ShowPass.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\assetIcon.png" />

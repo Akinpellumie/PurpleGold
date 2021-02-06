@@ -6,6 +6,7 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Foundation;
+using Xamarin.Forms;
 using UIKit;
 
 namespace PurpleGold.iOS
@@ -26,8 +27,8 @@ namespace PurpleGold.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             Rg.Plugins.Popup.Popup.Init();
-            Xamarin.Forms.Forms.SetFlags(new string[] { "CarouselView_Experimental", "SwipeView_Experimental", "CollectionView_Experimental", "Shapes_Experimental" });
-            global::Xamarin.Forms.Forms.Init();
+            Forms.SetFlags(new string[] { "CarouselView_Experimental", "SwipeView_Experimental", "CollectionView_Experimental", "Shapes_Experimental" });
+            Forms.Init();
             CachedImageRenderer.Init();
             CachedImageRenderer.InitImageSourceHandler();
             LoadApplication(new App());
