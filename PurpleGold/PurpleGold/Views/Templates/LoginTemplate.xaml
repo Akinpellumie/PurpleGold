@@ -93,9 +93,9 @@
                                                            Keyboard="Default"
                                                            IsPassword="True"
                                                            FontFamily="{StaticResource FontRegular}">
-                            <Controls:CustomEntry.Effects>
+                            <!--<Controls:CustomEntry.Effects>
                                 <Controls:ShowHidePassEffect />
-                            </Controls:CustomEntry.Effects>
+                            </Controls:CustomEntry.Effects>-->
                         </Controls:CustomEntry>
                     </Grid>
                 </pv:PancakeView>
