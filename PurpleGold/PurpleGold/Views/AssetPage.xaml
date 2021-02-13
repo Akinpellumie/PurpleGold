@@ -40,8 +40,8 @@
                                  HeightRequest="50"
                                  Grid.Row="1">
                         <pv:PancakeView BackgroundColor="White"
-                                            HorizontalOptions="Center"
-                                        WidthRequest="180"
+                                            HorizontalOptions="CenterAndExpand"
+                                        WidthRequest="250"
                                         HeightRequest="40"
                                             CornerRadius="8">
                             <Grid ColumnSpacing="0">
@@ -59,7 +59,7 @@
                                                 TextColor="{StaticResource WhiteColor}" 
                                                 Text="  ACTIVE  " 
                                                 FontSize="{StaticResource FontSize10}"
-                                                HorizontalOptions="Center"
+                                                HorizontalOptions="CenterAndExpand"
                                                 HorizontalTextAlignment="Center"
                                                 VerticalOptions="Center"
                                                 FontFamily="{StaticResource FontRegular}"/>
@@ -80,7 +80,7 @@
                                                 TextColor="{StaticResource SubTextColor}" 
                                                 Text="HISTORY" 
                                                 FontSize="{StaticResource FontSize10}"
-                                                HorizontalOptions="Center"
+                                                HorizontalOptions="CenterAndExpand"
                                                 HorizontalTextAlignment="Center"
                                                 VerticalOptions="Center"
                                                 FontFamily="{StaticResource FontRegular}"/>

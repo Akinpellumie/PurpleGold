@@ -232,11 +232,11 @@ namespace PurpleGold.ViewModels
         {
             bool res = await accessService.LoginUser(loginData);
 
-            if (res.Equals(true))
-            {
-                Application.Current.MainPage = new AppShell();
-                await Shell.Current.GoToAsync("//main");
-            }
+            //if (res.Equals(true))
+            //{
+            //    Application.Current.MainPage = new AppShell();
+            //    await Shell.Current.GoToAsync("//main");
+            //}
             if (res == true)
             {
                 Application.Current.MainPage = new AppShell();

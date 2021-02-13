@@ -116,6 +116,9 @@ namespace PurpleGold.Services
 
                         MessagingCenter.Send(this, "SuccessLogin");
 
+                        //Application.Current.MainPage = new AppShell();
+                        //await Shell.Current.GoToAsync("//main");
+
                         Settings.Token = personProfile.personData.token;
                         Settings.Id = personProfile.personData.id;
                         Settings.UserId = personProfile.personData.id;

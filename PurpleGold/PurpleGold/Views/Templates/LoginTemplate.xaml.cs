@@ -31,14 +31,14 @@ namespace PurpleGold.Views.Templates
                 });
             });
             
-            MessagingCenter.Subscribe<AccessService>(this, "SuccessLogin", (sender) =>
-            {
-                Device.BeginInvokeOnMainThread(async () => 
-                {
-                    Application.Current.MainPage = new AppShell();
-                    await Shell.Current.GoToAsync("//main");
-                });
-            });
+            //MessagingCenter.Subscribe<AccessService>(this, "SuccessLogin", (sender) =>
+            //{
+            //    Device.BeginInvokeOnMainThread(async () => 
+            //    {
+            //        Application.Current.MainPage = new AppShell();
+            //        await Shell.Current.GoToAsync("//main");
+            //    });
+            //});
 
             MessagingCenter.Subscribe(this, "FillAllFields", (object obj, string required) =>
             {

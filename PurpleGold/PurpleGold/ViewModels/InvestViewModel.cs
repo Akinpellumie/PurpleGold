@@ -219,48 +219,7 @@ namespace PurpleGold.ViewModels
                     InvestmentData = assets;
                 IsBusy = false;
                 Settings.InvestmentList = assets;
-                //foreach (var amt in userAssets.Investments)
-                //{
-                //    string days;
-
-                //    DateTime end = DateTime.Parse(amt.endDate.Replace("[UTC]", ""));
-                //    DateTime start = DateTime.Parse(amt.startDate.Replace("[UTC]", ""));
-                //    TimeSpan timeSpan = end.Subtract(start);
-                //    days = timeSpan.Days.ToString();
-
-
-                //    string kems = ;
-                //    double min;
-                //    double max;
-                //    double dys;
-                //    dys = double.Parse(days);
-                //    double calc = dys * 1440;
-                //    min = double.Parse(amount);
-                //    max = double.Parse(amt.totalReturn);
-                //    double costpermin = max / calc;
-                //    if (dys > 0)
-                //    {
-                //        Device.StartTimer(new TimeSpan(0, 0, 60), () =>
-                //        {
-                //            // do something every 60 seconds
-                //            Device.BeginInvokeOnMainThread(() =>
-                //            {
-                //                double pel = min + costpermin++;
-                //                string polo = pel.ToString();
-                //                string Bal = Math.Round(Convert.ToDouble(polo), 2).ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-us")).Replace("$", "N");
-
-                //                Bal = kems;
-                //                var kms = kems;
-                //                var updAmt = Bal;
-                //                MessagingCenter.Send<object, string>(this, "timer", updAmt);
-                //            });
-                //            return true; // runs again, or false to stop
-                //        });
-                //    }
-                //    InvestmentData = assets;
-                //    IsBusy = false;
-                //    Settings.InvestmentList = assets;
-                //}
+               
             }
             catch (Exception)
             {

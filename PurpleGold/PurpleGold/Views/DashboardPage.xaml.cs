@@ -57,6 +57,9 @@ namespace PurpleGold.Views
 
         public async void CheckBalance()
         {
+            try
+            {
+
             string url = Constant.GetWalletUrl + Settings.UserId;
 
             var client = new RestClient(url);
@@ -71,6 +74,11 @@ namespace PurpleGold.Views
             RootWallet wallets = JsonConvert.DeserializeObject<RootWallet>(res);
             var sorted = wallets.Wallets;
             Settings.balance = sorted[0].balance;
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
 
         public async void WithdrawBtn_Clicked(object sender, EventArgs e)

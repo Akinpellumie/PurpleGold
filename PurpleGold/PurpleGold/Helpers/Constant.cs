@@ -12,9 +12,10 @@ namespace PurpleGold.Helpers
         {
             get
             {
-                //return "https://purple-gold.herokuapp.com";
+                return "https://purple-gold.herokuapp.com";
                 //return "http://localhost:3000";
-                return "http://192.168.1.169:8000";
+                //return "http://192.168.1.169:8000";
+                //return "https://www.purplevest.thepurplegoldcompany.com/banks";
             }
         }
         public static string FormatAmount = "N52,000.00";

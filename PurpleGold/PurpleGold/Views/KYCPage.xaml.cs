@@ -387,7 +387,7 @@ UpdateMemberClicked()
                 {
                     await UpdateMemberClicked();
                 }
-                await PopupNavigation.Instance.PopAsync(true);
+                //await PopupNavigation.Instance.PopAsync(true);
             }
             catch (Exception)
             {
