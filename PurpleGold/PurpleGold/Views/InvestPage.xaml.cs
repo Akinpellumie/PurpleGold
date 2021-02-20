@@ -106,6 +106,8 @@ namespace PurpleGold.Views
         {
             base.OnAppearing();
             await this.FadeTo(1, 500, Easing.Linear);
+            mainView.IsVisible = true;
+            MouView.IsVisible = false;
         }
 
         protected override async void OnDisappearing()
@@ -233,6 +235,12 @@ namespace PurpleGold.Views
         }
 
         #region download MOU pdf
+        public async void GotoDownloadPage(object sender, EventArgs e)
+        {
+            string urlee = Constant.DownloadUrl + mouUrl;
+            //string urlee = "http://www.africau.edu/images/default/sample.pdf";
+            await Navigation.PushAsync(new DownloadMOU(urlee));
+        }
         public void PdfClickHandler()
         {
             string filename = Settings.Firstname + " " + Settings.Lastname + "MOU";

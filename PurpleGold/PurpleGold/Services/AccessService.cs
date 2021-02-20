@@ -18,6 +18,7 @@ namespace PurpleGold.Services
     {
         bool Response;
         string myId;
+        string msg;
 
         public async Task<bool> RegisterUser(CreateUser registerData)
         {
@@ -42,37 +43,49 @@ namespace PurpleGold.Services
                     var res = response.Content;
 
                     RegisterInvestor newUser = JsonConvert.DeserializeObject<RegisterInvestor>(res);
-                    var msg = newUser.message;
+                    msg = newUser.message;
                     var stat = newUser.status;
                     var vex = newUser.createUserData.id;
 
-                    if (response.IsSuccessful)
+                    if (newUser.createUserData == null)
                     {
+                        MessagingCenter.Send<object, string>(this, "errorrr", msg);
+                    }
 
-                        MessagingCenter.Send(this, "SuccessRegister");
-                        Response = true;
-                        Settings.UserId = newUser.createUserData.id;
-                        Settings.UserCreated = true;
-                        //AppShell fpm = new AppShell();
-                        //Application.Current.MainPage = fpm;
-                    }
-                   else if(stat.Contains("400"))
-                    {
-                        MessagingCenter.Send<object, string>(this, "error", msg);
-                        Response = false;
-                    }
                     else
                     {
-                        MessagingCenter.Send<object, string>(this, "error", msg);
-                        return;
+                    while (!string.IsNullOrEmpty(res))
+                    {
+                        if (response.IsSuccessful)
+                        {
+
+                            MessagingCenter.Send(this, "SuccessRegister");
+                            Response = true;
+                            Settings.UserId = newUser.createUserData.id;
+                            Settings.UserCreated = true;
+                            break;
+                        }
+                        else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                        {
+                            MessagingCenter.Send<object, string>(this, "error", msg);
+                            Response = false;
+                            break;
+                        }
+                        else if (!response.IsSuccessful)
+                        {
+                            MessagingCenter.Send<object, string>(this, "error", msg);
+                            break;
+                            return;
+                        }
+                    }
                     }
                 });
                 return Response;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                var msgg = "Server error!!! Please try again later.";
-                MessagingCenter.Send<object, string>(this, "errorrr", msgg);
+                //var msg = "Server error!!! Please try again later.";
+                MessagingCenter.Send<object, string>(this, "errorrr", msg);
                 return false;
             }
 

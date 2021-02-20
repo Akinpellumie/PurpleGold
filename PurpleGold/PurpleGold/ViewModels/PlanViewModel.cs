@@ -87,7 +87,7 @@ namespace PurpleGold.ViewModels
         }
         #endregion
 
-        #region Methods
+        #region Functions
         public async void GetPlan()
         {
             //planModelList = new ObservableCollection<Plan>();

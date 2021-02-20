@@ -9,6 +9,7 @@
 
             <!--#region firstView-->
                 <ScrollView  x:Name="FirstView"
+                             VerticalScrollBarVisibility="Never"
                           IsVisible="True">
                     <StackLayout>
 
@@ -326,6 +327,7 @@
 
 
                 <ScrollView x:Name="SecondView"
+                            VerticalScrollBarVisibility="Never"
                           IsVisible="False">
                     <StackLayout>
 
@@ -607,6 +609,7 @@
 
 
                 <ScrollView x:Name="ThirdView"
+                            VerticalScrollBarVisibility="Never"
                           IsVisible="False">
                 <StackLayout>
 
@@ -798,9 +801,9 @@
                                                                Keyboard="Default"
                                                                IsPassword="True"
                                                                FontFamily="{StaticResource FontRegular}">
-                                        <!--<Controls:CustomEntry.Effects>
+                                        <Controls:CustomEntry.Effects>
                                             <Controls:ShowHidePassEffect />
-                                        </Controls:CustomEntry.Effects>-->
+                                        </Controls:CustomEntry.Effects>
                                         <Controls:CustomEntry.Behaviors>
                                             <local:PasswordValidationBehavior />
                                         </Controls:CustomEntry.Behaviors>
@@ -850,9 +853,9 @@
                                                                Keyboard="Default"
                                                                IsPassword="True"
                                                                FontFamily="{StaticResource FontRegular}">
-                                        <!--<Controls:CustomEntry.Effects>
+                                        <Controls:CustomEntry.Effects>
                                             <Controls:ShowHidePassEffect />
-                                        </Controls:CustomEntry.Effects>-->
+                                        </Controls:CustomEntry.Effects>
                                         <Controls:CustomEntry.Behaviors>
                                             <local:PasswordValidationBehavior />
                                             <local:CompareValidationBehavior BindingContext="{x:Reference usrPass}" Text="{Binding Text, Mode=TwoWay}"/>

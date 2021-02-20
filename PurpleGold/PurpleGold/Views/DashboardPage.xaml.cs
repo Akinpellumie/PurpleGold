@@ -38,7 +38,7 @@ namespace PurpleGold.Views
             //acctBal.Text = bal;
             if (string.IsNullOrEmpty(Settings.AccountNumber))
             {
-                myAcct.Text = "xxxxxxxxxx";
+                myAcct.Text = "XXXXXXXXXX";
             }
             else
             {
@@ -118,6 +118,8 @@ namespace PurpleGold.Views
         {
             base.OnAppearing();
             await this.FadeTo(1, 250, Easing.SinInOut);
+            acctBal.Text = "NXX,XXX.XX";
+            showClose.Text = "Show Balance";
             CheckBalance();
         }
 

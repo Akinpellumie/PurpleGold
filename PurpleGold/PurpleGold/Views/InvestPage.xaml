@@ -387,7 +387,7 @@
                                 BackgroundColor="{StaticResource PurpleColor}"
                                 HeightRequest="45"
                                 VerticalOptions="Center"
-                                Clicked="DownLoadMouClicked"
+                                Clicked="GotoDownloadPage"
                                 FontFamily="{StaticResource FontBold}"
                                 FontSize="{StaticResource FontSize14}"
                                 HorizontalOptions="Fill"

@@ -36,7 +36,15 @@ namespace PurpleGold.Models
         {
             get 
             {
-                var title = this.name + " (" + duration + " months)";
+                string title;
+                if (name.StartsWith("Gel"))
+                {
+                    title = this.name + " (" + duration + " month)";
+                }
+                else
+                {
+                    title = this.name + " (" + duration + " months)";
+                }
                 return title;
             }
             set
